@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import EventSpotlight from '../components/EventSpotlight.vue';
+import RecentEvents from '../components/RecentEvents.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import Testimonials from '../components/Testimonials.astro';
+import PartnersMarquee from '../components/PartnersMarquee.astro';
+import Collaborate from '../components/Collaborate.astro';
+import Team from '../components/Team.astro';
+import events from '../data/events.json';
+---
+
+<Layout title="Nexis Oaxaca Tech | El punto de encuentro tecnológico">
+	<Header />
+
+	<main class="opacity-0 transition-opacity duration-1000" id="main-content">
+		<!-- Hero Section -->
+		<Hero />
+
+		<!-- Upcoming Event Spotlight -->
+		<EventSpotlight client:load events={events} />
+
+    <!-- Recent Events -->
+    <RecentEvents />
+
+    <!-- Featured Projects -->
+    <FeaturedProjects />
+
+    <!-- Testimonials -->
+    <Testimonials />
+
+    <!-- Partners Marquee -->
+    <PartnersMarquee />
+
+    <!-- Collaborate -->
+    <Collaborate />
+
+    <!-- Team -->
+    <Team />
+
+    <Footer />
+	</main>
+
+	<script>
+		import gsap from 'gsap';
+		import { ScrollTrigger } from 'gsap/ScrollTrigger';
+		gsap.registerPlugin(ScrollTrigger);
+
+		document.addEventListener('DOMContentLoaded', () => {
+			const main = document.getElementById('main-content');
+			if (main) main.classList.remove('opacity-0');
+
+			const reveals = document.querySelectorAll('.reveal');
+			reveals.forEach((el) => {
+				gsap.from(el, {
+					scrollTrigger: {
+						trigger: el,
+						start: "top 85%",
+						toggleActions: "play none none none"
+					},
+					opacity: 0,
+					y: 40,
+					duration: 0.8,
+					ease: "power3.out"
+				});
+			});
+
+			gsap.to(".hero-iguana", {
+				y: -20,
+				duration: 2,
+				repeat: -1,
+				yoyo: true,
+				ease: "sine.inOut"
+			});
+		});
+	</script>
+</Layout>

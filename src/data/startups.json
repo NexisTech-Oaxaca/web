@@ -1,0 +1,305 @@
+[
+  {
+    "id": "maguey-io",
+    "name": "Maguey.io",
+    "industry": "SaaS",
+    "tagline": "ERP inteligente y trazabilidad digital para palenques y productores de mezcal.",
+    "description": "Plataforma de software como servicio (SaaS) que permite a los palenques tradicionales documentar todo su proceso de producción: procedencia del agave, cocción, fermentación, destilación y embotellado, certificando el origen mediante firmas digitales y blockchain.",
+    "image": "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&q=80&w=300",
+    "banner": "https://images.unsplash.com/photo-1527061011665-3652c757a4d4?auto=format&fit=crop&q=80&w=1200",
+    "website": "https://maguey.io",
+    "socials": {
+      "linkedin": "https://linkedin.com/company/maguey-io",
+      "twitter": "https://twitter.com/maguey_io",
+      "github": "https://github.com/maguey-io"
+    },
+    "founder": {
+      "name": "Beatriz Mendoza",
+      "role": "CEO & Fundadora",
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150",
+      "bio": "Ingeniera de software de la UTM con pasión por la digitalización del sector agrícola y las tradiciones oaxaqueñas."
+    },
+    "details": {
+      "whatWeDo": "Automatizamos el registro fiscal y el control de calidad exigido por la COMERCAM. Facilitamos a las marcas pequeñas exportar sus productos cumpliendo la normatividad con un solo clic.",
+      "market": "Mercado global del mezcal valuado en más de $1.2B USD, con foco en 900 palenques artesanales de Oaxaca.",
+      "stats": [
+        { "value": "120+", "label": "Palenques Activos" },
+        { "value": "1.5M", "label": "Litros Certificados" },
+        { "value": "18%", "label": "Reducción de Merma" }
+      ]
+    },
+    "team": [
+      {
+        "name": "Beatriz Mendoza",
+        "role": "CEO & Founder",
+        "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150",
+        "description": "Lidera la visión del producto y relaciones gubernamentales.",
+        "links": { "linkedin": "#", "github": "#" }
+      },
+      {
+        "name": "Roberto Juárez",
+        "role": "CTO",
+        "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150",
+        "description": "Arquitecto Backend especializado en hyperledger y cadenas de suministro.",
+        "links": { "github": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": "1",
+        "title": "Nacimiento de Maguey.io",
+        "date": "Enero 2024",
+        "description": "Primer prototipo validado en 5 palenques de Santiago Matatlán."
+      },
+      {
+        "step": "2",
+        "title": "Certificación COMERCAM",
+        "date": "Julio 2024",
+        "description": "Integración oficial con las normativas del Consejo Regulador del Mezcal."
+      },
+      {
+        "step": "3",
+        "title": "Expansión Comercial",
+        "date": "Diciembre 2025",
+        "description": "Cierre de ronda pre-semilla para escalar operaciones a 100+ productores."
+      }
+    ],
+    "evidence": [
+      {
+        "image": "https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&q=80&w=600",
+        "title": "Despliegue en Campo",
+        "type": "Capacitación"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=600",
+        "title": "Panel de Control ERP",
+        "type": "Software"
+      }
+    ]
+  },
+  {
+    "id": "mitla-intelligence",
+    "name": "Mitla Intelligence",
+    "industry": "IA & Data",
+    "tagline": "Modelos lingüísticos (LLMs) y procesamiento de voz para lenguas originarias de México.",
+    "description": "Compañía de investigación e inteligencia artificial dedicada al desarrollo de motores de traducción automáticos y agentes conversacionales en Zapoteco, Mixteco y Mixe para fines gubernamentales, educativos e industriales.",
+    "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=300",
+    "banner": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
+    "website": "https://mitla.ai",
+    "socials": {
+      "linkedin": "https://linkedin.com/company/mitla-ai",
+      "github": "https://github.com/mitla-intelligence"
+    },
+    "founder": {
+      "name": "Omar Vásquez",
+      "role": "Lead Research Scientist",
+      "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150",
+      "bio": "Lingüista computacional con posgrado en el IPN, enfocado en salvar el patrimonio lingüístico mediante IA."
+    },
+    "details": {
+      "whatWeDo": "Entrenamos redes neuronales con corpus orales recolectados éticamente de comunidades rurales, garantizando precisión de traducción cultural e idiomática.",
+      "market": "Instituciones gubernamentales, apps educativas globales y ONGs dedicadas a los derechos humanos y acceso multilingüe.",
+      "stats": [
+        { "value": "15+", "label": "Variantes Lingüísticas" },
+        { "value": "94%", "label": "Precisión BLEU" },
+        { "value": "50K+", "label": "Audios Procesados" }
+      ]
+    },
+    "team": [
+      {
+        "name": "Omar Vásquez",
+        "role": "Founder & Scientist",
+        "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150",
+        "description": "Diseña la arquitectura de traducción automática multivariante.",
+        "links": { "linkedin": "#", "github": "#" }
+      },
+      {
+        "name": "Gabriela Ruiz",
+        "role": "Coordinadora Comunitaria",
+        "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150",
+        "description": "Responsable de relaciones comunitarias y recolección ética de voz.",
+        "links": { "linkedin": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": "1",
+        "title": "Recolección del Corpus",
+        "date": "Marzo 2023",
+        "description": "Alianza con 10 radios comunitarias de la Sierra Juárez."
+      },
+      {
+        "step": "2",
+        "title": "Lanzamiento API Zapotec-NLP",
+        "date": "Noviembre 2024",
+        "description": "Primera API comercial de traducción en tiempo real de zapoteco del valle."
+      }
+    ],
+    "evidence": [
+      {
+        "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600",
+        "title": "Grabación en Cabina",
+        "type": "Voz"
+      }
+    ]
+  },
+  {
+    "id": "rutopia-oaxaca",
+    "name": "Rutopía Oaxaca",
+    "industry": "TravelTech",
+    "tagline": "Plataforma de ecoturismo comunitario y mapeo cultural alternativo.",
+    "description": "Conectamos a viajeros conscientes con anfitriones locales en comunidades rurales de Oaxaca para vivir experiencias auténticas y sostenibles, redistribuyendo los ingresos del turismo de forma justa.",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=300",
+    "banner": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=1200",
+    "website": "https://rutopia.com",
+    "socials": {
+      "linkedin": "https://linkedin.com/company/rutopia",
+      "twitter": "https://twitter.com/rutopia_oax"
+    },
+    "founder": {
+      "name": "Sofía Aguilar",
+      "role": "Directora de Operaciones",
+      "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150",
+      "bio": "Emprendedora social oaxaqueña, experta en ecoturismo y desarrollo comunitario sustentable."
+    },
+    "details": {
+      "whatWeDo": "Desarrollamos una plataforma digital y un sistema de reservas off-line para coordinadores locales en la Sierra Norte, Mixteca y Costa.",
+      "market": "Mercado del turismo de aventura y ecoturismo que representa más del 30% de la derrama en el estado.",
+      "stats": [
+        { "value": "45+", "label": "Aldeas Anfitrionas" },
+        { "value": "$420K", "label": "Ingresos Locales" },
+        { "value": "4.9★", "label": "Calificación Media" }
+      ]
+    },
+    "team": [
+      {
+        "name": "Sofía Aguilar",
+        "role": "Founder & CEO",
+        "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150",
+        "description": "Estratega turística y vinculación con cooperativas.",
+        "links": { "linkedin": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": "1",
+        "title": "Mapeo de Rutas",
+        "date": "Febrero 2025",
+        "description": "Se integran las primeras 8 cooperativas de los Pueblos Mancomunados."
+      }
+    ],
+    "evidence": [
+      {
+        "image": "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&q=80&w=600",
+        "title": "Senderismo Sierra",
+        "type": "Aventura"
+      }
+    ]
+  },
+  {
+    "id": "zapotec-chain",
+    "name": "Zapotec Chain",
+    "industry": "Web3 & Marketplaces",
+    "tagline": "Trazabilidad NFT para proteger y autenticar textiles zapotecos auténticos.",
+    "description": "Solución de Web3 que vincula un tag físico NFC invisible cosido en textiles artesanales de Teotitlán del Valle con un token no fungible (NFT) dinámico en la red Polygon, documentando al artesano creador e historia.",
+    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300",
+    "banner": "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&q=80&w=1200",
+    "website": "https://zapotec.chain",
+    "socials": {
+      "linkedin": "https://linkedin.com/company/zapotec-chain",
+      "github": "https://github.com/zapotec-chain"
+    },
+    "founder": {
+      "name": "Mateo Cruz",
+      "role": "Lead Web3 Developer",
+      "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150",
+      "bio": "Artesano de tercera generación y desarrollador de smart contracts, buscando proteger el arte textil contra el plagio internacional."
+    },
+    "details": {
+      "whatWeDo": "Creamos smart contracts optimizados de bajo consumo de gas y proveemos infraestructura NFC a cooperativas familiares oaxaqueñas.",
+      "market": "Protección contra copias industriales y mercados premium globales en galerías de NY, Tokio y París.",
+      "stats": [
+        { "value": "300+", "//": "NFC Tags", "label": "Textiles Certificados" },
+        { "value": "Polygon", "label": "Blockchain Network" },
+        { "value": "100%", "label": "Regalías directas" }
+      ]
+    },
+    "team": [
+      {
+        "name": "Mateo Cruz",
+        "role": "Founder",
+        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150",
+        "description": "Desarrollador Web3 y tejedor de tapetes.",
+        "links": { "linkedin": "#", "github": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": "1",
+        "title": "Smart Contract Audit",
+        "date": "Mayo 2025",
+        "description": "Auditoría completa aprobada para los contratos ERC-721 integrados."
+      }
+    ],
+    "evidence": [
+      {
+        "image": "https://images.unsplash.com/photo-1561053720-76cd73ff22c3?auto=format&fit=crop&q=80&w=600",
+        "title": "Artesano en Telar",
+        "type": "Cultura"
+      }
+    ]
+  },
+  {
+    "id": "valles-organicos",
+    "name": "Valles Orgánicos",
+    "industry": "BioTech & IoT",
+    "tagline": "Automatización hidropónica de precisión y biopesticidas inteligentes.",
+    "description": "Empresa biotecnológica e IoT enfocada en optimizar cultivos de tomate y hortalizas en el Valle de Ocotlán mediante sensores de conductividad eléctrica y fórmulas orgánicas fermentadas localmente.",
+    "image": "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&q=80&w=300",
+    "banner": "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&q=80&w=1200",
+    "website": "https://vallesorganicos.com",
+    "socials": {
+      "linkedin": "https://linkedin.com/company/valles-organicos",
+      "github": "https://github.com/valles-organicos"
+    },
+    "founder": {
+      "name": "Valeria Ruiz",
+      "role": "Directora de Laboratorio",
+      "image": "https://images.unsplash.com/photo-1534751516642-a131fed10495?auto=format&fit=crop&q=80&w=150",
+      "bio": "Bioquímica egresada del ITO, dedicada a mitigar el daño de fertilizantes químicos en mantos acuíferos."
+    },
+    "details": {
+      "whatWeDo": "Producimos biopesticidas hechos a base de extractos de plantas endémicas y desarrollamos sensores de nutrientes de hardware libre.",
+      "market": "Productores hortícolas de mediana escala que transitan hacia certificaciones orgánicas de exportación.",
+      "stats": [
+        { "value": "12", "label": "Fórmulas Registradas" },
+        { "value": "35%", "label": "Ahorro de Nutrientes" },
+        { "value": "4", "label": "Invernaderos Piloto" }
+      ]
+    },
+    "team": [
+      {
+        "name": "Valeria Ruiz",
+        "role": "Founder",
+        "image": "https://images.unsplash.com/photo-1534751516642-a131fed10495?auto=format&fit=crop&q=80&w=150",
+        "description": "Lidera la formulación biológica de los sustratos.",
+        "links": { "linkedin": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": "1",
+        "title": "Primera Patente",
+        "date": "Agosto 2024",
+        "description": "Registro oficial de biopesticida contra mosca blanca."
+      }
+    ],
+    "evidence": [
+      {
+        "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600",
+        "title": "Laboratorio BioTech",
+        "type": "Cultura"
+      }
+    ]
+  }
+]

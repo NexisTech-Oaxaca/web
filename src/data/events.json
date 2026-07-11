@@ -1,0 +1,77 @@
+[
+  {
+    "id": "como-crear-un-llm",
+    "title": "Charla: Cómo se crea LLM",
+    "description": "¿Alguna vez te has preguntado cómo funciona ChatGPT o cómo se crea un modelo de lenguaje desde cero? En Nexis Oaxaca Tech tendremos una charla donde conoceremos los conceptos detrás de los Large Language Models (LLMs), cómo se entrenan y qué tecnologías hacen posible esta revolución en la inteligencia artificial.",
+    "date": "2026-07-10",
+    "time": "16:00 MXC",
+    "location": "Virtual",
+    "type": "Virtual",
+    "status": "Finalizado",
+    "image": "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/738546353_122116486113354941_8779655979415250490_n.jpg?stp=dst-jpg_tt6&cstp=mx1545x1999&ctp=s1545x1999&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=0jmw-9WmS64Q7kNvwEMikiM&_nc_oc=Adqe4HJ-WkV2KO5qkihNEJba1gnbdLQowfNaLTS_-vt0Ma6xCf3dQJyioYRBrtc72wg&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=TFkeRMQO1qQsXpF05RDWYw&_nc_ss=7b2a8&oh=00_AQA779Pq7W4HvEdsud14RVDhEaW0vA8ee0sXn4lmOhzohw&oe=6A57E2DE",
+    "speakers": [
+      { "name": "Carlos Hernández Hernández", "role": "", "image": "" }
+    ],
+    "media": {
+      "youtube": "https://www.youtube.com/watch?v=_2-j0xQc9KI",
+      "facebook": "https://www.facebook.com/share/p/1E1rJ5qm79/",
+      "instagram": "https://www.instagram.com/p/DaojYDIjFt4/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      "linkedin": "https://www.linkedin.com/posts/nexisoaxacatech-oaxaca-inteligenciaartificial-share-7481516724639457280-WsfR/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAESkWQgBa1Qi2GrBdwT_Dzmr4Tx6LXd32rg"
+    },
+    "gallery": [
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/746164738_122118376839354941_4846355079939901977_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x910&ctp=s1600x910&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=92OGiH6mPEwQ7kNvwG1zbT8&_nc_oc=Adqpzv41pMw0uh_sEMnVLF3aSY5-gcXHNqDhCsxpXyb5Vb9vhA_4PTgzy71k7_LR-PA&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=nHBFYe5JJAIE8FD10cJXLA&_nc_ss=7b2a8&oh=00_AQC6g3F2a_rIcd4WBhDo0e396floiCwHYc8vnlAwdJqYrg&oe=6A57D089",
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/738546353_122116486113354941_8779655979415250490_n.jpg?stp=dst-jpg_tt6&cstp=mx1545x1999&ctp=s1545x1999&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=0jmw-9WmS64Q7kNvwEMikiM&_nc_oc=Adqe4HJ-WkV2KO5qkihNEJba1gnbdLQowfNaLTS_-vt0Ma6xCf3dQJyioYRBrtc72wg&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=TFkeRMQO1qQsXpF05RDWYw&_nc_ss=7b2a8&oh=00_AQA779Pq7W4HvEdsud14RVDhEaW0vA8ee0sXn4lmOhzohw&oe=6A57E2DE"
+    ]
+  },
+  {
+    "id": "como-usar-la-ia-en-tu-emprendimiento",
+    "title": "Charla: Cómo usar la IA para crear tu emprendimiento y no morir en el intento",
+    "description": "Descubre cómo la IA puede ayudarte a crear tu emprendimiento.",
+    "date": "2026-06-26",
+    "location": "Universidad del Istmo",
+    "type": "Presencial",
+    "status": "Finalizado",
+    "image": "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/724368827_122109169161354941_4273936876580064377_n.jpg?stp=dst-jpg_tt6&cstp=mx1545x1999&ctp=s1545x1999&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=qwdwn7vtGK8Q7kNvwGOzkCd&_nc_oc=AdpSXBo3LstgK79U0Wci_EEtGbHD-PF4bvkQhtnaLbFFlEBvx3zoydNIPN6eRf5F5NQ&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=wafRiZSWBZrd9wxK4pd_Mw&_nc_ss=7b2a8&oh=00_AQB9NspnxL-VQF6GHVUsjMZnEnGrpQA7mmLUDeMfaKg77Q&oe=6A57BE3D",
+    "speakers": [
+      {
+        "name": "Joe Constantino Enríquez",
+        "role": "Fundador de Udev-it",
+        "image": "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/730321007_122113897125354941_554987398715692564_n.jpg?stp=dst-jpg_tt6&cstp=mx1318x1200&ctp=s1318x1200&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=E_rTQ8GMBqwQ7kNvwEJ0FgA&_nc_oc=AdqqY6TFhpok__n8oGjfKys72f346ZoqZ0YhCyJoFshVoFySx_G31PW91sr6gEuvrwU&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=EHPVdsS6iU-7VO2qQIot0Q&_nc_ss=7b2a8&oh=00_AQDxmqd7t9ocWXiZi70w0D45cHjFNPTfC5FBo-tOyXgCrQ&oe=6A57EEA8"
+      }
+    ],
+    "gallery": [
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/733548359_122113867917354941_7231870180695010768_n.jpg?stp=dst-jpg_tt6&cstp=mx1200x1600&ctp=s1200x1600&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=aeZlie_DkmQQ7kNvwFZOFiY&_nc_oc=AdomKxwiwZOws-KGIF6eSTv3p4-RFoP9YQ_lHVfIES2Z3PVaA8U7pTbvA9oC6Y7PpfA&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=vRCPKk3lhcaALbbGiTYBRg&_nc_ss=7b2a8&oh=00_AQBYSY-aBhzgjkrztMoCqApdAifJjFQzFxrmZcB9tKv5AA&oe=6A57F299",
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/730321007_122113897125354941_554987398715692564_n.jpg?stp=dst-jpg_tt6&cstp=mx1318x1200&ctp=s1318x1200&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=E_rTQ8GMBqwQ7kNvwEJ0FgA&_nc_oc=AdqqY6TFhpok__n8oGjfKys72f346ZoqZ0YhCyJoFshVoFySx_G31PW91sr6gEuvrwU&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=EHPVdsS6iU-7VO2qQIot0Q&_nc_ss=7b2a8&oh=00_AQDxmqd7t9ocWXiZi70w0D45cHjFNPTfC5FBo-tOyXgCrQ&oe=6A57EEA8",
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/732027390_122113897179354941_3998440368872801438_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=8BrnVDoegooQ7kNvwG1a2-I&_nc_oc=Adosuc1ey3osI4S1qoEulSIJDt2UlAGpsEnK1goy3vi62oFaycdL2gWOuBhNbYioC-4&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=s7nDKkpK5yTYZuRJF5JhQQ&_nc_ss=7b2a8&oh=00_AQDu8jGIiv0PaJqmjo5YXrZsAwsCBCQ2446p-cbi9Aszkw&oe=6A57D070"
+    ]
+  },
+  {
+    "id": "como-empezar-en-programacion",
+    "title": "Cómo empezar en programación desde cero (sin dinero)",
+    "description": "Una charla a estudiantes del Cecyte Plantel 18 para descubir cómo empezar en el mundo de la tecnología sin necesidad de gastar dinero.",
+    "date": "2026-06-02",
+    "time": "09:00 MXC",
+    "location": "Cecyte Plantel 18",
+    "type": "PRESENCIAL",
+    "status": "Finalizado",
+    "image": "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/711774815_122097672549354941_5948196558785385461_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=wdBSmd_q1EwQ7kNvwEBmXAb&_nc_oc=Ado7wPvOEf5MSnRW8Bi3bsY2Z11aX4c57q1ZWVfni2hJsSja12R10R4WiFRM-Lp8eD8&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=Bzrf990bjrOWe2qRYuoF2w&_nc_ss=7b2a8&oh=00_AQC95222KR5Et9RVm9M8QKXAj82bUKATqUd0_VyahXndgg&oe=6A57C7FD",
+    "speakers": [
+      { "name": "Saul Pineda", "role": "Estudiante del ITSAL", "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" },
+      { "name": "Joan Pablo Alvarado Garfias", "role": "Estudiante de la UNISTMO", "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" },
+      { "name": "Karla Cordero Luna", "role": "Estudiante de la UNISTMO", "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" },
+      { "name": "Jeremy Osorio Ramos", "role": "Estudiante de la UNISTMO", "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" },
+      { "name": "Arján Chiñas", "role": "Estudiante del ITSAL", "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" },
+      { "name": "Josué Fermín", "role": "Estudiante de la UNISTMO", "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" },
+      { "name": "Bryan Lopez R.", "role": "Estudiante del ITSAL", "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" }
+    ],
+    "gallery": [
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/711814493_122097672501354941_1324431939802072022_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1536&ctp=s2048x1536&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=74x88xXrJQIQ7kNvwG21zeE&_nc_oc=Adq0PtZuyFvL1mvfGAB6jaieqMR7zRYNQEoU4CbRhrBNjkwhyB8M7brHqV4iu6MoPec&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=v2cLOHDmayNNQbsKgx4qjA&_nc_ss=7b2a8&oh=00_AQAioYySPRaYDYWZoLIfatk8e6a5luACMcbkD0KYWinpvw&oe=6A57EDCB",
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/711774815_122097672549354941_5948196558785385461_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=wdBSmd_q1EwQ7kNvwEBmXAb&_nc_oc=Ado7wPvOEf5MSnRW8Bi3bsY2Z11aX4c57q1ZWVfni2hJsSja12R10R4WiFRM-Lp8eD8&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=Bzrf990bjrOWe2qRYuoF2w&_nc_ss=7b2a8&oh=00_AQC95222KR5Et9RVm9M8QKXAj82bUKATqUd0_VyahXndgg&oe=6A57C7FD",
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/714599559_122097672609354941_3415371981587777689_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=IK1DuZilEpQQ7kNvwEoD3qV&_nc_oc=AdoV4S6waU5ZJXCTNJjRgTF5PHvLWkF2YzseU7Qvsa4iG9qQQyZfnKtR0Bs-umKQUHM&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=4OqUJPLHgcNLvAGa8HzQWg&_nc_ss=7b2a8&oh=00_AQDQj3otNzLgOSnsjJ8R7hdu5zOjEVtCndx8e-xnXcfYpA&oe=6A57F179",
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/715291328_122097672663354941_1412936321930069202_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x900&ctp=s1600x900&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=yUOtSXtPkycQ7kNvwHPv8zs&_nc_oc=AdrR1PdC7OH5WKK2vx9Ud9UAtme1yOjURmtouKoDeyucx3GT0igd9Ly-0ZmjMX6-NLw&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=9aBhvluBhaxAmt0aE36Pgw&_nc_ss=7b2a8&oh=00_AQBtW6mURWA8QgTeaGNN8l54xM6qTZDsBGeCG3Nt7U0orQ&oe=6A57EEC8",
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/714871493_122097672705354941_4068556716801124266_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=6xtNePeXTtIQ7kNvwEt1nkD&_nc_oc=AdpH8TaWaAdVtLWgueIw_a0QyG1JZvgdTLFT3EhA4SJ53x5BUO919PCWqc0XasrXpmU&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=TW9CEazj7ll7eLGZOqugvQ&_nc_ss=7b2a8&oh=00_AQDu4KqDXUhrkQZtmL07ex-cXB2bIr4Ks48S8Bwphccy2g&oe=6A57D1A7",
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/715472181_122097672393354941_3880025939618765427_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x900&ctp=s1600x900&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ua0R852EndIQ7kNvwFeLnUk&_nc_oc=AdrOG02xcIY9ozVrZSY1vzZbDIdlKWv78Pq6beNXp1UqXTafhrsu6fZLE2fKip8iz3E&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=LZlge_AGx4NgkAfmxZAppg&_nc_ss=7b2a8&oh=00_AQAImmk8wsaeuABHDZsoFidQm8i2D5BXyZRBvsCfpfcv0w&oe=6A57E87F",
+      "https://scontent.fscx1-1.fna.fbcdn.net/v/t39.30808-6/715101147_122097672765354941_3800991510509483432_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1536&ctp=s2048x1536&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=eNAyJWbLWcgQ7kNvwF8zlkw&_nc_oc=AdqBA-7CaSAv84ufk2-9CECf4hCzzGCzd_QewRGN9CasnemI_bPLaD2OtgSu1cZzdPI&_nc_zt=23&_nc_ht=scontent.fscx1-1.fna&_nc_gid=z9HQXhaesDfmi5Be3LwpBA&_nc_ss=7b2a8&oh=00_AQA5ha6KgodDnEtvQmGMwjC_s9W6A5AHegdJDp3VHpnhPg&oe=6A57E2A9"
+    ]
+  }
+]

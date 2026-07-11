@@ -1,0 +1,395 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import projects from "../../data/projects.json";
+import { ArrowRight, Search, Info } from "lucide-astro";
+---
+
+<Layout title="Proyectos Comunitarios | Nexis Oaxaca Tech">
+  <Header />
+
+  <main
+    class="opacity-0 transition-opacity duration-1000 bg-marfil pt-40"
+    id="main-content"
+  >
+    <!-- Hero Section -->
+    <section class="px-6 mb-16 relative overflow-hidden reveal">
+      <div class="mitla-pattern absolute inset-0 -z-10 opacity-10"></div>
+      <div class="max-w-7xl mx-auto text-left space-y-6">
+        <div
+          class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-jade/10 text-jade text-[10px] font-black uppercase tracking-[0.2em] border border-jade/20 shadow-sm"
+        >
+          REPOSITORIO ABIERTO
+        </div>
+        <h1
+          class="text-5xl md:text-7xl font-extrabold font-display leading-[0.95] tracking-tight uppercase text-petroleo"
+        >
+          Proyectos <span class="text-jade">Comunitarios</span>
+        </h1>
+        <p
+          class="text-lg md:text-xl text-petroleo/70 max-w-2xl leading-relaxed"
+        >
+          Explora las iniciativas de hardware libre, inteligencia artificial y
+          software open source creadas por la comunidad de Nexis en Oaxaca.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filters and Repository Grid -->
+    <section class="px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <!-- Filters bar -->
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 pb-8 border-b border-petroleo/10 reveal"
+        >
+          <div class="flex flex-wrap gap-3" id="filters-container">
+            <button
+              data-filter="all"
+              class="filter-btn px-6 py-3 rounded-full bg-jade text-white text-[10px] font-black uppercase tracking-widest shadow-md transition-all hover:scale-105 cursor-pointer"
+            >
+              TODOS
+            </button>
+            <button
+              data-filter="ACTIVO"
+              class="filter-btn px-6 py-3 rounded-full bg-white text-petroleo border border-petroleo/5 text-[10px] font-black uppercase tracking-widest shadow-sm hover:border-jade/30 transition-all hover:scale-105 cursor-pointer"
+            >
+              ACTIVOS
+            </button>
+            <button
+              data-filter="EN DESARROLLO"
+              class="filter-btn px-6 py-3 rounded-full bg-white text-petroleo border border-petroleo/5 text-[10px] font-black uppercase tracking-widest shadow-sm hover:border-jade/30 transition-all hover:scale-105 cursor-pointer"
+            >
+              EN DESARROLLO
+            </button>
+            <button
+              data-filter="PLANIFICADO"
+              class="filter-btn px-6 py-3 rounded-full bg-white text-petroleo border border-petroleo/5 text-[10px] font-black uppercase tracking-widest shadow-sm hover:border-jade/30 transition-all hover:scale-105 cursor-pointer"
+            >
+              PLANIFICADOS
+            </button>
+          </div>
+
+          <div class="relative w-full md:w-80">
+            <Search
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-petroleo/40"
+            />
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Buscar proyecto..."
+              class="w-full bg-white border border-petroleo/5 rounded-full pl-12 pr-6 py-3 outline-none focus:border-jade transition-all text-sm font-medium text-petroleo shadow-sm"
+            />
+          </div>
+        </div>
+
+        <!-- Grid layout -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          id="projects-grid"
+        >
+          {
+            projects.map((project) => (
+              <div
+                class="project-card bg-white rounded-[40px] overflow-hidden shadow-lg border border-petroleo/5 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 flex flex-col group text-left"
+                data-status={project.status}
+                data-name={project.name.toLowerCase()}
+                data-desc={project.description.toLowerCase()}
+              >
+                <div class="relative overflow-hidden h-64">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-petroleo/60 to-transparent" />
+                  <div class="absolute bottom-6 left-6 flex gap-2">
+                    <span
+                      class={`px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-wider text-white ${
+                        project.status === "ACTIVO"
+                          ? "bg-jade"
+                          : project.status === "EN DESARROLLO"
+                            ? "bg-ambar"
+                            : "bg-petroleo/60"
+                      }`}
+                    >
+                      {project.status}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="p-8 flex flex-col flex-grow justify-between space-y-6">
+                  <div class="space-y-4">
+                    <div class="flex flex-wrap gap-2">
+                      {project.tags.slice(0, 3).map((tag) => (
+                        <span class="text-[9px] font-bold text-jade/80 tracking-wide uppercase">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 class="text-2xl font-bold font-display text-petroleo leading-tight group-hover:text-jade transition-colors uppercase">
+                      {project.name}
+                    </h3>
+                    <p class="text-sm text-petroleo/60 leading-relaxed font-medium line-clamp-3">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <a
+                    href={`/proyectos/${project.id}`}
+                    class="inline-flex items-center justify-between w-full border border-petroleo/10 hover:border-jade text-petroleo hover:text-jade font-bold text-xs uppercase tracking-widest px-6 py-4 rounded-2xl transition-all group/btn"
+                  >
+                    <span>Ver Proyecto</span>
+                    <ArrowRight class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Empty State -->
+        <div
+          id="empty-state"
+          class="hidden flex-col items-center justify-center py-20 text-center max-w-md mx-auto space-y-4"
+        >
+          <Info class="w-12 h-12 text-petroleo/20" />
+          <h3 class="text-2xl font-bold font-display text-petroleo">
+            Sin resultados
+          </h3>
+          <p class="text-petroleo/60 text-sm">
+            No encontramos proyectos que coincidan con tu búsqueda o filtros.
+          </p>
+        </div>
+
+        <!-- Infinite Scroll Sentinel & Loader -->
+        <div
+          id="infinite-scroll-sentinel"
+          class="h-20 w-full flex flex-col items-center justify-center mt-16 pointer-events-none"
+        >
+          <!-- Spinner -->
+          <div
+            id="loading-spinner"
+            class="flex items-center gap-3 text-jade text-xs font-bold uppercase tracking-widest"
+          >
+            <svg
+              class="animate-spin h-5 w-5 text-jade"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            <span>Cargando más proyectos...</span>
+          </div>
+          <!-- End message -->
+          <div
+            id="end-message"
+            class="hidden text-petroleo/40 text-xs font-black uppercase tracking-[0.2em]"
+          >
+            Has llegado al final del repositorio
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+
+  <script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Page Entrance
+      const main = document.getElementById("main-content");
+      if (main) main.classList.remove("opacity-0");
+
+      const reveals = document.querySelectorAll(".reveal");
+      reveals.forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+          opacity: 0,
+          y: 40,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      });
+
+      // Infinite Scroll & Filtering Logic
+      const projectsPerPage = 3;
+      let activeFilter = "all";
+      let searchQuery = "";
+      let visibleCards: Element[] = [];
+      let loadedCount = projectsPerPage;
+
+      const allCards = Array.from(document.querySelectorAll(".project-card"));
+      const grid = document.getElementById("projects-grid");
+      const sentinel = document.getElementById("infinite-scroll-sentinel");
+      const spinner = document.getElementById("loading-spinner");
+      const endMessage = document.getElementById("end-message");
+      const emptyState = document.getElementById("empty-state");
+      const searchInput = document.getElementById(
+        "search-input",
+      ) as HTMLInputElement;
+
+      // Function to filter and compile cards that match search and status criteria
+      const filterCards = () => {
+        visibleCards = allCards.filter((card) => {
+          const status = card.getAttribute("data-status");
+          const name = card.getAttribute("data-name") || "";
+          const desc = card.getAttribute("data-desc") || "";
+
+          const matchesFilter =
+            activeFilter === "all" || status === activeFilter;
+          const matchesSearch =
+            name.includes(searchQuery) || desc.includes(searchQuery);
+
+          return matchesFilter && matchesSearch;
+        });
+
+        // Hide all cards first
+        allCards.forEach((card) => card.classList.add("hidden"));
+
+        // If no cards match
+        if (visibleCards.length === 0) {
+          if (emptyState) emptyState.classList.remove("hidden");
+          if (spinner) spinner.classList.add("hidden");
+          if (endMessage) endMessage.classList.add("hidden");
+          return;
+        } else {
+          if (emptyState) emptyState.classList.add("hidden");
+        }
+
+        // Reset pagination to first batch
+        loadedCount = Math.min(projectsPerPage, visibleCards.length);
+
+        // Reveal first batch
+        for (let i = 0; i < loadedCount; i++) {
+          visibleCards[i].classList.remove("hidden");
+        }
+
+        // Update scroll triggers and messages
+        updateScrollTrigger();
+      };
+
+      // Intersection Observer for scroll triggers
+      let observer: IntersectionObserver | null = null;
+
+      const updateScrollTrigger = () => {
+        if (observer) {
+          observer.disconnect();
+        }
+
+        if (loadedCount >= visibleCards.length) {
+          if (spinner) spinner.classList.add("hidden");
+          if (endMessage) endMessage.classList.remove("hidden");
+          return;
+        }
+
+        if (spinner) spinner.classList.add("hidden");
+        if (endMessage) endMessage.classList.add("hidden");
+
+        observer = new IntersectionObserver(
+          (entries) => {
+            const entry = entries[0];
+            if (entry.isIntersecting) {
+              if (spinner) spinner.classList.remove("hidden");
+              if (endMessage) endMessage.classList.add("hidden");
+
+              // Simulate network load
+              setTimeout(() => {
+                const nextBatch = Math.min(
+                  loadedCount + projectsPerPage,
+                  visibleCards.length,
+                );
+                for (let i = loadedCount; i < nextBatch; i++) {
+                  const card = visibleCards[i];
+                  card.classList.remove("hidden");
+                  gsap.fromTo(
+                    card,
+                    { opacity: 0, y: 30 },
+                    { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+                  );
+                }
+                loadedCount = nextBatch;
+
+                if (loadedCount >= visibleCards.length) {
+                  if (observer) observer.disconnect();
+                  if (spinner) spinner.classList.add("hidden");
+                  if (endMessage) endMessage.classList.remove("hidden");
+                } else {
+                  if (spinner) spinner.classList.add("hidden");
+                }
+              }, 800);
+            }
+          },
+          {
+            rootMargin: "100px",
+          },
+        );
+
+        if (sentinel) {
+          observer.observe(sentinel);
+        }
+      };
+
+      // Initialize
+      filterCards();
+
+      // Filter Button Events
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filter = btn.getAttribute("data-filter") || "all";
+          activeFilter = filter;
+
+          filterButtons.forEach((b) => {
+            b.classList.remove("bg-jade", "text-white");
+            b.classList.add(
+              "bg-white",
+              "text-petroleo",
+              "border",
+              "border-petroleo/5",
+            );
+          });
+          btn.classList.remove(
+            "bg-white",
+            "text-petroleo",
+            "border",
+            "border-petroleo/5",
+          );
+          btn.classList.add("bg-jade", "text-white");
+
+          filterCards();
+        });
+      });
+
+      // Search Event
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          searchQuery = (e.target as HTMLInputElement).value
+            .toLowerCase()
+            .trim();
+          filterCards();
+        });
+      }
+    });
+  </script>
+</Layout>

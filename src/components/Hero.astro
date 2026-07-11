@@ -1,0 +1,100 @@
+---
+import { ArrowUpRight } from "lucide-astro";
+import HeroIguana from "./HeroIguana.vue";
+---
+
+<!-- Hero Section -->
+<section
+  class="min-h-screen relative flex items-center pt-20 overflow-hidden bg-marfil"
+>
+  <div class="mitla-pattern absolute inset-0 -z-10 opacity-40"></div>
+  <div
+    class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center"
+  >
+    <div class="space-y-8">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-jade/10 border border-jade/20 text-jade text-xs font-bold uppercase tracking-widest"
+      >
+        <span class="w-2 h-2 rounded-full bg-jade animate-pulse"></span>
+        <span>Aprende • Conecta • Construye</span>
+      </div>
+
+      <h1
+        class="text-6xl lg:text-7xl xl:text-8xl font-extrabold text-petroleo leading-[1.05] tracking-tight font-display uppercase"
+      >
+        El punto de encuentro para <span class="text-jade relative"
+          >construir<svg
+            class="absolute -bottom-2 left-0 w-full h-2"
+            viewBox="0 0 300 12"
+            fill="none"
+            ><path
+              d="M4 8C40 3 150 3 296 8"
+              stroke="#2D8380"
+              stroke-width="4"
+              stroke-linecap="round"></path></svg
+          ></span
+        > el futuro.
+      </h1>
+
+      <p class="text-xl text-petroleo/70 max-w-xl leading-relaxed">
+        Donde el talento oaxaqueño se fusiona con la tecnología global. Somos
+        una comunidad apasionada por crear soluciones que impacten al mundo
+        desde nuestra raíz.
+      </p>
+
+      <div class="flex flex-wrap gap-4 pt-4">
+        <button
+          class="bg-jade text-white px-10 py-5 rounded-[18px] font-bold text-lg hover:scale-105 transition-all shadow-xl shadow-jade/20 flex items-center group cursor-pointer"
+        >
+          Quiero ser parte <ArrowUpRight
+            class="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+          />
+        </button>
+        <a
+          href="/eventos"
+          class="border-2 border-petroleo/10 text-petroleo px-10 py-5 rounded-[18px] font-bold text-lg hover:bg-petroleo/5 transition-all"
+        >
+          Ver próximos eventos
+        </a>
+      </div>
+
+      <div
+        class="flex items-center space-x-12 pt-12 border-t border-petroleo/10"
+      >
+        <!--
+        <div>
+          <span class="block text-3xl font-bold text-petroleo font-display"
+            >50+</span
+          >
+          <span
+            class="text-xs text-petroleo/40 font-bold uppercase tracking-widest"
+            >Miembros</span
+          >
+        </div>
+        <div>
+          <span class="block text-3xl font-bold text-petroleo font-display"
+            ></span
+          >
+          <span
+            class="text-xs text-petroleo/40 font-bold uppercase tracking-widest"
+            >Empresas aliadas</span
+          >
+        </div>
+        <div>
+          <span class="block text-3xl font-bold text-petroleo font-display"
+            >12+</span
+          >
+          <span
+            class="text-xs text-petroleo/40 font-bold uppercase tracking-widest"
+            >Startups locales</span
+          >
+        </div>
+        -->
+      </div>
+    </div>
+
+    <div class="relative hidden lg:block overflow-visible hero-iguana">
+      <HeroIguana client:load />
+    </div>
+  </div>
+</section>

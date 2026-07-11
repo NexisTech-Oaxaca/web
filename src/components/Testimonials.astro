@@ -1,0 +1,48 @@
+---
+const testimonials = [
+  {
+    name: "Ana García",
+    role: "Software Engineer",
+    image: "https://i.pravatar.cc/150?u=ana",
+    content: "Encontrar Nexis fue un punto de inflexión. No solo mejoré mis habilidades técnicas, sino que encontré un grupo de amigos con los que ahora estoy lanzando mi primera startup."
+  },
+  {
+    name: "Carlos Ruiz",
+    role: "UI/UX Designer",
+    image: "https://i.pravatar.cc/150?u=carlos",
+    content: "La calidad de las charlas es impresionante. He aprendido más en los meetups de Nexis que en muchos cursos pagados. El sentido de comunidad es real."
+  },
+  {
+    name: "María Elena",
+    role: "Founder @Solara",
+    image: "https://i.pravatar.cc/150?u=maria",
+    content: "Nexis nos brindó el espacio y las conexiones necesarias para validar nuestro producto. Es el corazón latente del emprendimiento tecnológico en Oaxaca."
+  }
+];
+---
+
+<section class="py-32 px-6 bg-marfil">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-20 reveal">
+       <h2 class="text-4xl font-bold text-petroleo font-display">Voces de la Comunidad</h2>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      {testimonials.map((t, index) => (
+        <div class="reveal bg-white p-10 rounded-[32px] shadow-sm border border-petroleo/5 hover:shadow-xl transition-all duration-500" style={`transition-delay: ${index * 100}ms`}>
+          <div class="flex items-center space-x-4 mb-8">
+            <img class="w-14 h-14 rounded-full ring-4 ring-arena" src={t.image} alt={t.name} />
+            <div>
+              <div class="font-bold text-petroleo">{t.name}</div>
+              <div class="text-[10px] text-jade font-bold uppercase tracking-widest">{t.role}</div>
+            </div>
+          </div>
+          <p class="text-petroleo/70 italic leading-relaxed relative">
+            <span class="text-jade text-4xl absolute -top-4 -left-4 opacity-20">"</span>
+            {t.content}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

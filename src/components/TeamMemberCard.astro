@@ -1,0 +1,64 @@
+---
+import { Github, Linkedin, Globe, ExternalLink } from "lucide-astro";
+
+interface Props {
+  member: {
+    name: string;
+    role: string;
+    description: string;
+    image: string;
+    links: {
+      linkedin?: string;
+      github?: string;
+      external?: string;
+      globe?: string;
+    };
+  };
+  index: number;
+}
+
+const { member, index } = Astro.props;
+---
+
+<div
+  class="bg-white rounded-[40px] border border-petroleo/5 hover:-translate-y-2 transition-all duration-500 shadow-sm hover:shadow-2xl text-left overflow-hidden flex flex-col h-full relative"
+  style={`transition-delay: ${index * 100}ms`}
+>
+  <!-- Full-width edge-to-edge photo -->
+  <div class="w-full h-64 overflow-hidden relative">
+    <img src={member.image} alt={member.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+    <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-40"></div>
+  </div>
+
+  <!-- Content Body -->
+  <div class="p-8 flex flex-col flex-grow justify-between">
+    <div>
+      <h3 class="text-2xl font-bold font-display text-petroleo mb-1 uppercase tracking-tight">
+        {member.name}
+      </h3>
+      <p class="text-jade font-black text-[9px] mb-6 uppercase tracking-[0.2em]">
+        {member.role}
+      </p>
+      <p class="text-petroleo/60 text-sm leading-relaxed mb-8 font-medium">
+        {member.description}
+      </p>
+    </div>
+
+    <!-- Social Media links -->
+    <div class="flex gap-5 pt-6 border-t border-petroleo/5 mt-auto">
+      {Object.entries(member.links).map(([key, url]) => (
+        <a 
+          href={url} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="text-petroleo/30 hover:text-jade transition-all hover:scale-110"
+        >
+          {key === "linkedin" && <Linkedin class="w-5 h-5" />}
+          {key === "github" && <Github class="w-5 h-5" />}
+          {key === "external" && <ExternalLink class="w-5 h-5" />}
+          {key === "globe" && <Globe class="w-5 h-5" />}
+        </a>
+      ))}
+    </div>
+  </div>
+</div>

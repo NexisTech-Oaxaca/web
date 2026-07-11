@@ -1,0 +1,224 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import projects from '../../data/projects.json';
+import InteractiveMetrics from '../../components/InteractiveMetrics.vue';
+import { Github, Linkedin, ExternalLink, Globe, ArrowRight, ArrowLeft } from 'lucide-astro';
+
+export function getStaticPaths() {
+  return projects.map(project => ({
+    params: { id: project.id },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+
+// Safe splitting for headers to maintain the premium design layout
+const nameHasOaxaca = project.name.includes('Oaxaca');
+const namePart1 = nameHasOaxaca ? project.name.split('Oaxaca')[0] : project.name;
+const namePart2 = nameHasOaxaca ? project.name.split('Oaxaca')[1] : '';
+
+const challengeHasDecisiones = project.challenge.title.includes('decisiones');
+const challengePart1 = challengeHasDecisiones ? project.challenge.title.split('decisiones')[0] : project.challenge.title;
+const challengePart2 = challengeHasDecisiones ? project.challenge.title.split('decisiones')[1] : '';
+---
+
+<Layout title={`${project.name} | Nexis Projects`}>
+	<Header />
+
+	<main class="opacity-0 transition-opacity duration-1000 bg-marfil" id="main-content">
+		<!-- Hero Section -->
+		<section class="pt-40 pb-24 px-6 relative overflow-hidden reveal">
+			<div class="mitla-pattern absolute inset-0 -z-10 opacity-30"></div>
+			<div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+        <a href="/proyectos" class="inline-flex items-center gap-2 text-petroleo/40 hover:text-jade font-bold text-xs uppercase tracking-widest mb-12 transition-colors group self-start">
+          <ArrowLeft class="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Volver a proyectos
+        </a>
+
+				<div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-jade/10 text-jade text-[10px] font-black uppercase tracking-[0.2em] mb-12 border border-jade/20 shadow-sm">
+					<span class="relative flex h-2.5 w-2.5">
+						<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-jade opacity-75"></span>
+						<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-jade"></span>
+					</span>
+					PROYECTO COMUNITARIO • {project.status}
+				</div>
+				
+				<h1 class="text-5xl md:text-8xl font-extrabold font-display leading-[0.9] tracking-tighter mb-10 max-w-5xl uppercase text-petroleo">
+					{namePart1}<br />
+					{nameHasOaxaca && (
+            <span class="text-jade">Oaxaca {namePart2}</span>
+          )}
+				</h1>
+				
+				<p class="text-lg md:text-xl text-petroleo/70 max-w-2xl leading-relaxed mb-16 font-medium">
+					{project.description}
+				</p>
+
+				<div class="flex flex-wrap justify-center gap-4 mb-24">
+					{project.tags.map(tag => (
+						<span class="px-6 py-3 rounded-full bg-white border border-petroleo/5 text-petroleo text-[10px] font-black uppercase tracking-widest shadow-sm hover:border-jade/30 transition-all cursor-default">
+							{tag}
+						</span>
+					))}
+				</div>
+
+				<div class="relative w-full max-w-6xl aspect-video rounded-[48px] overflow-hidden shadow-3xl border-[12px] border-white group">
+					<div class="absolute inset-0 bg-gradient-to-t from-petroleo/80 via-transparent to-transparent z-10 opacity-60"></div>
+					<img src={project.image} alt={project.name} class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+					<div class="absolute bottom-12 left-12 z-20 text-white text-left">
+						<p class="text-[10px] font-black text-jade mb-3 uppercase tracking-[0.3em]">Vista del Proyecto</p>
+						<h3 class="text-4xl font-display font-bold uppercase tracking-tight">{project.name}</h3>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Challenge Section -->
+		<section class="py-32 bg-petroleo text-white relative overflow-hidden reveal">
+			<div class="mitla-pattern absolute inset-0 opacity-5"></div>
+      <div class="circuit-line top-0 left-0 opacity-10"></div>
+			<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+				<div class="text-left">
+					<h2 class="text-4xl md:text-6xl font-bold font-display leading-tight mb-10 uppercase tracking-tight">
+						{challengePart1} {challengeHasDecisiones && (
+              <span class="text-jade">decisiones {challengePart2}</span>
+            )}
+					</h2>
+					<div class="space-y-8 text-white/60 text-lg leading-relaxed font-medium">
+						{project.challenge.description.split('\n\n').map(p => <p>{p}</p>)}
+					</div>
+					<div class="mt-16 flex flex-wrap gap-12">
+						{project.challenge.stats.map(stat => (
+							<div class="text-left">
+								<p class="text-5xl font-extrabold font-display text-jade mb-2">{stat.value}</p>
+								<p class="text-[10px] text-white/30 font-black uppercase tracking-[0.2em]">{stat.label}</p>
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="relative">
+					<div class="absolute -inset-20 bg-jade/10 blur-[120px] rounded-full animate-pulse"></div>
+					<InteractiveMetrics client:load />
+				</div>
+			</div>
+			<div class="circuit-line bottom-0 left-0 opacity-10"></div>
+		</section>
+
+		<!-- Team Section -->
+		<section class="py-32 bg-marfil px-6 reveal">
+			<div class="max-w-7xl mx-auto">
+				<div class="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-10">
+					<div class="text-left">
+						<h2 class="text-4xl md:text-5xl font-bold font-display mb-6 text-petroleo uppercase tracking-tight">Núcleo del Proyecto</h2>
+						<p class="text-petroleo/50 max-w-xl text-lg font-medium leading-relaxed">El talento local de Nexis impulsando soluciones tecnológicas con orgullo oaxaqueño.</p>
+					</div>
+					<a href="#colaborar" class="inline-flex items-center gap-3 text-jade font-black text-xs uppercase tracking-widest hover:gap-6 transition-all group bg-white px-8 py-4 rounded-full shadow-sm border border-petroleo/5">
+						Quiero colaborar <ArrowRight class="w-5 h-5 group-hover:scale-110 transition-transform" />
+					</a>
+				</div>
+				
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+					{project.team.map((member, index) => (
+						<div class="bg-white p-10 rounded-[40px] border border-petroleo/5 hover:-translate-y-2 transition-all duration-500 shadow-sm hover:shadow-2xl text-left" style={`transition-delay: ${index * 100}ms`}>
+							<div class="w-24 h-24 rounded-3xl overflow-hidden mb-10 shadow-xl border-4 border-arena">
+								<img src={member.image} alt={member.name} class="w-full h-full object-cover" />
+							</div>
+							<h3 class="text-2xl font-bold font-display text-petroleo mb-2 uppercase">{member.name}</h3>
+							<p class="text-jade font-black text-[9px] mb-8 uppercase tracking-[0.2em]">{member.role}</p>
+							<p class="text-petroleo/60 text-sm leading-relaxed mb-10 font-medium">{member.description}</p>
+							<div class="flex gap-5 pt-8 border-t border-petroleo/5">
+								{Object.entries(member.links).map(([key, url]) => (
+									<a href={url} class="text-petroleo/20 hover:text-jade transition-all hover:scale-110">
+										{key === 'linkedin' && <Linkedin class="w-5 h-5" />}
+										{key === 'github' && <Github class="w-5 h-5" />}
+										{key === 'external' && <ExternalLink class="w-5 h-5" />}
+										{key === 'globe' && <Globe class="w-5 h-5" />}
+									</a>
+								))}
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Timeline & Evidence -->
+		<section class="py-40 bg-arena px-6 relative overflow-hidden reveal">
+			<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-32">
+				<div class="lg:col-span-5 text-left">
+					<div class="mb-20">
+						<h2 class="text-4xl font-bold font-display mb-6 text-petroleo uppercase tracking-tight">Línea de Tiempo</h2>
+						<p class="text-petroleo/50 font-medium text-lg leading-relaxed">Nuestra ruta crítica desde el concepto hasta el despliegue comunitario.</p>
+					</div>
+					<div class="space-y-16 relative">
+						{project.timeline.map((item, index) => (
+							<div class={`relative pl-20 ${index === 2 ? 'opacity-40' : ''}`}>
+								{index !== project.timeline.length - 1 && (
+									<div class="absolute left-[24px] top-12 bottom-[-64px] w-0.5 bg-dashed border-l-2 border-dashed border-jade/30"></div>
+								)}
+								<div class="absolute left-0 top-0 w-12 h-12 rounded-2xl bg-jade flex items-center justify-center text-white font-black text-lg border-4 border-arena z-10 shadow-lg shadow-jade/20 font-display">
+									{item.step}
+								</div>
+								<h4 class="text-2xl font-bold font-display text-petroleo uppercase tracking-tight mb-2">{item.title}</h4>
+								<span class="text-[10px] text-jade font-black uppercase tracking-[0.2em]">{item.date}</span>
+								<p class="text-petroleo/60 mt-4 text-sm leading-relaxed font-medium">{item.description}</p>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<div class="lg:col-span-7 text-left">
+					<div class="mb-20">
+						<h2 class="text-4xl font-bold font-display mb-6 text-petroleo uppercase tracking-tight">Evidencias del Progreso</h2>
+						<p class="text-petroleo/50 font-medium text-lg leading-relaxed">Documentación visual de nuestra jornada técnica.</p>
+					</div>
+					<div class="grid grid-cols-2 gap-8">
+						{project.evidence.map((item, index) => (
+							<div class={`group relative overflow-hidden rounded-[40px] shadow-2xl border-8 border-white bg-white ${index === 2 ? 'col-span-2 aspect-[21/9]' : 'aspect-square md:aspect-auto md:h-[350px]'}`}>
+								<img src={item.image} alt={item.title} class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+								<div class="absolute inset-0 bg-gradient-to-t from-petroleo via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-10 text-left">
+									<span class="text-jade text-[10px] font-black uppercase tracking-[0.3em] mb-2 translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
+										{item.type}
+									</span>
+									<p class="text-white font-bold text-xl translate-y-6 group-hover:translate-y-0 transition-transform duration-500 delay-100 font-display uppercase tracking-tight">
+										{item.title}
+									</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Footer />
+	</main>
+
+	<script>
+		import gsap from 'gsap';
+		import { ScrollTrigger } from 'gsap/ScrollTrigger';
+		gsap.registerPlugin(ScrollTrigger);
+
+		document.addEventListener('DOMContentLoaded', () => {
+			const main = document.getElementById('main-content');
+			if (main) main.classList.remove('opacity-0');
+
+			const reveals = document.querySelectorAll('.reveal');
+			reveals.forEach((el) => {
+				gsap.from(el, {
+					scrollTrigger: {
+						trigger: el,
+						start: 'top 85%',
+						toggleActions: 'play none none none'
+					},
+					opacity: 0,
+					y: 40,
+					duration: 0.8,
+					ease: 'power3.out'
+				});
+			});
+		});
+	</script>
+</Layout>

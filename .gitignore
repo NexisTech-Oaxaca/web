@@ -1,0 +1,6 @@
+.kombai
+.astro/
+.astro/settings.json
+node_modules
+.assets
+dist/

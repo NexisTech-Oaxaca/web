@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Eduardo Mendoza",
+    "role": "Fundador & CEO",
+    "image": "https://i.pravatar.cc/300?u=organizer1",
+    "color": "bg-jade",
+    "social": { "linkedin": "#", "twitter": "#" }
+  },
+  {
+    "name": "Ximena Rojas",
+    "role": "Directora de Comunidad",
+    "image": "https://i.pravatar.cc/300?u=organizer2",
+    "color": "bg-ambar",
+    "social": { "linkedin": "#", "github": "#" }
+  },
+  {
+    "name": "Alejandro Vasconcelos",
+    "role": "CTO & Lead Mentorship",
+    "image": "https://i.pravatar.cc/300?u=organizer3",
+    "color": "bg-petroleo",
+    "social": { "linkedin": "#", "globe": "#" }
+  },
+  {
+    "name": "Sofía Montes",
+    "role": "Alianzas Estratégicas",
+    "image": "https://i.pravatar.cc/300?u=organizer4",
+    "color": "bg-coral",
+    "social": { "linkedin": "#", "instagram": "#" }
+  }
+]

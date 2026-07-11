@@ -1,0 +1,38 @@
+---
+const partners = [
+  "UNIVERSIDAD OAXACA",
+  "TECH HUB",
+  "GOBIERNO DEL ESTADO",
+  "STARTUP MEXICO",
+  "AWS COMMUNITY",
+  "GOOGLE CLOUD",
+  "GITHUB UNIVERSE",
+  "VERCEL"
+];
+---
+
+<section class="py-20 bg-arena border-y border-petroleo/5 overflow-hidden">
+  <div class="flex whitespace-nowrap animate-marquee">
+    <div class="flex space-x-24 items-center px-12">
+      {partners.map(p => (
+        <span class="text-2xl font-bold font-display text-petroleo/30 hover:text-jade transition-colors cursor-default">{p}</span>
+      ))}
+      {partners.map(p => (
+        <span class="text-2xl font-bold font-display text-petroleo/30 hover:text-jade transition-colors cursor-default">{p}</span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>

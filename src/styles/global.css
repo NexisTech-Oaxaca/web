@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-jade: #2D8380;
+  --color-olivo: #6F6C2B;
+  --color-petroleo: #234A57;
+  --color-arena: #F6F2EA;
+  --color-marfil: #FCFAF7;
+  --color-gris: #E5E7EB;
+  --color-coral: #E86A5B;
+  --color-ambar: #DDAA33;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --radius-card: 24px;
+  --radius-button: 18px;
+  --radius-input: 18px;
+}
+
+@layer base {
+  body {
+    @apply bg-marfil text-petroleo font-body;
+  }
+}
+
+@layer utilities {
+  .mitla-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 L15 15 L30 30 L45 15 L60 30 L45 45 L30 30 L15 45 Z' fill='none' stroke='%232D8380' stroke-width='0.8' stroke-opacity='0.15'/%3E%3C/svg%3E");
+  }
+
+  .circuit-line {
+    @apply absolute bg-linear-to-r from-transparent via-jade to-transparent h-px w-full opacity-20;
+  }
+}

@@ -1,0 +1,370 @@
+[
+  {
+    "id": "monitoreo-ambiental",
+    "name": "Monitoreo Ambiental Inteligente Oaxaca",
+    "status": "ACTIVO",
+    "description": "Desarrollo de una red de sensores IoT de bajo costo para monitorear la calidad del aire y suelo en valles centrales, proporcionando datos abiertos a la comunidad.",
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&w=800&q=80&fit=crop",
+    "tags": ["IoT Systems", "React Ecosystem", "Arduino / ESP32", "MQTT / LoRaWAN", "D3.js Visualization"],
+    "challenge": {
+      "title": "El desafío: Datos reales para decisiones comunitarias.",
+      "description": "Oaxaca enfrenta retos ambientales únicos, desde la dispersión urbana hasta el impacto de los incendios forestales. Actualmente, la data local es escasa o poco accesible para el ciudadano común.\n\nNuestro objetivo es democratizar esta información mediante nodos inteligentes que operan con energía solar y transmiten datos en tiempo real a una plataforma abierta, permitiendo que investigadores y comunidades tomen acciones informadas.",
+      "stats": [
+        { "value": "15", "label": "Nodos Activos" },
+        { "value": "12k+", "label": "Mediciones/Día" },
+        { "value": "100%", "label": "Open Source" }
+      ]
+    },
+    "team": [
+      {
+        "name": "Alejandro Ruiz",
+        "role": "Tech Lead & IoT",
+        "description": "Arquitecto del sistema de sensores y la infraestructura de datos en la nube.",
+        "image": "https://i.pravatar.cc/150?u=alejandro_nexis",
+        "links": { "linkedin": "#", "github": "#" }
+      },
+      {
+        "name": "Sofía Méndez",
+        "role": "Product Design",
+        "description": "Responsable de la experiencia de usuario y visualización de datos de impacto.",
+        "image": "https://i.pravatar.cc/150?u=sofia_nexis",
+        "links": { "linkedin": "#", "framer": "#" }
+      },
+      {
+        "name": "Ricardo Velasco",
+        "role": "Frontend Dev",
+        "description": "Implementación del dashboard con tecnologías web modernas y rápidas.",
+        "image": "https://i.pravatar.cc/150?u=ricardo_nexis",
+        "links": { "github": "#", "external": "#" }
+      },
+      {
+        "name": "Elena García",
+        "role": "Ambientalista",
+        "description": "Consultoría científica para la calibración de sensores y análisis de datos.",
+        "image": "https://i.pravatar.cc/150?u=elena_nexis",
+        "links": { "linkedin": "#", "globe": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": 1,
+        "title": "Idea y Arquitectura",
+        "date": "Enero 2024",
+        "description": "Formación del equipo Nexis y definición de los protocolos de comunicación MQTT y estructuras de datos."
+      },
+      {
+        "step": 2,
+        "title": "Prototipado \"Iguana\"",
+        "date": "Marzo 2024",
+        "description": "Diseño de PCB personalizada y pruebas de estrés en campo con carcasas impresas en 3D sustentables."
+      },
+      {
+        "step": 3,
+        "title": "Despliegue Valles Centrales",
+        "date": "Junio 2024",
+        "description": "Instalación piloto de los primeros 5 nodos en comunidades estratégicas de Oaxaca."
+      }
+    ],
+    "evidence": [
+      {
+        "type": "Hardware",
+        "title": "PCB Monitoreo V2.1 \"Iguana\"",
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&w=800&q=80&fit=crop"
+      },
+      {
+        "type": "Software",
+        "title": "Data Dashboard Real-time",
+        "image": "https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&w=800&q=80&fit=crop"
+      },
+      {
+        "type": "Comunidad",
+        "title": "Sesión de trabajo colaborativo en el Hub Nexis",
+        "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&w=1200&q=80&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "energia-solar-sierra",
+    "name": "Energía Solar Comunitaria Sierra Norte",
+    "status": "EN DESARROLLO",
+    "description": "Monitoreo remoto y optimización de microrredes solares gestionadas por comunidades autónomas de la Sierra Norte de Oaxaca.",
+    "image": "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&w=800&q=80&fit=crop",
+    "tags": ["Microgrids", "Solar Energy", "ESP32", "Inverters", "Data Dashboard"],
+    "challenge": {
+      "title": "El desafío: Independencia energética y monitoreo sin internet.",
+      "description": "Muchas comunidades en la Sierra Norte dependen de microrredes solares autogestionadas. Sin embargo, la falta de monitoreo en tiempo real dificulta la prevención de fallas en las baterías e inversores, dejándolos a oscuras durante días.\n\nDiseñamos un sistema de monitoreo que recopila el estado de carga y salud del sistema, transmitiendo alertas críticas mediante radiofrecuencia (LoRa) a una central local y guardando un log local para su diagnóstico.",
+      "stats": [
+        { "value": "8", "label": "Microrredes" },
+        { "value": "450+", "label": "Familias Beneficiadas" },
+        { "value": "99.8%", "label": "Uptime de Energía" }
+      ]
+    },
+    "team": [
+      {
+        "name": "Mateo Pérez",
+        "role": "Hardware Lead",
+        "description": "Especialista en sistemas eléctricos y diseño de cargadores solares IoT.",
+        "image": "https://i.pravatar.cc/150?u=mateo_solar",
+        "links": { "linkedin": "#", "github": "#" }
+      },
+      {
+        "name": "Carmen Cruz",
+        "role": "Social Coordinator",
+        "description": "Enlace comunitario para capacitación técnica de asambleas locales.",
+        "image": "https://i.pravatar.cc/150?u=carmen_solar",
+        "links": { "linkedin": "#", "globe": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": 1,
+        "title": "Diagnóstico de Campo",
+        "date": "Febrero 2024",
+        "description": "Visita a las microrredes de Santa María Yavesía para medir consumos y fallas recurrentes."
+      },
+      {
+        "step": 2,
+        "title": "Módulo LoRa-Suntrap",
+        "date": "Mayo 2024",
+        "description": "Integración de sensores de corriente no invasivos y módulos LoRa en cajas NEMA a prueba de clima."
+      }
+    ],
+    "evidence": [
+      {
+        "type": "Hardware",
+        "title": "Caja de monitoreo LoRa instalada",
+        "image": "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&w=800&q=80&fit=crop"
+      },
+      {
+        "type": "Software",
+        "title": "Interfaz gráfica offline para la comunidad",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&w=800&q=80&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "reforestacion-inteligente",
+    "name": "Reforestación Guiada por Drones Oaxaca",
+    "status": "PLANIFICADO",
+    "description": "Uso de drones equipados con visión por computadora para dispersar semillas de especies nativas y mapear el progreso de la reforestación en zonas de difícil acceso.",
+    "image": "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?auto=format&w=800&q=80&fit=crop",
+    "tags": ["Drones", "Computer Vision", "GIS / Mapping", "Ecology", "Python"],
+    "challenge": {
+      "title": "El desafío: Reforestar terrenos inaccesibles rápidamente.",
+      "description": "La erosión del suelo en la Mixteca y Valles Centrales avanza rápido, e ingresar a pie a sembrar en cañones y laderas empinadas es riesgoso e ineficiente.\n\nQueremos crear un dron autónomo capaz de dispersar cápsulas de semillas inteligentes (Seedballs) en zonas estratégicas utilizando un modelo de machine learning para identificar suelos con alta probabilidad de germinación y bajo nivel de maleza.",
+      "stats": [
+        { "value": "50ha", "label": "Meta Inicial" },
+        { "value": "10x", "label": "Más rápido que a pie" },
+        { "value": "3", "label": "Especies Nativas" }
+      ]
+    },
+    "team": [
+      {
+        "name": "David Ortiz",
+        "role": "Drone Pilot & Builder",
+        "description": "Encargado de la modificación física y programación de trayectorias de vuelo.",
+        "image": "https://i.pravatar.cc/150?u=david_drone",
+        "links": { "github": "#", "linkedin": "#" }
+      },
+      {
+        "name": "Diana Ríos",
+        "role": "AI Engineer",
+        "description": "Desarrollo del modelo YOLO para detección de tipos de suelo en tiempo real.",
+        "image": "https://i.pravatar.cc/150?u=diana_drone",
+        "links": { "linkedin": "#", "github": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": 1,
+        "title": "Diseño del Dispensador",
+        "date": "Abril 2024",
+        "description": "Modelado 3D de un mecanismo de gatillo rotatorio servo-asistido para cápsulas de arcilla y composta."
+      }
+    ],
+    "evidence": [
+      {
+        "type": "Hardware",
+        "title": "Mecanismo impreso en 3D acoplado al dron",
+        "image": "https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&w=800&q=80&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "artesanias-blockchain",
+    "name": "Rastreo de Origen de Artesanías en Blockchain Oaxaca",
+    "status": "ACTIVO",
+    "description": "Implementación de certificados digitales NFT y chips NFC para asegurar la autenticidad y el comercio justo de textiles y alebrijes oaxaqueños.",
+    "image": "https://images.unsplash.com/photo-1569172122301-bc5008bc09c5?auto=format&w=800&q=80&fit=crop",
+    "tags": ["Solidity", "NFC Technology", "Web3 UI", "Supply Chain", "Handcrafts"],
+    "challenge": {
+      "title": "El desafío: Proteger el arte local contra el plagio.",
+      "description": "Las copias industriales baratas y la falta de atribución amenazan el sustento de miles de familias artesanas en Oaxaca. Los compradores internacionales carecen de una vía segura para verificar el origen ético del producto.\n\nAsociamos cada obra a un tag NFC cosido o incrustado que redirige a un contrato inteligente en Ethereum. Este contrato contiene la biografía del artesano, el proceso de teñido/tallado y la firma criptográfica que garantiza su origen único.",
+      "stats": [
+        { "value": "120+", "label": "Artesanos registrados" },
+        { "value": "350", "label": "Piezas firmadas" },
+        { "value": "0%", "label": "Riesgo de fraude" }
+      ]
+    },
+    "team": [
+      {
+        "name": "Camila Juárez",
+        "role": "Blockchain Developer",
+        "description": "Escritura de Smart Contracts optimizados para bajas comisiones de gas.",
+        "image": "https://i.pravatar.cc/150?u=camila_block",
+        "links": { "github": "#", "linkedin": "#" }
+      },
+      {
+        "name": "Tomás López",
+        "role": "Community Builder",
+        "description": "Talleres bilingües en zapoteco y español para integrar la tecnología en talleres locales.",
+        "image": "https://i.pravatar.cc/150?u=tomas_block",
+        "links": { "linkedin": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": 1,
+        "title": "Despliegue de Contratos",
+        "date": "Enero 2024",
+        "description": "Lanzamiento de los contratos ERC-721 en la red de pruebas Sepolia."
+      },
+      {
+        "step": 2,
+        "title": "Piloto en San Martín Tilcajete",
+        "date": "Marzo 2024",
+        "description": "Integración experimental de los tags NFC en tallados de madera de alebrijes tradicionales."
+      }
+    ],
+    "evidence": [
+      {
+        "type": "Hardware",
+        "title": "Tag NFC adherido a la base de una pieza",
+        "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&w=800&q=80&fit=crop"
+      },
+      {
+        "type": "Software",
+        "title": "Página móvil de verificación de autoría",
+        "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&w=800&q=80&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "idiomas-ia",
+    "name": "Preservación del Zapoteco con IA Oaxaca",
+    "status": "EN DESARROLLO",
+    "description": "Entrenamiento de modelos de voz a texto y procesamiento del lenguaje natural para preservar variantes lingüísticas del zapoteco en peligro de extinción.",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&w=800&q=80&fit=crop",
+    "tags": ["NLP", "PyTorch", "Hugging Face", "Speech-to-Text", "Linguistics"],
+    "challenge": {
+      "title": "El desafío: Digitalizar una lengua de transmisión oral.",
+      "description": "Las variantes del zapoteco son ricas pero carecen de corpus de datos textuales necesarios para entrenar traductores modernos. El riesgo de pérdida cultural es inminente.\n\nConstruimos una plataforma móvil gamificada para que hablantes nativos registren oraciones y audios de su vida diaria. Con este corpus de audio limpio, entrenamos un modelo de reconocimiento de voz de bajo recurso basado en Whisper, facilitando la creación de material educativo digital.",
+      "stats": [
+        { "value": "80h", "label": "Audios validados" },
+        { "value": "4", "label": "Variantes cubiertas" },
+        { "value": "2.5k", "label": "Usuarios activos" }
+      ]
+    },
+    "team": [
+      {
+        "name": "Gabriela Santiago",
+        "role": "NLP Engineer",
+        "description": "Finetuning de modelos de lenguaje Wave2Vec y Whisper para fonéticas tonales.",
+        "image": "https://i.pravatar.cc/150?u=gaby_ia",
+        "links": { "github": "#", "linkedin": "#" }
+      },
+      {
+        "name": "Pedro Luis",
+        "role": "Linguist Expert",
+        "description": "Control de calidad fonético y semántico del corpus recopilado.",
+        "image": "https://i.pravatar.cc/150?u=pedro_ia",
+        "links": { "linkedin": "#", "globe": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": 1,
+        "title": "Hackathon de Recopilación",
+        "date": "Febrero 2024",
+        "description": "Primer encuentro en la Sierra Norte con 40 jóvenes traductores para grabar diálogos conversacionales."
+      },
+      {
+        "step": 2,
+        "title": "Entrenamiento Alfa",
+        "date": "Mayo 2024",
+        "description": "Entrenamiento preliminar logrando un 85% de exactitud en traducción básica de voz a texto."
+      }
+    ],
+    "evidence": [
+      {
+        "type": "Comunidad",
+        "title": "Taller de grabación en Guelatao",
+        "image": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&w=800&q=80&fit=crop"
+      },
+      {
+        "type": "Software",
+        "title": "Aplicación móvil de registro e incentivos",
+        "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&w=800&q=80&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "agricultura-precision",
+    "name": "Agricultura de Precisión en la Mixteca Oaxaca",
+    "status": "ACTIVO",
+    "description": "Implementación de estaciones agrometeorológicas autónomas conectadas por LoRaWAN para optimizar el riego y fertilización del cultivo de agave.",
+    "image": "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&w=800&q=80&fit=crop",
+    "tags": ["AgriTech", "LoRaWAN", "Soil Science", "Data Modeling", "ESP32"],
+    "challenge": {
+      "title": "El desafío: Producir agave sostenible frente a sequías prolongadas.",
+      "description": "La Mixteca Oaxaqueña padece escasez de agua constante. Los productores de agave de mezcal a menudo riegan en exceso o fertilizan de forma ineficiente por falta de datos reales sobre la humedad interna del suelo y temperatura.\n\nInstalamos estaciones metereológicas compactas que miden humedad en 3 profundidades, temperatura ambiente, radiación solar y presión de savia. Transmiten a un gateway central y calculan el momento exacto y dosis óptima de agua y minerales.",
+      "stats": [
+        { "value": "35%", "label": "Ahorro de agua" },
+        { "value": "18", "label": "Parcelas cubiertas" },
+        { "value": "20%", "label": "Incremento de rendimiento" }
+      ]
+    },
+    "team": [
+      {
+        "name": "Javier Mendoza",
+        "role": "Agrónomo IoT",
+        "description": "Configuración de algoritmos de evapotranspiración adaptados a climas áridos.",
+        "image": "https://i.pravatar.cc/150?u=javier_agri",
+        "links": { "linkedin": "#", "github": "#" }
+      },
+      {
+        "name": "Laura Ruiz",
+        "role": "Data Analyst",
+        "description": "Creación de modelos predictivos de plagas basados en microclimas locales.",
+        "image": "https://i.pravatar.cc/150?u=laura_agri",
+        "links": { "linkedin": "#", "github": "#" }
+      }
+    ],
+    "timeline": [
+      {
+        "step": 1,
+        "title": "Prueba de Sensores",
+        "date": "Febrero 2024",
+        "description": "Instalación de sensores FDR en parcelas de agave espadín a 30cm y 60cm de profundidad."
+      },
+      {
+        "step": 2,
+        "title": "Integración del Gateway",
+        "date": "Junio 2024",
+        "description": "Montaje de una antena LoRaWAN omnidireccional en Santiago Matatlán cubriendo un radio de 5km."
+      }
+    ],
+    "evidence": [
+      {
+        "type": "Hardware",
+        "title": "Estación agrometeorológica en campo",
+        "image": "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&w=800&q=80&fit=crop"
+      },
+      {
+        "type": "Software",
+        "title": "Panel de control de riego inteligente",
+        "image": "https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&w=800&q=80&fit=crop"
+      }
+    ]
+  }
+]

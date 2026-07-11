@@ -1,0 +1,82 @@
+{
+  "name": "Monitoreo Ambiental Inteligente Oaxaca",
+  "status": "ACTIVO",
+  "description": "Desarrollo de una red de sensores IoT de bajo costo para monitorear la calidad del aire y suelo en valles centrales, proporcionando datos abiertos a la comunidad.",
+  "tags": ["IoT Systems", "React Ecosystem", "Arduino / ESP32", "MQTT / LoRaWAN", "D3.js Visualization"],
+  "challenge": {
+    "title": "El desafío: Datos reales para decisiones comunitarias.",
+    "description": "Oaxaca enfrenta retos ambientales únicos, desde la dispersión urbana hasta el impacto de los incendios forestales. Actualmente, la data local es escasa o poco accesible para el ciudadano común.\n\nNuestro objetivo es democratizar esta información mediante nodos inteligentes que operan con energía solar y transmiten datos en tiempo real a una plataforma abierta, permitiendo que investigadores y comunidades tomen acciones informadas.",
+    "stats": [
+      { "value": "15", "label": "Nodos Activos" },
+      { "value": "12k+", "label": "Mediciones/Día" },
+      { "value": "100%", "label": "Open Source" }
+    ]
+  },
+  "team": [
+    {
+      "name": "Alejandro Ruiz",
+      "role": "Tech Lead & IoT",
+      "description": "Arquitecto del sistema de sensores y la infraestructura de datos en la nube.",
+      "image": "https://i.pravatar.cc/150?u=alejandro_nexis",
+      "links": { "linkedin": "#", "github": "#" }
+    },
+    {
+      "name": "Sofía Méndez",
+      "role": "Product Design",
+      "description": "Responsable de la experiencia de usuario y visualización de datos de impacto.",
+      "image": "https://i.pravatar.cc/150?u=sofia_nexis",
+      "links": { "linkedin": "#", "framer": "#" }
+    },
+    {
+      "name": "Ricardo Velasco",
+      "role": "Frontend Dev",
+      "description": "Implementación del dashboard con tecnologías web modernas y rápidas.",
+      "image": "https://i.pravatar.cc/150?u=ricardo_nexis",
+      "links": { "github": "#", "external": "#" }
+    },
+    {
+      "name": "Elena García",
+      "role": "Ambientalista",
+      "description": "Consultoría científica para la calibración de sensores y análisis de datos.",
+      "image": "https://i.pravatar.cc/150?u=elena_nexis",
+      "links": { "linkedin": "#", "globe": "#" }
+    }
+  ],
+  "timeline": [
+    {
+      "step": 1,
+      "title": "Idea y Arquitectura",
+      "date": "Enero 2024",
+      "description": "Formación del equipo Nexis y definición de los protocolos de comunicación MQTT y estructuras de datos."
+    },
+    {
+      "step": 2,
+      "title": "Prototipado \"Iguana\"",
+      "date": "Marzo 2024",
+      "description": "Diseño de PCB personalizada y pruebas de estrés en campo con carcasas impresas en 3D sustentables."
+    },
+    {
+      "step": 3,
+      "title": "Despliegue Valles Centrales",
+      "date": "Junio 2024",
+      "description": "Instalación piloto de los primeros 5 nodos en comunidades estratégicas de Oaxaca."
+    }
+  ],
+  "evidence": [
+    {
+      "type": "Hardware",
+      "title": "PCB Monitoreo V2.1 \"Iguana\"",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&w=800&q=80&fit=crop"
+    },
+    {
+      "type": "Software",
+      "title": "Data Dashboard Real-time",
+      "image": "https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&w=800&q=80&fit=crop"
+    },
+    {
+      "type": "Comunidad",
+      "title": "Sesión de trabajo colaborativo en el Hub Nexis",
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&w=1200&q=80&fit=crop"
+    }
+  ]
+}

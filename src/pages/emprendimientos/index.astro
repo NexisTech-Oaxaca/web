@@ -1,0 +1,254 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import startups from "../../data/startups.json";
+import EmprendimientoCard from "../../components/EmprendimientoCard.astro";
+import { Search, Info } from "lucide-astro";
+import EmprendimientoCtaCard from "../../components/EmprendimientoCtaCard.astro";
+// Dynamically generate categories based on JSON data
+const categories = [
+  "Todos",
+  ...new Set(startups.map((startup) => startup.industry)),
+];
+---
+
+<Layout title="Directorio de Emprendimientos | Nexis Oaxaca Tech">
+  <Header />
+
+  <main
+    class="pt-40 bg-marfil opacity-0 transition-opacity duration-1000"
+    id="main-content"
+  >
+    <div class="max-w-7xl mx-auto">
+      <!-- Header / Nav -->
+      <div class="mb-16 text-left reveal">
+        <div
+          class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-jade/10 text-jade text-[10px] font-black uppercase tracking-[0.2em] mb-6 border border-jade/20 shadow-sm"
+        >
+          DIRECTORIO DE EMPRENDIMIENTO
+        </div>
+        <h1
+          class="font-display text-5xl md:text-8xl font-extrabold tracking-tighter mb-8 leading-[0.9] text-petroleo uppercase"
+        >
+          El futuro se <br />
+          construye en <span class="text-jade">Oaxaca.</span>
+        </h1>
+        <p
+          class="max-w-2xl text-lg md:text-xl text-petroleo/60 leading-relaxed font-medium"
+        >
+          Explora nuestra galería de startups y emprendimientos tecnológicos
+          creados por personas de la comunidad. Desde SaaS hasta IA, el talento
+          local no tiene fronteras.
+        </p>
+      </div>
+
+      <!-- Filter & Search Bar -->
+      <div
+        class="sticky top-24 z-40 mb-16 py-4 border-y border-petroleo/5 bg-marfil/80 backdrop-blur-xl reveal"
+      >
+        <div
+          class="flex flex-col lg:flex-row items-center justify-between gap-6"
+        >
+          <div
+            class="flex gap-2 overflow-x-auto no-scrollbar pb-2 lg:pb-0 w-full lg:w-auto scrollbar-hidden"
+            id="filters-container"
+          >
+            {
+              categories.map((category, index) => (
+                <button
+                  data-filter={category === "Todos" ? "all" : category}
+                  class={`filter-btn px-8 py-3 rounded-full text-xs font-bold whitespace-nowrap uppercase tracking-widest transition-all hover:scale-105 cursor-pointer ${
+                    index === 0
+                      ? "bg-jade text-white shadow-lg shadow-jade/20"
+                      : "bg-white border border-gris text-petroleo hover:border-jade hover:text-jade"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))
+            }
+          </div>
+          <div class="relative w-full lg:w-96 group">
+            <Search
+              class="absolute left-5 top-1/2 -translate-y-1/2 text-petroleo/20 group-focus-within:text-jade transition-colors w-5 h-5"
+            />
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Buscar por nombre o industria..."
+              class="w-full pl-14 pr-6 py-4 bg-white border border-gris rounded-2xl text-sm font-medium focus:outline-none focus:border-jade focus:ring-4 focus:ring-jade/5 transition-all shadow-sm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8 md:pb-12 lg:pb-24"
+        id="startups-grid"
+      >
+        {
+          startups.map((startup, index) => (
+            <EmprendimientoCard startup={startup} index={index} />
+          ))
+        }
+
+        <!-- Join the Directory CTA Card -->
+        <EmprendimientoCtaCard />
+
+        <!-- Empty State -->
+        <div
+          id="empty-state"
+          class="hidden flex-col items-center justify-center py-20 text-center max-w-md mx-auto space-y-4"
+        >
+          <Info class="w-12 h-12 text-petroleo/20" />
+          <h3 class="text-2xl font-bold font-display text-petroleo">
+            Sin resultados
+          </h3>
+          <p class="text-petroleo/60 text-sm">
+            No encontramos emprendimientos que coincidan con tu búsqueda o
+            filtros.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+
+    <script>
+      import gsap from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+      gsap.registerPlugin(ScrollTrigger);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Entrance animation
+        const main = document.getElementById("main-content");
+        if (main) main.classList.remove("opacity-0");
+
+        // Staggered entrance animation for cards
+        gsap.from(".startup-card", {
+          opacity: 0,
+          y: 40,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power3.out",
+        });
+
+        const reveals = document.querySelectorAll(".reveal");
+        reveals.forEach((el) => {
+          gsap.from(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: "power3.out",
+          });
+        });
+
+        // Filter and Search logic
+        const searchInput = document.getElementById(
+          "search-input",
+        ) as HTMLInputElement;
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const cards = Array.from(document.querySelectorAll(".startup-card"));
+        const emptyState = document.getElementById("empty-state");
+
+        let activeFilter = "all";
+        let searchQuery = "";
+
+        const filterStartups = () => {
+          let visibleCount = 0;
+
+          cards.forEach((card) => {
+            const industry = card.getAttribute("data-industry");
+            const name = card.getAttribute("data-name") || "";
+            const desc = card.getAttribute("data-desc") || "";
+            const tagline = card.getAttribute("data-tagline") || "";
+            const founder = card.getAttribute("data-founder") || "";
+
+            const matchesFilter =
+              activeFilter === "all" || industry === activeFilter;
+            const matchesSearch =
+              name.includes(searchQuery) ||
+              desc.includes(searchQuery) ||
+              tagline.includes(searchQuery) ||
+              founder.includes(searchQuery);
+
+            if (matchesFilter && matchesSearch) {
+              card.classList.remove("hidden");
+              visibleCount++;
+            } else {
+              card.classList.add("hidden");
+            }
+          });
+
+          if (visibleCount === 0) {
+            if (emptyState) emptyState.classList.remove("hidden");
+          } else {
+            if (emptyState) emptyState.classList.add("hidden");
+          }
+        };
+
+        filterButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const filter = btn.getAttribute("data-filter") || "all";
+            activeFilter = filter;
+
+            filterButtons.forEach((b) => {
+              b.classList.remove(
+                "bg-jade",
+                "text-white",
+                "shadow-lg",
+                "shadow-jade/20",
+              );
+              b.classList.add(
+                "bg-white",
+                "border",
+                "border-gris",
+                "text-petroleo",
+              );
+            });
+
+            btn.classList.remove(
+              "bg-white",
+              "border",
+              "border-gris",
+              "text-petroleo",
+            );
+            btn.classList.add(
+              "bg-jade",
+              "text-white",
+              "shadow-lg",
+              "shadow-jade/20",
+            );
+
+            filterStartups();
+          });
+        });
+
+        if (searchInput) {
+          searchInput.addEventListener("input", (e) => {
+            searchQuery = (e.target as HTMLInputElement).value
+              .toLowerCase()
+              .trim();
+            filterStartups();
+          });
+        }
+      });
+    </script>
+  </main>
+
+  <style>
+    .scrollbar-hidden::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hidden {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</Layout>

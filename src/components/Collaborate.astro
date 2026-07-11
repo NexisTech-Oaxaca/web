@@ -1,0 +1,69 @@
+---
+import { Building2, GraduationCap, UserStar, CheckCircle2 } from 'lucide-astro';
+
+const profiles = [
+  {
+    title: "Empresas",
+    description: "Patrocina eventos, recluta talento local de alto nivel o co-desarrolla proyectos de innovación abierta.",
+    icon: Building2,
+    benefits: ["Patrocinios de eventos", "Talent Scouting", "Espacios de marca"],
+    cta: "Contactar Alianzas",
+    color: "petroleo"
+  },
+  {
+    title: "Instituciones",
+    description: "Convenios educativos, programas de pasantías y acceso a nuestra red de mentores para tus alumnos.",
+    icon: GraduationCap,
+    benefits: ["Convenios Universitarios", "Programas de Verano", "Talleres Técnicos"],
+    cta: "Saber más",
+    color: "jade"
+  },
+  {
+    title: "Profesionales",
+    description: "Comparte tu conocimiento como ponente, conviértete en mentor o lidera una iniciativa técnica.",
+    icon: UserStar,
+    benefits: ["Speaker en Meetups", "Mentoría 1 a 1", "Liderazgo de Célula"],
+    cta: "Quiero Colaborar",
+    color: "ambar"
+  }
+];
+---
+
+<section id="colaborar" class="py-32 px-6 bg-marfil">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-20 reveal">
+       <h2 class="text-5xl font-bold text-petroleo mb-6 font-display">¿Cómo quieres colaborar?</h2>
+       <p class="text-xl text-petroleo/60">Hay un lugar para todos en Nexis.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      {profiles.map((p, index) => (
+        <div class="reveal p-10 rounded-[40px] border-2 border-petroleo/5 bg-white hover:border-jade/30 transition-all duration-500 shadow-sm hover:shadow-xl" style={`transition-delay: ${index * 100}ms`}>
+          <div class={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 ${
+            p.color === 'petroleo' ? 'bg-petroleo text-white' : 
+            p.color === 'jade' ? 'bg-jade text-white' : 'bg-ambar text-petroleo'
+          }`}>
+            <p.icon class="w-8 h-8" />
+          </div>
+          <h3 class="text-2xl font-bold text-petroleo mb-4 font-display">{p.title}</h3>
+          <p class="text-petroleo/60 mb-8 leading-relaxed">
+            {p.description}
+          </p>
+          <ul class="space-y-4 mb-10">
+            {p.benefits.map(benefit => (
+              <li class="flex items-center text-sm font-medium text-petroleo">
+                <CheckCircle2 class="text-jade w-5 h-5 mr-3" /> {benefit}
+              </li>
+            ))}
+          </ul>
+          <button class={`w-full py-4 rounded-2xl border-2 font-bold transition-all ${
+            p.color === 'petroleo' ? 'border-petroleo text-petroleo hover:bg-petroleo hover:text-white' : 
+            p.color === 'jade' ? 'border-jade text-jade hover:bg-jade hover:text-white' : 'border-ambar text-ambar hover:bg-ambar hover:text-petroleo'
+          }`}>
+            {p.cta}
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

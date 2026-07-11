@@ -1,0 +1,81 @@
+---
+interface Props {
+  startup: {
+    id: string;
+    name: string;
+    industry: string;
+    tagline: string;
+    description: string;
+    image: string; // logo
+    banner: string; // cover photo
+    founder: {
+      name: string;
+    };
+  };
+  index: number;
+}
+
+const { startup, index } = Astro.props;
+---
+
+<div
+  class="startup-card group bg-white rounded-[40px] border border-petroleo/5 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 relative flex flex-col justify-between h-full text-left overflow-hidden"
+  data-industry={startup.industry}
+  data-name={startup.name.toLowerCase()}
+  data-desc={startup.description.toLowerCase()}
+  data-tagline={startup.tagline.toLowerCase()}
+  data-founder={startup.founder.name.toLowerCase()}
+  style={`transition-delay: ${index * 100}ms`}
+>
+  <div>
+    <!-- Cover Banner (Edge-to-Edge) -->
+    <div class="w-full h-44 overflow-hidden relative">
+      <img
+        src={startup.banner}
+        alt={startup.name}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-40"
+      >
+      </div>
+    </div>
+
+    <!-- Content Body -->
+    <div class="px-8 pb-6 pt-16 relative">
+      <!-- Category Badge (Top Right of content) -->
+      <span
+        class="absolute top-6 right-8 px-4 py-1.5 bg-jade/10 text-jade text-[9px] font-black uppercase tracking-widest rounded-full shadow-sm border border-jade/5"
+      >
+        {startup.industry}
+      </span>
+
+      <!-- Startup Name & Tagline -->
+      <h3
+        class="font-display text-3xl text-petroleo mb-3 group-hover:text-jade transition-colors font-bold uppercase leading-tight mt-2"
+      >
+        {startup.name}
+      </h3>
+      <p class="text-jade font-bold text-xs uppercase tracking-wide mb-5">
+        {startup.tagline}
+      </p>
+      <p
+        class="text-petroleo/60 text-sm leading-relaxed line-clamp-3 font-medium"
+      >
+        {startup.description}
+      </p>
+    </div>
+  </div>
+
+  <!-- Details Action Button -->
+  <div
+    class="px-8 pb-8 pt-4 flex justify-end border-t border-petroleo/5 mt-auto"
+  >
+    <a
+      href={`/emprendimientos/${startup.id}`}
+      class="inline-flex items-center text-jade font-black text-[10px] uppercase tracking-widest hover:translate-x-1.5 transition-transform"
+    >
+      Ver Detalles →
+    </a>
+  </div>
+</div>

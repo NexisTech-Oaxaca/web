@@ -1,0 +1,149 @@
+---
+import {
+  Instagram,
+  Twitter,
+  Linkedin,
+  Github,
+  Send,
+  Heart,
+  Zap,
+  Youtube,
+  Facebook,
+} from "lucide-astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer
+  class="bg-[#0D1117] text-white pt-32 pb-12 px-6 relative overflow-hidden"
+>
+  <div class="absolute top-0 left-0 w-full h-1 mitla-pattern opacity-20"></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="grid lg:grid-cols-4 gap-16 mb-24">
+      <div class="lg:col-span-2 space-y-8">
+        <div class="flex items-center space-x-3">
+          <div
+            class="w-12 h-12 bg-jade rounded-2xl flex items-center justify-center text-white shadow-lg shadow-jade/20"
+          >
+            <img
+              src="/nexis.svg"
+              alt="Nexis Oaxaca"
+              class="h-full w-full object-contain"
+            />
+          </div>
+          <span class="text-2xl font-bold tracking-tight font-display uppercase"
+            >NEXIS<span class="text-jade"> OAXACA</span></span
+          >
+        </div>
+        <p class="text-xl text-white/50 max-w-md leading-relaxed">
+          Estamos construyendo el ecosistema tecnológico que Oaxaca merece.
+          Únete a la revolución del talento local.
+        </p>
+        <div class="flex space-x-6 pt-4">
+          <a
+            href="https://www.facebook.com/nexisoaxaca.tech"
+            class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-jade hover:border-jade transition-all text-white/60 hover:text-white"
+            target="_blank"
+          >
+            <Facebook class="w-5 h-5" />
+          </a>
+          <a
+            href="https://www.instagram.com/nexistech.oaxaca"
+            class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-jade hover:border-jade transition-all text-white/60 hover:text-white"
+            target="_blank"
+          >
+            <Instagram class="w-5 h-5" />
+          </a>
+          <a
+            href="https://www.youtube.com/@NexisOaxaca"
+            class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-jade hover:border-jade transition-all text-white/60 hover:text-white"
+            target="_blank"
+          >
+            <Youtube class="w-5 h-5" />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/nexis-oaxaca-tech/"
+            class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-jade hover:border-jade transition-all text-white/60 hover:text-white"
+            target="_blank"
+          >
+            <Linkedin class="w-5 h-5" />
+          </a>
+          <a
+            href="https://github.com/NexisTech-Oaxaca"
+            class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-jade hover:border-jade transition-all text-white/60 hover:text-white"
+            target="_blank"
+          >
+            <Github class="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+
+      <div class="space-y-8">
+        <h5 class="text-sm font-bold uppercase tracking-widest text-jade">
+          Comunidad
+        </h5>
+        <ul class="space-y-4 text-white/60 font-medium">
+          <li>
+            <a href="/eventos" class="hover:text-white transition-colors"
+              >Próximos Eventos</a
+            >
+          </li>
+          <li>
+            <a href="#" class="hover:text-white transition-colors"
+              >Bolsa de Trabajo</a
+            >
+          </li>
+          <li>
+            <a
+              href="/emprendimientos"
+              class="hover:text-white transition-colors"
+              >Directorio de Startups</a
+            >
+          </li>
+          <li>
+            <a href="#" class="hover:text-white transition-colors"
+              >Código de Conducta</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="space-y-8">
+        <h5 class="text-sm font-bold uppercase tracking-widest text-jade">
+          Nexis Hub
+        </h5>
+        <p class="text-white/60 text-sm leading-relaxed mb-6">
+          Suscríbete a nuestro newsletter para no perderte ningún evento.
+        </p>
+        <form class="flex space-x-2">
+          <input
+            type="email"
+            placeholder="Tu email"
+            class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm grow focus:outline-none focus:border-jade"
+          />
+          <button
+            class="bg-jade p-3 rounded-xl hover:bg-petroleo transition-all flex items-center justify-center"
+          >
+            <Send class="w-5 h-5" />
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div
+      class="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6"
+    >
+      <p class="text-white/40 text-sm">
+        © {year} Nexis Oaxaca Tech. Todos los derechos reservados.
+      </p>
+      <div
+        class="text-jade font-bold tracking-widest uppercase text-[10px] flex items-center"
+      >
+        Construyendo el futuro tecnológico de Oaxaca <Heart
+          class="w-3 h-3 ml-2 text-coral fill-coral"
+        />
+      </div>
+    </div>
+  </div>
+</footer>
