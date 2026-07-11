@@ -128,7 +128,7 @@ const descriptionText = computed(() => featured.value?.description || 'Descubre 
                 <img class="w-12 h-12 rounded-full border-4 border-white" src="https://i.pravatar.cc/100?u=a" alt="User">
                 <img class="w-12 h-12 rounded-full border-4 border-white" src="https://i.pravatar.cc/100?u=b" alt="User">
                 <img class="w-12 h-12 rounded-full border-4 border-white" src="https://i.pravatar.cc/100?u=c" alt="User">
-                <div class="w-12 h-12 rounded-full bg-arena border-4 border-white flex items-center justify-center text-xs font-bold text-petroleo">+120</div>
+                <!-- <div class="w-12 h-12 rounded-full bg-arena border-4 border-white flex items-center justify-center text-xs font-bold text-petroleo">+120</div> -->
               </div>
               <a :href="`/eventos/${featured.id}`" class="bg-jade text-white px-8 py-4 rounded-2xl font-bold hover:bg-petroleo transition-all shadow-lg shadow-jade/20 font-sans">
                 {{ isUpcoming ? 'Registrar mi asistencia' : 'Ver resumen' }}
