@@ -20,7 +20,7 @@ const categories = [
     class="pt-40 bg-marfil opacity-0 transition-opacity duration-1000"
     id="main-content"
   >
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-7xl mx-auto px-6">
       <!-- Header / Nav -->
       <div class="mb-16 text-left reveal">
         <div
@@ -245,7 +245,7 @@ const categories = [
       };
 
       document.addEventListener("astro:page-load", () => {
-        ScrollTrigger.getAll().forEach(t => t.kill());
+        ScrollTrigger.getAll().forEach((t) => t.kill());
         init();
       });
     </script>

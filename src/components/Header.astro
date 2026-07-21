@@ -1,4 +1,6 @@
 ---
+import { Menu, X } from "lucide-astro";
+
 const pathname = new URL(Astro.url).pathname;
 const activePath = pathname === '/' ? '/' : pathname.replace(/\/$/, '');
 
@@ -30,6 +32,7 @@ const navLinks = [
       >
     </a>
 
+    <!-- Desktop Navigation Links -->
     <div class="hidden md:flex items-center space-x-8">
       {
         navLinks.map((link) => {
@@ -55,19 +58,67 @@ const navLinks = [
       }
     </div>
 
+    <!-- Desktop Join Button -->
     <button
       id="join-community-btn"
-      class="bg-jade text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-petroleo transition-colors duration-300 shadow-md shadow-jade/10 cursor-pointer"
+      class="hidden md:block bg-jade text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-petroleo transition-colors duration-300 shadow-md shadow-jade/10 cursor-pointer"
     >
       Únete a la comunidad
     </button>
+
+    <!-- Hamburger Menu Toggle Button (Mobile Only) -->
+    <button
+      id="mobile-menu-toggle"
+      class="block md:hidden text-petroleo hover:text-jade p-2 transition-colors focus:outline-none cursor-pointer"
+      aria-label="Toggle Menu"
+    >
+      <Menu id="menu-icon" class="w-6 h-6" />
+      <X id="close-icon" class="w-6 h-6 hidden" />
+    </button>
   </nav>
+
+  <!-- Mobile Menu Drawer (Overlay) -->
+  <div
+    id="mobile-menu"
+    class="fixed top-20 left-0 w-full h-[calc(100vh-5rem)] bg-marfil/95 backdrop-blur-lg border-b border-petroleo/5 z-40 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-in-out md:hidden flex flex-col justify-between p-8"
+  >
+    <div class="flex flex-col space-y-6">
+      {
+        navLinks.map((link) => {
+          const linkPath = link.href.replace(/\/$/, '') || '/';
+          const isActive = linkPath === '/' ? activePath === '/' : activePath.startsWith(linkPath);
+          return (
+            <a
+              href={link.href}
+              class={`mobile-nav-link text-xl font-bold py-3 border-b border-petroleo/5 transition-colors block ${
+                isActive ? "text-jade" : "text-petroleo/70 hover:text-jade"
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+    </div>
+
+    <div class="pt-6 border-t border-petroleo/10">
+      <button
+        id="join-community-btn-mobile"
+        class="w-full bg-jade text-white py-3.5 rounded-full font-bold text-base hover:bg-petroleo transition-colors duration-300 shadow-md shadow-jade/10 cursor-pointer text-center block"
+      >
+        Únete a la comunidad
+      </button>
+    </div>
+  </div>
 </header>
 
 <script>
-  import { animate } from "motion";
+  import { animate, stagger } from "motion";
 
   const initHeaderInteractions = () => {
+    // Reset body scroll on page load
+    document.body.style.overflow = "";
+
     const btn = document.getElementById("join-community-btn");
     if (btn) {
       btn.addEventListener("mouseenter", () => {
@@ -75,6 +126,16 @@ const navLinks = [
       });
       btn.addEventListener("mouseleave", () => {
         animate(btn, { scale: 1, y: 0 }, { type: "spring", stiffness: 400, damping: 15 });
+      });
+    }
+
+    const mobileBtn = document.getElementById("join-community-btn-mobile");
+    if (mobileBtn) {
+      mobileBtn.addEventListener("mouseenter", () => {
+        animate(mobileBtn, { scale: 1.02, y: -1 }, { type: "spring", stiffness: 400, damping: 15 });
+      });
+      mobileBtn.addEventListener("mouseleave", () => {
+        animate(mobileBtn, { scale: 1, y: 0 }, { type: "spring", stiffness: 400, damping: 15 });
       });
     }
 
@@ -89,6 +150,60 @@ const navLinks = [
           animate(logoIcon, { scale: 1, rotate: 0 }, { type: "spring", stiffness: 300, damping: 12 });
         });
       }
+    }
+
+    // Mobile Menu logic
+    const toggleBtn = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+    const mobileMenuLinks = document.querySelectorAll(".mobile-nav-link");
+
+    if (toggleBtn && mobileMenu && menuIcon && closeIcon) {
+      let isOpen = false;
+
+      const toggleMenu = () => {
+        isOpen = !isOpen;
+
+        if (isOpen) {
+          // Open menu
+          mobileMenu.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
+          mobileMenu.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
+          menuIcon.classList.add("hidden");
+          closeIcon.classList.remove("hidden");
+          document.body.style.overflow = "hidden";
+
+          // Stagger-animate links & button inside mobile menu
+          animate(
+            mobileMenuLinks,
+            { opacity: [0, 1], x: [-20, 0] },
+            { delay: stagger(0.05), duration: 0.3 }
+          );
+          if (mobileBtn) {
+            animate(
+              mobileBtn,
+              { opacity: [0, 1], y: [10, 0] },
+              { delay: 0.2, duration: 0.3 }
+            );
+          }
+        } else {
+          // Close menu
+          mobileMenu.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+          mobileMenu.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
+          menuIcon.classList.remove("hidden");
+          closeIcon.classList.add("hidden");
+          document.body.style.overflow = "";
+        }
+      };
+
+      toggleBtn.addEventListener("click", toggleMenu);
+
+      // Close menu when clicking a link
+      mobileMenuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (isOpen) toggleMenu();
+        });
+      });
     }
   };
 
