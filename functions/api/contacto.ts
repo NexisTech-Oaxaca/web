@@ -22,6 +22,7 @@ export async function onRequest(context: { request: Request; env: Record<string,
     const body: ContactBody = await request.json();
     const token = body['cf-turnstile-response'];
 
+    //Aqui si llega el token
     console.log('Turnstile token:', token);
 
     const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
@@ -35,7 +36,7 @@ export async function onRequest(context: { request: Request; env: Record<string,
     const verifyData = await verifyRes.json();
 
     if (!verifyData.success) {
-      return new Response(JSON.stringify({ ok: false, error: 'Verificación anti-bot fallida' }), {
+      return new Response(JSON.stringify({ ok: false, error: `Verificación anti-bot fallida ${token}` }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
