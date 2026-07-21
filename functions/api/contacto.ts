@@ -5,6 +5,7 @@ interface ContactBody {
   email: string;
   categoria: string;
   mensaje: string;
+  'cf-turnstile-response': string;
 }
 
 export async function onRequest(context: { request: Request; env: Record<string, string | undefined> }) {
@@ -19,6 +20,24 @@ export async function onRequest(context: { request: Request; env: Record<string,
 
   try {
     const body: ContactBody = await request.json();
+    const token = body['cf-turnstile-response'];
+
+    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        secret: env.TURNSTILE_SECRET_KEY,
+        response: token,
+      }),
+    });
+    const verifyData = await verifyRes.json();
+
+    if (!verifyData.success) {
+      return new Response(JSON.stringify({ ok: false, error: 'Verificación anti-bot fallida' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
 
     const { nombre, email, categoria, mensaje } = body;
 

@@ -100,6 +100,14 @@ const catIcon = selected?.icon || Building2;
                 <span id="btn-spinner" class="relative z-10 hidden"><LoaderCircle class="w-5 h-5 animate-spin" /></span>
                 <span id="btn-check" class="relative z-10 hidden"><CheckCircle2 class="w-5 h-5" /></span>
               </button>
+
+              <p class="text-center text-[10px] text-petroleo/30 leading-relaxed mt-4">
+                Este sitio está protegido con Cloudflare Turnstile y se rige por la
+                <a href="https://www.cloudflare.com/en-gb/turnstile-privacy-policy/" target="_blank" rel="noopener noreferrer" class="underline hover:text-petroleo/50 transition-colors">Política de Privacidad</a>
+                y los
+                <a href="https://www.cloudflare.com/en-gb/website-terms/" target="_blank" rel="noopener noreferrer" class="underline hover:text-petroleo/50 transition-colors">Términos del Servicio</a>
+                de Cloudflare.
+              </p>
             </form>
 
             <div id="success-message" class="hidden text-center py-12">
@@ -112,6 +120,8 @@ const catIcon = selected?.icon || Building2;
                 Volver al inicio
               </a>
             </div>
+
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAD6uLyml5OaSHsGS"></div>
 
             <div id="error-message" class="hidden mt-6 p-5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-sm">
             </div>
@@ -144,6 +154,9 @@ const catIcon = selected?.icon || Building2;
     opacity: 1;
   }
 </style>
+
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
   import { animate, spring, stagger } from 'motion';
