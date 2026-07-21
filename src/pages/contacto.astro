@@ -161,12 +161,10 @@ const catIcon = selected?.icon || Building2;
 <script>
   import { animate, spring, stagger } from 'motion';
 
-  window.onTurnstileSuccess = function(token: string) {
-    const errorMsg = document.getElementById('error-message');
-    if (errorMsg) {
-      errorMsg.classList.add('hidden');
-    }
-  };
+  function safeAnimate(el: unknown, ...args: Parameters<typeof animate>) {
+    if (!el) return;
+    try { animate(el as any, ...args); } catch {}
+  }
 
   function initContactForm() {
     const form = document.getElementById('contact-form') as HTMLFormElement | null;
@@ -196,13 +194,14 @@ const catIcon = selected?.icon || Building2;
     };
 
     let dotsInterval: ReturnType<typeof setInterval>;
+    let submitting = false;
 
     function showFieldError(name: string) {
       const input = form.elements.namedItem(name) as HTMLElement | null;
       input?.classList.add('border-red-400', 'bg-red-50');
       const el = errorEls[name];
       if (el) {
-        animate(el, { opacity: [0, 1], y: [-4, 0] }, { duration: 0.2 });
+        safeAnimate(el, { opacity: [0, 1], y: [-4, 0] }, { duration: 0.2 });
         el.classList.remove('hidden');
       }
     }
@@ -219,14 +218,14 @@ const catIcon = selected?.icon || Building2;
         if (btnText) btnText.textContent = 'Enviando';
         btnIcon?.classList.add('hidden');
         btnSpinner?.classList.remove('hidden');
-        if (btnText) animate(btnText, { opacity: [1, 0.6] }, { duration: 0.15 });
+        safeAnimate(btnText, { opacity: [1, 0.6] }, { duration: 0.15 });
       } else {
         if (btnText) btnText.textContent = 'Enviar mensaje';
         btnIcon?.classList.remove('hidden');
         btnSpinner?.classList.add('hidden');
         btnCheck?.classList.add('hidden');
         btnBgGlow?.classList.add('hidden');
-        if (btnText) animate(btnText, { opacity: [0.6, 1] }, { duration: 0.15 });
+        safeAnimate(btnText, { opacity: [0.6, 1] }, { duration: 0.15 });
       }
     }
 
@@ -245,24 +244,26 @@ const catIcon = selected?.icon || Building2;
 
     function resetTurnstile() {
       if (typeof turnstile !== 'undefined' && turnstileWidget) {
-        turnstile.reset(turnstileWidget);
+        try { turnstile.reset(turnstileWidget); } catch {}
       }
     }
 
     submitBtn.addEventListener('mouseenter', () => {
       if (!submitBtn.disabled) {
-        animate(submitBtn, { scale: 1.02 }, { type: 'spring', stiffness: 350, damping: 15 });
+        safeAnimate(submitBtn, { scale: 1.02 }, { type: 'spring', stiffness: 350, damping: 15 });
       }
     });
 
     submitBtn.addEventListener('mouseleave', () => {
       if (!submitBtn.disabled) {
-        animate(submitBtn, { scale: 1 }, { type: 'spring', stiffness: 350, damping: 15 });
+        safeAnimate(submitBtn, { scale: 1 }, { type: 'spring', stiffness: 350, damping: 15 });
       }
     });
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (submitting) return;
+      if (submitBtn.disabled) return;
 
       errorMsg?.classList.add('hidden');
 
@@ -283,24 +284,23 @@ const catIcon = selected?.icon || Building2;
         }
       }
       if (hasErrors) {
-        animate(submitBtn, { x: [0, -6, 6, -4, 4, 0] }, { duration: 0.4, easing: spring() });
+        safeAnimate(submitBtn, { x: [0, -6, 6, -4, 4, 0] }, { duration: 0.4, easing: spring() });
         return;
       }
 
       const turnstileToken = getTurnstileToken();
 
       if (!turnstileToken && typeof turnstile !== 'undefined' && turnstileWidget) {
-        turnstile.execute(turnstileWidget);
-        await new Promise<void>((resolve) => {
-          const checkToken = setInterval(() => {
-            const token = getTurnstileToken();
-            if (token) {
-              clearInterval(checkToken);
-              resolve();
-            }
-          }, 100);
-          setTimeout(() => { clearInterval(checkToken); resolve(); }, 8000);
-        });
+        try {
+          turnstile.execute(turnstileWidget);
+          await new Promise<void>((resolve) => {
+            const checkToken = setInterval(() => {
+              const token = getTurnstileToken();
+              if (token) { clearInterval(checkToken); resolve(); }
+            }, 100);
+            setTimeout(() => { clearInterval(checkToken); resolve(); }, 8000);
+          });
+        } catch {}
       }
 
       const finalToken = getTurnstileToken();
@@ -309,11 +309,12 @@ const catIcon = selected?.icon || Building2;
         if (errorMsg) {
           errorMsg.textContent = 'Error de verificación anti-bot. Intenta de nuevo.';
           errorMsg.classList.remove('hidden');
-          animate(errorMsg, { opacity: [0, 1], y: [-10, 0] }, { duration: 0.3 });
+          safeAnimate(errorMsg, { opacity: [0, 1], y: [-10, 0] }, { duration: 0.3 });
         }
         return;
       }
 
+      submitting = true;
       setLoading(true);
       animateLoadingDots('Enviando');
 
@@ -336,24 +337,28 @@ const catIcon = selected?.icon || Building2;
         btnCheck?.classList.remove('hidden');
         btnBgGlow?.classList.remove('hidden');
 
-        await animate(
-          submitBtn,
-          { scale: [1, 1.05, 1] },
-          { duration: 0.6, easing: spring({ stiffness: 250, damping: 10 }) },
-        ).finished;
+        try {
+          await animate(
+            submitBtn,
+            { scale: [1, 1.05, 1] },
+            { duration: 0.6, easing: spring({ stiffness: 250, damping: 10 }) },
+          ).finished;
+        } catch {}
 
         setTimeout(() => {
-          animate(formContainer, { opacity: [1, 0], scale: [1, 0.95] }, { duration: 0.3 }).then(() => {
-            formContainer?.classList.add('hidden');
-            successMsg?.classList.remove('hidden');
-            if (successMsg) {
-              animate(
-                successMsg.querySelectorAll('*'),
-                { opacity: [0, 1], y: [20, 0] },
-                { duration: 0.4, delay: stagger(0.08), easing: spring() },
-              );
-            }
-          });
+          try {
+            animate(formContainer, { opacity: [1, 0], scale: [1, 0.95] }, { duration: 0.3 }).then(() => {
+              formContainer?.classList.add('hidden');
+              successMsg?.classList.remove('hidden');
+              if (successMsg) {
+                animate(
+                  successMsg.querySelectorAll('*'),
+                  { opacity: [0, 1], y: [20, 0] },
+                  { duration: 0.4, delay: stagger(0.08), easing: spring() },
+                );
+              }
+            });
+          } catch {}
         }, 800);
       } catch (err) {
         clearInterval(dotsInterval);
@@ -363,10 +368,12 @@ const catIcon = selected?.icon || Building2;
         if (errorMsg) {
           errorMsg.textContent = err instanceof Error ? err.message : 'Error de conexión';
           errorMsg.classList.remove('hidden');
-          animate(errorMsg, { opacity: [0, 1], y: [-10, 0] }, { duration: 0.3 });
+          safeAnimate(errorMsg, { opacity: [0, 1], y: [-10, 0] }, { duration: 0.3 });
         }
 
-        animate(submitBtn, { x: [0, -8, 8, -5, 5, 0] }, { duration: 0.5, easing: spring() });
+        safeAnimate(submitBtn, { x: [0, -8, 8, -5, 5, 0] }, { duration: 0.5, easing: spring() });
+      } finally {
+        submitting = false;
       }
     });
 
@@ -374,10 +381,10 @@ const catIcon = selected?.icon || Building2;
       const input = form.elements.namedItem(field) as HTMLElement | null;
       input?.addEventListener('input', () => clearFieldError(field));
       input?.addEventListener('focus', () => {
-        animate(input, { scale: [1, 1.01] }, { duration: 0.15 });
+        safeAnimate(input, { scale: [1, 1.01] }, { duration: 0.15 });
       });
       input?.addEventListener('blur', () => {
-        animate(input, { scale: [1.01, 1] }, { duration: 0.15 });
+        safeAnimate(input, { scale: [1.01, 1] }, { duration: 0.15 });
       });
     });
   }
