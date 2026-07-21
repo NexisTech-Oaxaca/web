@@ -108,6 +108,8 @@ const catIcon = selected?.icon || Building2;
                 <a href="https://www.cloudflare.com/en-gb/website-terms/" target="_blank" rel="noopener noreferrer" class="underline hover:text-petroleo/50 transition-colors">Términos del Servicio</a>
                 de Cloudflare.
               </p>
+
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAAD6uLyml5OaSHsGS" data-callback="onTurnstileSuccess"></div>
             </form>
 
             <div id="success-message" class="hidden text-center py-12">
@@ -120,8 +122,6 @@ const catIcon = selected?.icon || Building2;
                 Volver al inicio
               </a>
             </div>
-
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAAD6uLyml5OaSHsGS"></div>
 
             <div id="error-message" class="hidden mt-6 p-5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-sm">
             </div>
@@ -252,6 +252,7 @@ const catIcon = selected?.icon || Building2;
       const email = (data.get('email') as string) || '';
       const mensaje = (data.get('mensaje') as string) || '';
       const categoria = (data.get('categoria') as string) || '';
+      const turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement)?.value;
 
       let hasErrors = false;
       for (const [field, validate] of Object.entries(validators)) {
@@ -275,7 +276,7 @@ const catIcon = selected?.icon || Building2;
         const res = await fetch('/api/contacto', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nombre, email, categoria, mensaje }),
+          body: JSON.stringify({ nombre, email, categoria, mensaje, 'cf-turnstile-response': turnstileToken }),
         });
 
         const json = await res.json();
