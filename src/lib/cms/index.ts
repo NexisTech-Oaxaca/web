@@ -47,40 +47,86 @@ async function fetchBySlug<T = Record<string, unknown>>(
 	}
 }
 
+async function fetchWithFallback<T>(
+	fetchFn: () => Promise<T[]>,
+	localFallback: T[],
+): Promise<T[]> {
+	if (!hasStrapi) return localFallback;
+	const items = await fetchFn();
+	return items.length > 0 ? items : localFallback;
+}
+
+async function fetchOneWithFallback<T>(
+	fetchFn: () => Promise<T | null>,
+	fallbackList: T[],
+	slug: string,
+): Promise<T | null> {
+	if (!hasStrapi) return findBySlug(fallbackList, slug);
+	const item = await fetchFn();
+	return item ?? findBySlug(fallbackList, slug);
+}
+
 export async function getEvents(): Promise<EventItem[]> {
-	if (!hasStrapi) return localEvents;
-	const items = await fetchCollection('api/events');
-	return items.map((item) => normalizeEvent(item, strapiBaseUrl));
+	return fetchWithFallback(
+		async () => {
+			const items = await fetchCollection('api/events');
+			return items.map((item) => normalizeEvent(item, strapiBaseUrl));
+		},
+		localEvents,
+	);
 }
 
 export async function getEventBySlug(slug: string): Promise<EventItem | null> {
-	if (!hasStrapi) return findBySlug(localEvents, slug);
-	const item = await fetchBySlug('api/events', slug);
-	return item ? normalizeEvent(item, strapiBaseUrl) : null;
+	return fetchOneWithFallback(
+		async () => {
+			const item = await fetchBySlug('api/events', slug);
+			return item ? normalizeEvent(item, strapiBaseUrl) : null;
+		},
+		localEvents,
+		slug,
+	);
 }
 
 export async function getProjects(): Promise<ProjectItem[]> {
-	if (!hasStrapi) return localProjects;
-	const items = await fetchCollection('api/projects');
-	return items.map((item) => normalizeProject(item, strapiBaseUrl));
+	return fetchWithFallback(
+		async () => {
+			const items = await fetchCollection('api/projects');
+			return items.map((item) => normalizeProject(item, strapiBaseUrl));
+		},
+		localProjects,
+	);
 }
 
 export async function getProjectBySlug(slug: string): Promise<ProjectItem | null> {
-	if (!hasStrapi) return findBySlug(localProjects, slug);
-	const item = await fetchBySlug('api/projects', slug);
-	return item ? normalizeProject(item, strapiBaseUrl) : null;
+	return fetchOneWithFallback(
+		async () => {
+			const item = await fetchBySlug('api/projects', slug);
+			return item ? normalizeProject(item, strapiBaseUrl) : null;
+		},
+		localProjects,
+		slug,
+	);
 }
 
 export async function getStartups(): Promise<StartupItem[]> {
-	if (!hasStrapi) return localStartups;
-	const items = await fetchCollection('api/startups');
-	return items.map((item) => normalizeStartup(item, strapiBaseUrl));
+	return fetchWithFallback(
+		async () => {
+			const items = await fetchCollection('api/startups');
+			return items.map((item) => normalizeStartup(item, strapiBaseUrl));
+		},
+		localStartups,
+	);
 }
 
 export async function getStartupBySlug(slug: string): Promise<StartupItem | null> {
-	if (!hasStrapi) return findBySlug(localStartups, slug);
-	const item = await fetchBySlug('api/startups', slug);
-	return item ? normalizeStartup(item, strapiBaseUrl) : null;
+	return fetchOneWithFallback(
+		async () => {
+			const item = await fetchBySlug('api/startups', slug);
+			return item ? normalizeStartup(item, strapiBaseUrl) : null;
+		},
+		localStartups,
+		slug,
+	);
 }
 
 export async function getTeamMembers(): Promise<TeamMember[]> {

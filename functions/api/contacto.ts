@@ -1,7 +1,4 @@
-import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
-
-export const prerender = false;
 
 interface ContactBody {
   nombre: string;
@@ -10,7 +7,16 @@ interface ContactBody {
   mensaje: string;
 }
 
-export const POST: APIRoute = async ({ request, locals }) => {
+export async function onRequest(context: { request: Request; env: Record<string, string | undefined> }) {
+  const { request, env } = context;
+
+  if (request.method !== 'POST') {
+    return new Response(JSON.stringify({ ok: false, error: 'Method not allowed' }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   try {
     const body: ContactBody = await request.json();
 
@@ -23,27 +29,27 @@ export const POST: APIRoute = async ({ request, locals }) => {
     if (!mensaje?.trim()) errors.push('mensaje');
 
     if (errors.length > 0) {
-      return new Response(
-        JSON.stringify({ ok: false, error: `Campos requeridos: ${errors.join(', ')}` }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } },
-      );
+      return new Response(JSON.stringify({ ok: false, error: `Campos requeridos: ${errors.join(', ')}` }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Email inválido' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } },
-      );
+      return new Response(JSON.stringify({ ok: false, error: 'Email inválido' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
-    const RESEND_API_KEY = locals.runtime?.env?.RESEND_API_KEY ?? import.meta.env.RESEND_API_KEY;
+    const RESEND_API_KEY = env.RESEND_API_KEY ?? process.env.RESEND_API_KEY;
 
     if (!RESEND_API_KEY) {
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Error de configuración del servidor' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } },
-      );
+      return new Response(JSON.stringify({ ok: false, error: 'Error de configuración del servidor' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     const resend = new Resend(RESEND_API_KEY);
@@ -55,7 +61,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     };
     const categoriaLabel = categoriaLabels[categoria] || categoria;
 
-    const { data, error: resendError } = await resend.emails.send({
+    const { error: resendError } = await resend.emails.send({
       from: 'Nexis Oaxaca <contacto@nexis.oaxaca.com>',
       to: 'nexistechnology@gmail.com',
       subject: `Nuevo contacto - ${categoriaLabel}`,
@@ -71,20 +77,20 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
 
     if (resendError) {
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Error al enviar el mensaje' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } },
-      );
+      return new Response(JSON.stringify({ ok: false, error: 'Error al enviar el mensaje' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
-    return new Response(
-      JSON.stringify({ ok: true, message: 'Mensaje enviado correctamente' }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } },
-    );
+    return new Response(JSON.stringify({ ok: true, message: 'Mensaje enviado correctamente' }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch {
-    return new Response(
-      JSON.stringify({ ok: false, error: 'Error interno del servidor' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } },
-    );
+    return new Response(JSON.stringify({ ok: false, error: 'Error interno del servidor' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
-};
+}
