@@ -62,8 +62,8 @@ export async function onRequest(context: { request: Request; env: Record<string,
     const categoriaLabel = categoriaLabels[categoria] || categoria;
 
     const { error: resendError } = await resend.emails.send({
-      from: 'Nexis Oaxaca <contacto@nexis.oaxaca.com>',
-      to: 'nexistechnology@gmail.com',
+      from: `Nexis Oaxaca <${email}>`,
+      to: 'nexistech.oax@gmail.com',
       subject: `Nuevo contacto - ${categoriaLabel}`,
       html: `
         <h2>Nuevo mensaje desde el formulario de contacto</h2>
