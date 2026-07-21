@@ -34,6 +34,7 @@ export async function onRequest(context: { request: Request; env: Record<string,
       }),
     });
     const verifyData = await verifyRes.json();
+    console.log(verifyData);
 
     if (!verifyData.success) {
       return new Response(JSON.stringify({ ok: false, error: `Verificación anti-bot fallida`, debug: verifyData }), {
