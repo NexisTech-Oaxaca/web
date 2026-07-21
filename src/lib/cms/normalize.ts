@@ -133,7 +133,7 @@ export const normalizeEvent = (event: Record<string, unknown>, baseUrl?: string)
 		time: event.time ? String(event.time) : undefined,
 		location: event.location ? String(event.location) : undefined,
 		type: event.type ? String(event.type) : undefined,
-		status: event.status ? String(event.status) : undefined,
+		status: event.eventStatus ? String(event.eventStatus) : undefined,
 		image,
 		speakers: normalizeSpeakers(event.speakers, baseUrl),
 		media: (event.media && typeof event.media === 'object' && !Array.isArray(event.media)
@@ -160,7 +160,7 @@ export const normalizeProject = (project: Record<string, unknown>, baseUrl?: str
 		id: String(project.id ?? slug),
 		slug,
 		name: String(project.name ?? ''),
-		status: String(project.status ?? ''),
+		status: String(project.projectStatus ?? ''),
 		description: String(project.description ?? ''),
 		image,
 		tags: Array.isArray(project.tags) ? project.tags.map(String) : [],
