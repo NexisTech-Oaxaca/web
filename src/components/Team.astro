@@ -1,6 +1,12 @@
 ---
 import { Linkedin, Twitter, Github, Globe, Instagram } from 'lucide-astro';
-import team from '../data/team.json';
+import type { TeamMember } from '../lib/cms';
+
+interface Props {
+  members: TeamMember[];
+}
+
+const { members } = Astro.props as Props;
 ---
 
 <section class="py-32 px-6 bg-arena overflow-hidden">
@@ -11,8 +17,8 @@ import team from '../data/team.json';
     </div>
     
     <div class="flex gap-8 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hidden reveal">
-      {team.map((member, index) => (
-        <div class="flex-shrink-0 w-72 text-center group snap-center" style={`transition-delay: ${index * 100}ms`}>
+      {members.map((member, index) => (
+        <div class="flex-none w-72 text-center group snap-center" style={`transition-delay: ${index * 100}ms`}>
           <div class="relative w-48 h-48 mx-auto mb-8">
             <div class={`absolute inset-0 ${member.color} rounded-[40px] rotate-6 group-hover:rotate-12 transition-transform duration-500 shadow-lg shadow-black/5`}></div>
             <img 

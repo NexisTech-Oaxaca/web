@@ -2,11 +2,12 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import startups from "../../data/startups.json";
+import { getStartups } from "../../lib/cms";
 import EmprendimientoCard from "../../components/EmprendimientoCard.astro";
 import { Search, Info } from "lucide-astro";
 import EmprendimientoCtaCard from "../../components/EmprendimientoCtaCard.astro";
-// Dynamically generate categories based on JSON data
+const startups = await getStartups();
+// Categories derived from published startup records
 const categories = [
   "Todos",
   ...new Set(startups.map((startup) => startup.industry)),

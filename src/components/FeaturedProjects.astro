@@ -1,52 +1,67 @@
 ---
-import projects from '../data/projects.json';
-import { Box, Leaf, Users, ArrowRight } from 'lucide-astro';
+import type { ProjectItem } from '../lib/cms';
+import { ArrowRight } from 'lucide-astro';
 
-const icons = {
-  Box,
-  Leaf,
-  Users
-};
+interface Props {
+  projects: ProjectItem[];
+}
+
+const { projects } = Astro.props as Props;
+const featuredProjects = projects.slice(0, 3);
 ---
 
 <section id="proyectos" class="py-32 px-6 bg-marfil">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-20 reveal">
-      <h2 class="text-5xl font-bold text-petroleo mb-6 font-display">Proyectos que nos Enorgullecen</h2>
-      <p class="text-xl text-petroleo/60 max-w-2xl mx-auto">Innovación real desarrollada por manos oaxaqueñas dentro de nuestra comunidad.</p>
+      <h2 class="text-5xl font-bold text-petroleo mb-6 font-display">Proyectos que nos enorgullecen</h2>
+      <p class="text-xl text-petroleo/60 max-w-2xl mx-auto">
+        Innovación real desarrollada por manos oaxaqueñas dentro de nuestra comunidad.
+      </p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8 mb-16">
-      {projects.slice(0, 3).map((project, index) => {
-        const Icon = icons[project.icon] || Box;
-        const collaboratorsCount = project.collaborators || (project.team ? project.team.length : 0);
-        return (
-          <div class="reveal bg-white p-10 rounded-[32px] border border-petroleo/5 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col group project-card" style={`transition-delay: ${index * 100}ms`}>
-            <div class="w-14 h-14 bg-jade/10 rounded-2xl flex items-center justify-center text-jade mb-8 transition-colors group-hover:bg-jade group-hover:text-white">
-              <Icon class="w-7 h-7" />
+      {featuredProjects.map((project) => (
+        <article class="bg-white rounded-4xl border border-petroleo/5 shadow-sm overflow-hidden flex flex-col group text-left">
+          <div class="relative h-56 overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.name}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-linear-to-t from-petroleo/70 to-transparent"></div>
+            <div class="absolute bottom-5 left-5">
+              <span class="px-3 py-1 rounded-full bg-jade text-white text-[10px] font-black uppercase tracking-widest">
+                {project.status}
+              </span>
             </div>
-            <h3 class="text-2xl font-bold text-petroleo mb-4 group-hover:text-jade transition-colors">{project.name}</h3>
-            <p class="text-petroleo/70 leading-relaxed mb-8 grow">
-              {project.description}
-            </p>
-            <div class="flex flex-wrap gap-2 mb-8">
-              {project.tags.map(tag => (
+          </div>
+
+          <div class="p-8 flex flex-col grow space-y-5">
+            <div class="flex flex-wrap gap-2">
+              {project.tags.slice(0, 3).map((tag) => (
                 <span class="px-3 py-1 bg-arena rounded-full text-[10px] font-bold text-petroleo uppercase tracking-wider">
                   {tag}
                 </span>
               ))}
             </div>
-            <div class="flex items-center justify-between pt-6 border-t border-petroleo/10">
-              <div class="text-[10px] font-bold text-petroleo/40 uppercase tracking-widest">
-                {collaboratorsCount} Colaboradores
-              </div>
-              <a href={`/proyectos/${project.id}`} class="text-jade font-bold text-sm hover:translate-x-1 transition-transform flex items-center gap-1">
-                Explorar <ArrowRight class="w-4 h-4" />
-              </a>
-            </div>
+
+            <h3 class="text-2xl font-bold text-petroleo group-hover:text-jade transition-colors">
+              {project.name}
+            </h3>
+
+            <p class="text-petroleo/70 leading-relaxed grow">
+              {project.description}
+            </p>
+
+            <a
+              href={`/proyectos/${project.slug}`}
+              class="inline-flex items-center gap-2 text-jade font-bold text-sm hover:translate-x-1 transition-transform"
+            >
+              Explorar <ArrowRight class="w-4 h-4" />
+            </a>
           </div>
-        );
-      })}
+        </article>
+      ))}
     </div>
 
     <div class="flex justify-center reveal">

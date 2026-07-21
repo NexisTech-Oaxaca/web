@@ -1,0 +1,326 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Building2, GraduationCap, UserStar, ArrowLeft, CheckCircle2, Send, LoaderCircle } from 'lucide-astro';
+
+const categoria = Astro.url.searchParams.get('categoria') || '';
+
+const categorias = [
+  { value: 'empresas', label: 'Empresas', icon: Building2, color: 'petroleo', desc: 'Patrocinios, talent scouting, espacios de marca' },
+  { value: 'instituciones', label: 'Instituciones', icon: GraduationCap, color: 'jade', desc: 'Convenios educativos, pasantías, talleres' },
+  { value: 'profesionales', label: 'Profesionales', icon: UserStar, color: 'ambar', desc: 'Speaker, mentoría, liderazgo de célula' },
+];
+
+const selected = categorias.find(c => c.value === categoria);
+const catColor = selected?.color || 'petroleo';
+const catLabel = selected?.label || 'Colaboración';
+const catIcon = selected?.icon || Building2;
+---
+
+<Layout title={`Contacto - ${catLabel} | Nexis Oaxaca Tech`}>
+  <Header />
+
+  <main class="pt-32 pb-24 px-6 bg-marfil min-h-screen">
+    <div class="max-w-2xl mx-auto">
+      <a href="/#colaborar" class="inline-flex items-center gap-2 text-petroleo/50 hover:text-petroleo transition-colors mb-12 text-sm font-medium group">
+        <ArrowLeft class="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+        Volver
+      </a>
+
+      <div class={`rounded-[40px] border-2 border-${catColor}/10 bg-white shadow-sm overflow-hidden`} style="background-image: url('/nexis.svg'); background-size: cover; background-position: center;">
+        <div class={`p-10 pb-8 border-b border-${catColor}/5`}>
+
+          <h1 class="font-display text-4xl font-bold text-petroleo mb-3">Contactar &mdash; {catLabel}</h1>
+          <p class="text-petroleo/60 text-lg">{selected?.desc || 'Cuéntanos más sobre tu interés en colaborar con Nexis.'}</p>
+        </div>
+
+        <div class="p-10">
+          <div id="form-container">
+            <form id="contact-form" class="space-y-6">
+
+              <div>
+                <label for="nombre" class="block text-sm font-bold text-petroleo mb-2 uppercase tracking-wider">
+                  Nombre
+                </label>
+                <input
+                  type="text" id="nombre" name="nombre" required
+                  class="w-full px-5 py-4 rounded-2xl border-2 border-petroleo/10 bg-marfil text-petroleo placeholder:text-petroleo/30 focus:outline-none transition-all duration-300"
+                  placeholder="Tu nombre completo"
+                />
+                <p class="text-red-500 text-xs mt-1 hidden" id="error-nombre">Este campo es obligatorio</p>
+              </div>
+
+              <div>
+                <label for="email" class="block text-sm font-bold text-petroleo mb-2 uppercase tracking-wider">
+                  Correo electrónico
+                </label>
+                <input
+                  type="email" id="email" name="email" required
+                  class="w-full px-5 py-4 rounded-2xl border-2 border-petroleo/10 bg-marfil text-petroleo placeholder:text-petroleo/30 focus:outline-none transition-all duration-300"
+                  placeholder="tu@correo.com"
+                />
+                <p class="text-red-500 text-xs mt-1 hidden" id="error-email">Ingresa un email válido</p>
+              </div>
+
+              <div>
+                <label for="categoria-select" class="block text-sm font-bold text-petroleo mb-2 uppercase tracking-wider">
+                  Categoría
+                </label>
+                <select
+                  id="categoria-select" name="categoria"
+                  class="w-full px-5 py-4 rounded-2xl border-2 border-petroleo/10 bg-marfil text-petroleo focus:outline-none transition-all duration-300 appearance-none"
+                >
+                  {categorias.map(c => (
+                    <option value={c.value} selected={c.value === categoria}>{c.label}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label for="mensaje" class="block text-sm font-bold text-petroleo mb-2 uppercase tracking-wider">
+                  Mensaje
+                </label>
+                <textarea
+                  id="mensaje" name="mensaje" rows={5} required
+                  class="w-full px-5 py-4 rounded-2xl border-2 border-petroleo/10 bg-marfil text-petroleo placeholder:text-petroleo/30 focus:outline-none transition-all duration-300 resize-none"
+                  placeholder="Cuéntanos en qué te gustaría colaborar..."
+                ></textarea>
+                <p class="text-red-500 text-xs mt-1 hidden" id="error-mensaje">Este campo es obligatorio</p>
+              </div>
+
+              <button
+                type="submit" id="submit-btn"
+                class="submit-btn relative w-full py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 overflow-hidden transition-all duration-500 disabled:cursor-not-allowed"
+                style={catColor === 'petroleo' ? '--btn-bg: #234A57; --btn-text: white; --btn-bg-hover: #1d3d48; --btn-shadow: rgba(35,74,87,0.3)' : catColor === 'jade' ? '--btn-bg: #2D8380; --btn-text: white; --btn-bg-hover: #26726f; --btn-shadow: rgba(45,131,128,0.3)' : '--btn-bg: #DDAA33; --btn-text: #234A57; --btn-bg-hover: #c99a2e; --btn-shadow: rgba(221,170,51,0.3)'}
+              >
+                <span class="absolute inset-0 opacity-0 transition-opacity duration-500" id="btn-bg-glow"></span>
+                <span id="btn-text" class="relative z-10">Enviar mensaje</span>
+                <span id="btn-icon" class="relative z-10"><Send class="w-5 h-5 transition-transform duration-300" /></span>
+                <span id="btn-spinner" class="relative z-10 hidden"><LoaderCircle class="w-5 h-5 animate-spin" /></span>
+                <span id="btn-check" class="relative z-10 hidden"><CheckCircle2 class="w-5 h-5" /></span>
+              </button>
+            </form>
+
+            <div id="success-message" class="hidden text-center py-12">
+              <div class="w-20 h-20 rounded-full bg-jade/10 flex items-center justify-center mx-auto mb-6">
+                <CheckCircle2 class="w-10 h-10 text-jade" />
+              </div>
+              <h2 class="font-display text-3xl font-bold text-petroleo mb-3">¡Mensaje enviado!</h2>
+              <p class="text-petroleo/60 mb-8">Gracias por tu interés. Te responderemos a la brevedad.</p>
+              <a href="/" class="inline-block bg-jade text-white px-10 py-4 rounded-2xl font-bold hover:bg-jade/90 transition-colors">
+                Volver al inicio
+              </a>
+            </div>
+
+            <div id="error-message" class="hidden mt-6 p-5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-sm">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .submit-btn {
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    box-shadow: 0 4px 14px var(--btn-shadow);
+  }
+  .submit-btn:not(:disabled):hover {
+    background: var(--btn-bg-hover);
+    box-shadow: 0 6px 24px var(--btn-shadow);
+  }
+  .submit-btn:not(:disabled):active {
+    transform: scale(0.97);
+  }
+  .submit-btn #btn-bg-glow {
+    background: radial-gradient(circle at center, rgba(255,255,255,0.25), transparent 70%);
+  }
+  .submit-btn:not(:disabled):hover #btn-bg-glow {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  import { animate, spring, stagger } from 'motion';
+
+  function initContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    const btnBgGlow = document.getElementById('btn-bg-glow') as HTMLSpanElement | null;
+    const btnText = document.getElementById('btn-text') as HTMLSpanElement | null;
+    const btnIcon = document.getElementById('btn-icon') as HTMLSpanElement | null;
+    const btnSpinner = document.getElementById('btn-spinner') as HTMLSpanElement | null;
+    const btnCheck = document.getElementById('btn-check') as HTMLSpanElement | null;
+    const successMsg = document.getElementById('success-message') as HTMLDivElement | null;
+    const errorMsg = document.getElementById('error-message') as HTMLDivElement | null;
+    const formContainer = document.getElementById('form-container') as HTMLDivElement | null;
+
+    if (!form || !submitBtn) return;
+
+    const validators: Record<string, (value: string) => boolean> = {
+      nombre: (v) => v.trim().length > 0,
+      email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+      mensaje: (v) => v.trim().length > 0,
+    };
+
+    const errorEls: Record<string, HTMLElement | null> = {
+      nombre: document.getElementById('error-nombre'),
+      email: document.getElementById('error-email'),
+      mensaje: document.getElementById('error-mensaje'),
+    };
+
+    let dotsInterval: ReturnType<typeof setInterval>;
+
+    function showFieldError(name: string) {
+      const input = form.elements.namedItem(name) as HTMLElement | null;
+      input?.classList.add('border-red-400', 'bg-red-50');
+      const el = errorEls[name];
+      if (el) {
+        animate(el, { opacity: [0, 1], y: [-4, 0] }, { duration: 0.2 });
+        el.classList.remove('hidden');
+      }
+    }
+
+    function clearFieldError(name: string) {
+      const input = form.elements.namedItem(name) as HTMLElement | null;
+      input?.classList.remove('border-red-400', 'bg-red-50');
+      errorEls[name]?.classList.add('hidden');
+    }
+
+    function setLoading(loading: boolean) {
+      submitBtn.disabled = loading;
+      if (loading) {
+        if (btnText) btnText.textContent = 'Enviando';
+        btnIcon?.classList.add('hidden');
+        btnSpinner?.classList.remove('hidden');
+        if (btnText) animate(btnText, { opacity: [1, 0.6] }, { duration: 0.15 });
+      } else {
+        if (btnText) btnText.textContent = 'Enviar mensaje';
+        btnIcon?.classList.remove('hidden');
+        btnSpinner?.classList.add('hidden');
+        btnCheck?.classList.add('hidden');
+        btnBgGlow?.classList.add('hidden');
+        if (btnText) animate(btnText, { opacity: [0.6, 1] }, { duration: 0.15 });
+      }
+    }
+
+    function animateLoadingDots(baseText: string) {
+      let count = 0;
+      dotsInterval = setInterval(() => {
+        count = (count + 1) % 4;
+        if (btnText) btnText.textContent = baseText + '.'.repeat(count);
+      }, 400);
+    }
+
+    submitBtn.addEventListener('mouseenter', () => {
+      if (!submitBtn.disabled) {
+        animate(submitBtn, { scale: 1.02 }, { type: 'spring', stiffness: 350, damping: 15 });
+      }
+    });
+
+    submitBtn.addEventListener('mouseleave', () => {
+      if (!submitBtn.disabled) {
+        animate(submitBtn, { scale: 1 }, { type: 'spring', stiffness: 350, damping: 15 });
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      errorMsg?.classList.add('hidden');
+
+      const data = new FormData(form);
+      const nombre = (data.get('nombre') as string) || '';
+      const email = (data.get('email') as string) || '';
+      const mensaje = (data.get('mensaje') as string) || '';
+      const categoria = (data.get('categoria') as string) || '';
+
+      let hasErrors = false;
+      for (const [field, validate] of Object.entries(validators)) {
+        const value = data.get(field) as string;
+        if (!validate(value || '')) {
+          showFieldError(field);
+          hasErrors = true;
+        } else {
+          clearFieldError(field);
+        }
+      }
+      if (hasErrors) {
+        animate(submitBtn, { x: [0, -6, 6, -4, 4, 0] }, { duration: 0.4, easing: spring() });
+        return;
+      }
+
+      setLoading(true);
+      animateLoadingDots('Enviando');
+
+      try {
+        const res = await fetch('/api/contacto', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, email, categoria, mensaje }),
+        });
+
+        const json = await res.json();
+
+        if (!res.ok) {
+          throw new Error(json.error || 'Error al enviar');
+        }
+
+        clearInterval(dotsInterval);
+        if (btnText) btnText.textContent = '¡Enviado!';
+        btnSpinner?.classList.add('hidden');
+        btnCheck?.classList.remove('hidden');
+        btnBgGlow?.classList.remove('hidden');
+
+        await animate(
+          submitBtn,
+          { scale: [1, 1.05, 1] },
+          { duration: 0.6, easing: spring({ stiffness: 250, damping: 10 }) },
+        ).finished;
+
+        setTimeout(() => {
+          animate(formContainer, { opacity: [1, 0], scale: [1, 0.95] }, { duration: 0.3 }).then(() => {
+            formContainer?.classList.add('hidden');
+            successMsg?.classList.remove('hidden');
+            if (successMsg) {
+              animate(
+                successMsg.querySelectorAll('*'),
+                { opacity: [0, 1], y: [20, 0] },
+                { duration: 0.4, delay: stagger(0.08), easing: spring() },
+              );
+            }
+          });
+        }, 800);
+      } catch (err) {
+        clearInterval(dotsInterval);
+        setLoading(false);
+
+        if (errorMsg) {
+          errorMsg.textContent = err instanceof Error ? err.message : 'Error de conexión';
+          errorMsg.classList.remove('hidden');
+          animate(errorMsg, { opacity: [0, 1], y: [-10, 0] }, { duration: 0.3 });
+        }
+
+        animate(submitBtn, { x: [0, -8, 8, -5, 5, 0] }, { duration: 0.5, easing: spring() });
+      }
+    });
+
+    (['nombre', 'email', 'mensaje'] as const).forEach((field) => {
+      const input = form.elements.namedItem(field) as HTMLElement | null;
+      input?.addEventListener('input', () => clearFieldError(field));
+      input?.addEventListener('focus', () => {
+        animate(input, { scale: [1, 1.01] }, { duration: 0.15 });
+      });
+      input?.addEventListener('blur', () => {
+        animate(input, { scale: [1.01, 1] }, { duration: 0.15 });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initContactForm);
+</script>

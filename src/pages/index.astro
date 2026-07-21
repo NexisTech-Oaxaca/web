@@ -10,7 +10,9 @@ import Testimonials from '../components/Testimonials.astro';
 import PartnersMarquee from '../components/PartnersMarquee.astro';
 import Collaborate from '../components/Collaborate.astro';
 import Team from '../components/Team.astro';
-import events from '../data/events.json';
+import { getHomeContent } from '../lib/cms';
+
+const { events, projects, team } = await getHomeContent();
 ---
 
 <Layout title="Nexis Oaxaca Tech | El punto de encuentro tecnológico">
@@ -20,14 +22,13 @@ import events from '../data/events.json';
 		<!-- Hero Section -->
 		<Hero />
 
-		<!-- Upcoming Event Spotlight -->
-		<EventSpotlight client:load events={events} />
+		<EventSpotlight client:visible events={events} />
 
     <!-- Recent Events -->
-    <RecentEvents />
+		<RecentEvents events={events} />
 
     <!-- Featured Projects -->
-    <FeaturedProjects />
+		<FeaturedProjects projects={projects} />
 
     <!-- Testimonials -->
     <Testimonials />
@@ -39,7 +40,7 @@ import events from '../data/events.json';
     <Collaborate />
 
     <!-- Team -->
-    <Team />
+	<Team members={team} />
 
     <Footer />
 	</main>

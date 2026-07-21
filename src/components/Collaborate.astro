@@ -56,12 +56,12 @@ const profiles = [
               </li>
             ))}
           </ul>
-          <button class={`w-full py-4 rounded-2xl border-2 font-bold transition-all ${
+          <a href={`/contacto?categoria=${p.title.toLowerCase()}`} class={`block w-full py-4 rounded-2xl border-2 font-bold transition-all text-center ${
             p.color === 'petroleo' ? 'border-petroleo text-petroleo hover:bg-petroleo hover:text-white' : 
             p.color === 'jade' ? 'border-jade text-jade hover:bg-jade hover:text-white' : 'border-ambar text-ambar hover:bg-ambar hover:text-petroleo'
           }`}>
             {p.cta}
-          </button>
+          </a>
         </div>
       ))}
     </div>
