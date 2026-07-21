@@ -254,6 +254,8 @@ const catIcon = selected?.icon || Building2;
       const categoria = (data.get('categoria') as string) || '';
       const turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement)?.value;
 
+      console.log('Turnstile token:', turnstileToken);
+
       let hasErrors = false;
       for (const [field, validate] of Object.entries(validators)) {
         const value = data.get(field) as string;
