@@ -22,6 +22,8 @@ export async function onRequest(context: { request: Request; env: Record<string,
     const body: ContactBody = await request.json();
     const token = body['cf-turnstile-response'];
 
+    console.log('Turnstile token:', token);
+
     const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
