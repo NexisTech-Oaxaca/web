@@ -99,7 +99,7 @@ const descriptionText = computed(() => featured.value?.description || 'Descubre 
 
       <div class="reveal bg-white rounded-[40px] overflow-hidden shadow-2xl border border-petroleo/5 flex flex-col lg:flex-row group transition-all duration-500 hover:shadow-3xl">
         <div class="lg:w-1/2 relative overflow-hidden h-72 lg:h-auto">
-          <img :src="featured.image" :alt="titleText" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          <img :src="featured.image" :alt="titleText" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" :style="{ viewTransitionName: 'event-image-' + featured.id }" />
           <div class="absolute inset-0 bg-gradient-to-t from-petroleo/60 to-transparent"></div>
           <div class="absolute bottom-8 left-8">
             <span class="px-4 py-1.5 rounded-full bg-ambar text-petroleo text-xs font-bold uppercase tracking-wider">
@@ -115,7 +115,7 @@ const descriptionText = computed(() => featured.value?.description || 'Descubre 
               <span class="flex items-center"><MapPin class="mr-2 w-4 h-4 text-jade" /> {{ locationName }}</span>
             </div>
             
-            <h3 class="text-4xl lg:text-5xl font-bold text-petroleo leading-tight group-hover:text-jade transition-colors font-display">
+            <h3 class="text-4xl lg:text-5xl font-bold text-petroleo leading-tight group-hover:text-jade transition-colors font-display" :style="{ viewTransitionName: 'event-title-' + featured.id }">
               {{ titleText }}
             </h3>
             

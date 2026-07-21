@@ -21,7 +21,7 @@ const icons = {
         const Icon = icons[project.icon] || Box;
         const collaboratorsCount = project.collaborators || (project.team ? project.team.length : 0);
         return (
-          <div class="reveal bg-white p-10 rounded-[32px] border border-petroleo/5 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col group" style={`transition-delay: ${index * 100}ms`}>
+          <div class="reveal bg-white p-10 rounded-[32px] border border-petroleo/5 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col group project-card" style={`transition-delay: ${index * 100}ms`}>
             <div class="w-14 h-14 bg-jade/10 rounded-2xl flex items-center justify-center text-jade mb-8 transition-colors group-hover:bg-jade group-hover:text-white">
               <Icon class="w-7 h-7" />
             </div>

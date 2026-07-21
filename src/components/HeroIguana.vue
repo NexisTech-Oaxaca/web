@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import { animate } from 'motion';
+import gsap from 'gsap';
 
 // Reactive references for parallax effect
 const containerRef = ref<HTMLElement | null>(null);
@@ -46,12 +46,13 @@ const handleMouseMove = (e: MouseEvent) => {
 
 const handleMouseLeave = () => {
   // Smoothly return to center
-  animate(parallaxX, 0, { duration: 0.8 });
-  animate(parallaxY, 0, { duration: 0.8 });
+  gsap.to(parallaxX, { value: 0, duration: 0.8 });
+  gsap.to(parallaxY, { value: 0, duration: 0.8 });
 };
 
 // Lifecycle animations
 let intervals: number[] = [];
+let gsapTweens: gsap.core.Tween[] = [];
 
 onMounted(() => {
   // 1. Initial draw-in animation for the iguana paths
@@ -63,32 +64,44 @@ onMounted(() => {
     path.style.strokeDashoffset = `${length}`;
     
     // Animate stroke drawing first
-    animate(
-      path,
-      { strokeDashoffset: 0 },
-      { duration: 2.2, ease: 'easeOut', delay: Math.random() * 0.6 }
-    ).then(() => {
-      // Then fade in fill
-      animate(path, { fillOpacity: 0.95 }, { duration: 1.5 });
+    const drawTween = gsap.to(path, {
+      strokeDashoffset: 0,
+      duration: 2.2,
+      ease: 'power1.out',
+      delay: Math.random() * 0.6,
+      onComplete: () => {
+        // Then fade in fill
+        const fillTween = gsap.to(path, { fillOpacity: 0.95, duration: 1.5 });
+        gsapTweens.push(fillTween);
+      }
     });
+    gsapTweens.push(drawTween);
   });
 
   // 2. Breathing scale animation of the main iguana
-  animate(
-    '.iguana-group',
-    { scale: [1, 1.015, 1] },
-    { duration: 9, repeat: Infinity, ease: 'easeInOut' }
-  );
+  const breathingTween = gsap.to('.iguana-group', {
+    scale: 1.015,
+    duration: 4.5,
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut'
+  });
+  gsapTweens.push(breathingTween);
 
   // 3. Central Core rings pulse
   const rings = document.querySelectorAll('.core-ring');
   rings.forEach((ringElement, index) => {
     const ring = ringElement as SVGCircleElement;
-    animate(
-      ring,
-      { r: [12, 100], opacity: [0.9, 0] },
-      { duration: 3.5, delay: index * 1.1, repeat: Infinity, ease: 'easeOut' }
-    );
+    gsap.set(ring, { attr: { r: 12 }, opacity: 0.9 });
+    const ringTween = gsap.to(ring, {
+      attr: { r: 100 },
+      opacity: 0,
+      duration: 3.5,
+      delay: index * 1.1,
+      repeat: -1,
+      ease: 'power1.out'
+    });
+    gsapTweens.push(ringTween);
   });
 
   // 4. Random glowing of nodes in the network
@@ -99,14 +112,18 @@ onMounted(() => {
       const selectedNode = nodeElements[randomIndex] as SVGCircleElement;
       
       const originalRadius = parseFloat(selectedNode.getAttribute('r') || '5');
-      animate(
-        selectedNode,
-        {
-          r: [originalRadius, originalRadius * 1.8, originalRadius],
-          opacity: [0.6, 1, 0.6],
-        },
-        { duration: 1.8, ease: 'easeInOut' }
-      );
+      
+      gsap.to(selectedNode, {
+        attr: { r: originalRadius * 1.8 },
+        opacity: 1,
+        duration: 0.9,
+        yoyo: true,
+        repeat: 1,
+        ease: 'sine.inOut',
+        onComplete: () => {
+          gsap.set(selectedNode, { attr: { r: originalRadius }, opacity: 0.75 });
+        }
+      });
     }
   }, 1200);
   intervals.push(nodeGlowInterval);
@@ -118,20 +135,22 @@ onMounted(() => {
     const length = pulse.getTotalLength();
     pulse.style.strokeDasharray = `30 ${length - 30}`;
     
-    animate(
-      pulse,
-      { strokeDashoffset: [length, 0] },
+    const pulseTween = gsap.fromTo(pulse, 
+      { strokeDashoffset: length },
       {
+        strokeDashoffset: 0,
         duration: 3 + Math.random() * 3,
-        repeat: Infinity,
-        ease: 'linear',
+        repeat: -1,
+        ease: 'none'
       }
     );
+    gsapTweens.push(pulseTween);
   });
 });
 
 onUnmounted(() => {
   intervals.forEach(clearInterval);
+  gsapTweens.forEach(tween => tween.kill());
 });
 </script>
 
@@ -242,18 +261,18 @@ onUnmounted(() => {
         <g v-for="node in nodes" :key="node.id" class="node-group">
           <!-- Node Outer soft glow -->
           <circle 
-            :cx="node.cx" 
-            :cy="node.cy" 
-            :r="node.r * 2.5" 
+            :cx.attr="node.cx" 
+            :cy.attr="node.cy" 
+            :r.attr="node.r * 2.5" 
             :fill="node.color" 
             opacity="0.15" 
             filter="url(#glow)"
           />
           <!-- Node Core -->
           <circle 
-            :cx="node.cx" 
-            :cy="node.cy" 
-            :r="node.r" 
+            :cx.attr="node.cx" 
+            :cy.attr="node.cy" 
+            :r.attr="node.r" 
             :fill="node.color" 
             class="network-node transition-all duration-300"
             opacity="0.75"

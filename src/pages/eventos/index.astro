@@ -58,7 +58,7 @@ import { Search, SlidersHorizontal, Calendar, MapPin } from "lucide-astro";
           events.map((event) => (
             <a
               href={`/eventos/${event.id}`}
-              class="reveal group bg-white rounded-[32px] overflow-hidden border border-gris flex flex-col h-full hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl"
+              class="reveal group event-card bg-white rounded-[32px] overflow-hidden border border-gris flex flex-col h-full shadow-sm hover:shadow-xl transition-shadow duration-300"
             >
               <div class="relative h-64 overflow-hidden">
                 <img
@@ -116,8 +116,9 @@ import { Search, SlidersHorizontal, Calendar, MapPin } from "lucide-astro";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     gsap.registerPlugin(ScrollTrigger);
 
-    document.addEventListener("DOMContentLoaded", () => {
+    const init = () => {
       const reveals = document.querySelectorAll(".reveal");
+      gsap.set(reveals, { clearProps: "all" });
       reveals.forEach((el) => {
         gsap.from(el, {
           scrollTrigger: {
@@ -131,6 +132,11 @@ import { Search, SlidersHorizontal, Calendar, MapPin } from "lucide-astro";
           ease: "power3.out",
         });
       });
+    };
+
+    document.addEventListener("astro:page-load", () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+      init();
     });
   </script>
 </Layout>

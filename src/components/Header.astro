@@ -1,14 +1,22 @@
 ---
-import { Zap } from "lucide-astro";
+const pathname = new URL(Astro.url).pathname;
+const activePath = pathname === '/' ? '/' : pathname.replace(/\/$/, '');
+
+const navLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/eventos", label: "Eventos" },
+  { href: "/proyectos/", label: "Proyectos" },
+  { href: "/emprendimientos", label: "Emprendimientos" }
+];
 ---
 
 <header
   class="fixed top-0 left-0 w-full z-50 bg-marfil/80 backdrop-blur-md border-b border-petroleo/5"
 >
   <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-    <a href="/" class="flex items-center space-x-2 group">
+    <a href="/" class="flex items-center space-x-2 group" id="header-logo">
       <div
-        class="w-10 h-10 bg-jade rounded-xl flex items-center justify-center text-white shadow-lg shadow-jade/20 group-hover:scale-110 transition-transform"
+        class="w-10 h-10 bg-jade rounded-xl flex items-center justify-center text-white shadow-lg shadow-jade/20 transition-transform"
       >
         <img
           src="/nexis.svg"
@@ -23,32 +31,67 @@ import { Zap } from "lucide-astro";
     </a>
 
     <div class="hidden md:flex items-center space-x-8">
-      <a
-        href="/"
-        class="text-sm font-semibold text-petroleo/70 hover:text-jade transition-colors"
-        >Inicio</a
-      >
-      <a
-        href="/eventos"
-        class="text-sm font-semibold text-petroleo/70 hover:text-jade transition-colors"
-        >Eventos</a
-      >
-      <a
-        href="/proyectos/"
-        class="text-sm font-semibold text-petroleo/70 hover:text-jade transition-colors"
-        >Proyectos</a
-      >
-      <a
-        href="/emprendimientos"
-        class="text-sm font-semibold text-petroleo/70 hover:text-jade transition-colors"
-        >Emprendimientos</a
-      >
+      {
+        navLinks.map((link) => {
+          const linkPath = link.href.replace(/\/$/, '') || '/';
+          const isActive = linkPath === '/' ? activePath === '/' : activePath.startsWith(linkPath);
+          return (
+            <a
+              href={link.href}
+              class={`relative text-sm font-semibold py-1.5 transition-colors ${
+                isActive ? "text-jade" : "text-petroleo/70 hover:text-jade"
+              }`}
+            >
+              {link.label}
+              {isActive && (
+                <span
+                  class="absolute bottom-0 left-0 right-0 h-[2px] bg-jade rounded-full"
+                  transition:name="active-nav-indicator"
+                />
+              )}
+            </a>
+          );
+        })
+      }
     </div>
 
     <button
-      class="bg-jade text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-petroleo transition-all duration-300 shadow-md shadow-jade/10"
+      id="join-community-btn"
+      class="bg-jade text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-petroleo transition-colors duration-300 shadow-md shadow-jade/10 cursor-pointer"
     >
       Únete a la comunidad
     </button>
   </nav>
 </header>
+
+<script>
+  import { animate } from "motion";
+
+  const initHeaderInteractions = () => {
+    const btn = document.getElementById("join-community-btn");
+    if (btn) {
+      btn.addEventListener("mouseenter", () => {
+        animate(btn, { scale: 1.05, y: -2 }, { type: "spring", stiffness: 400, damping: 15 });
+      });
+      btn.addEventListener("mouseleave", () => {
+        animate(btn, { scale: 1, y: 0 }, { type: "spring", stiffness: 400, damping: 15 });
+      });
+    }
+
+    const logo = document.getElementById("header-logo");
+    if (logo) {
+      const logoIcon = logo.querySelector("div");
+      if (logoIcon) {
+        logo.addEventListener("mouseenter", () => {
+          animate(logoIcon, { scale: 1.15, rotate: 5 }, { type: "spring", stiffness: 300, damping: 12 });
+        });
+        logo.addEventListener("mouseleave", () => {
+          animate(logoIcon, { scale: 1, rotate: 0 }, { type: "spring", stiffness: 300, damping: 12 });
+        });
+      }
+    }
+  };
+
+  document.addEventListener("astro:page-load", initHeaderInteractions);
+</script>
+

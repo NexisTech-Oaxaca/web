@@ -100,6 +100,7 @@ const getInitials = (name: string) => {
 
           <h1
             class="text-5xl md:text-7xl font-display font-extrabold leading-[1.05] tracking-tight text-petroleo uppercase"
+            transition:name={`event-title-${event.id}`}
           >
             {event.title}
           </h1>
@@ -161,6 +162,7 @@ const getInitials = (name: string) => {
               src={event.image}
               alt={event.title}
               class="w-full h-full object-cover"
+              transition:name={`event-image-${event.id}`}
             />
             <div
               class="absolute inset-0 bg-gradient-to-t from-petroleo/80 via-transparent to-transparent opacity-60"
@@ -427,8 +429,9 @@ const getInitials = (name: string) => {
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     gsap.registerPlugin(ScrollTrigger);
 
-    document.addEventListener("DOMContentLoaded", () => {
+    const init = () => {
       const reveals = document.querySelectorAll(".reveal");
+      gsap.set(reveals, { clearProps: "all" });
       reveals.forEach((el) => {
         gsap.from(el, {
           scrollTrigger: {
@@ -466,6 +469,11 @@ const getInitials = (name: string) => {
           updateSlide();
         });
       }
+    };
+
+    document.addEventListener("astro:page-load", () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+      init();
     });
   </script>
 </Layout>

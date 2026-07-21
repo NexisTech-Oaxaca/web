@@ -45,7 +45,7 @@ const challengePart2 = challengeHasDecisiones ? project.challenge.title.split('d
 					PROYECTO COMUNITARIO • {project.status}
 				</div>
 				
-				<h1 class="text-5xl md:text-8xl font-extrabold font-display leading-[0.9] tracking-tighter mb-10 max-w-5xl uppercase text-petroleo">
+				<h1 class="text-5xl md:text-8xl font-extrabold font-display leading-[0.9] tracking-tighter mb-10 max-w-5xl uppercase text-petroleo" transition:name={`project-name-${project.id}`}>
 					{namePart1}<br />
 					{nameHasOaxaca && (
             <span class="text-jade">Oaxaca {namePart2}</span>
@@ -66,7 +66,7 @@ const challengePart2 = challengeHasDecisiones ? project.challenge.title.split('d
 
 				<div class="relative w-full max-w-6xl aspect-video rounded-[48px] overflow-hidden shadow-3xl border-[12px] border-white group">
 					<div class="absolute inset-0 bg-gradient-to-t from-petroleo/80 via-transparent to-transparent z-10 opacity-60"></div>
-					<img src={project.image} alt={project.name} class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+					<img src={project.image} alt={project.name} class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" transition:name={`project-image-${project.id}`} />
 					<div class="absolute bottom-12 left-12 z-20 text-white text-left">
 						<p class="text-[10px] font-black text-jade mb-3 uppercase tracking-[0.3em]">Vista del Proyecto</p>
 						<h3 class="text-4xl font-display font-bold uppercase tracking-tight">{project.name}</h3>
@@ -201,11 +201,12 @@ const challengePart2 = challengeHasDecisiones ? project.challenge.title.split('d
 		import { ScrollTrigger } from 'gsap/ScrollTrigger';
 		gsap.registerPlugin(ScrollTrigger);
 
-		document.addEventListener('DOMContentLoaded', () => {
+		const init = () => {
 			const main = document.getElementById('main-content');
 			if (main) main.classList.remove('opacity-0');
 
 			const reveals = document.querySelectorAll('.reveal');
+			gsap.set(reveals, { clearProps: "all" });
 			reveals.forEach((el) => {
 				gsap.from(el, {
 					scrollTrigger: {
@@ -219,6 +220,11 @@ const challengePart2 = challengeHasDecisiones ? project.challenge.title.split('d
 					ease: 'power3.out'
 				});
 			});
+		};
+
+		document.addEventListener('astro:page-load', () => {
+			ScrollTrigger.getAll().forEach(t => t.kill());
+			init();
 		});
 	</script>
 </Layout>

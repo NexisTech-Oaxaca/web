@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+import { ClientRouter } from 'astro:transitions';
 import "../styles/global.css";
 ---
 
@@ -18,8 +19,90 @@ import "../styles/global.css";
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<ClientRouter />
 	</head>
 	<body class="bg-marfil text-petroleo selection:bg-jade/20 selection:text-jade">
 		<slot />
+
+		<script>
+			import { animate } from "motion";
+
+			const setupInteractions = () => {
+				// Bouncy springs for cards on hover
+				const cards = document.querySelectorAll(".startup-card, .project-card, .event-card, .team-member-card");
+				cards.forEach((card) => {
+					card.addEventListener("mouseenter", () => {
+						animate(card, { y: -8, scale: 1.02 }, { type: "spring", stiffness: 250, damping: 22 });
+					});
+					card.addEventListener("mouseleave", () => {
+						animate(card, { y: 0, scale: 1 }, { type: "spring", stiffness: 250, damping: 22 });
+					});
+				});
+
+				// Spring micro-interactions for social links and action links
+				const microLinks = document.querySelectorAll(".social-icon-link, .team-member-card a, .project-card a[href*='github'], .detail-social-link");
+				microLinks.forEach((link) => {
+					link.addEventListener("mouseenter", () => {
+						animate(link, { scale: 1.15, y: -2 }, { type: "spring", stiffness: 450, damping: 12 });
+					});
+					link.addEventListener("mouseleave", () => {
+						animate(link, { scale: 1, y: 0 }, { type: "spring", stiffness: 450, damping: 12 });
+					});
+				});
+			};
+
+			// Dynamic view-transition-name assignment on card click to avoid collisions
+			const setupDynamicTransitions = () => {
+				document.addEventListener("click", (e) => {
+					const card = (e.target as HTMLElement).closest(".event-card, .project-card, .startup-card");
+					if (!card) return;
+
+					const anchor = card.closest("a") || card.querySelector("a");
+					if (!anchor) return;
+
+					const href = anchor.getAttribute("href");
+					if (!href) return;
+
+					const parts = href.split("/");
+					const id = parts[parts.length - 1] || parts[parts.length - 2];
+					if (!id) return;
+
+					let type = "";
+					if (href.includes("/eventos")) type = "event";
+					else if (href.includes("/proyectos")) type = "project";
+					else if (href.includes("/emprendimientos")) type = "startup";
+
+					if (!type) return;
+
+					// Clear any existing transition names first to prevent multiple elements from having it
+					document.querySelectorAll("[style*='view-transition-name']").forEach((el) => {
+						(el as HTMLElement).style.viewTransitionName = "";
+					});
+
+					// Set transition names on the clicked card
+					const img = card.querySelector("img");
+					if (img) {
+						img.style.viewTransitionName = `${type}-image-${id}`;
+					}
+
+					const title = card.querySelector("h3, h1");
+					if (title) {
+						if (type === "startup") {
+							title.style.viewTransitionName = `startup-name-${id}`;
+						} else if (type === "project") {
+							title.style.viewTransitionName = `project-name-${id}`;
+						} else {
+							title.style.viewTransitionName = `${type}-title-${id}`;
+						}
+					}
+				});
+			};
+
+			document.addEventListener("astro:page-load", () => {
+				setupInteractions();
+				setupDynamicTransitions();
+			});
+		</script>
 	</body>
 </html>
+
