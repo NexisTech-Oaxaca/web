@@ -77,7 +77,8 @@ export async function onRequest(context: { request: Request; env: Record<string,
     });
 
     if (resendError) {
-      return new Response(JSON.stringify({ ok: false, error: 'Error al enviar el mensaje' }), {
+      console.error('Resend error:', JSON.stringify(resendError));
+      return new Response(JSON.stringify({ ok: false, error: resendError.message ?? 'Error al enviar el mensaje' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       });
