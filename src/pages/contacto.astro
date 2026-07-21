@@ -109,7 +109,7 @@ const catIcon = selected?.icon || Building2;
                 de Cloudflare.
               </p>
 
-              <div class="cf-turnstile" data-sitekey="0x4AAAAAAD6uLyml5OaSHsGS" data-callback="onTurnstileSuccess"></div>
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAAD6uLyml5OaSHsGS" id="turnstile-widget"></div>
             </form>
 
             <div id="success-message" class="hidden text-center py-12">
@@ -161,6 +161,13 @@ const catIcon = selected?.icon || Building2;
 <script>
   import { animate, spring, stagger } from 'motion';
 
+  window.onTurnstileSuccess = function(token: string) {
+    const errorMsg = document.getElementById('error-message');
+    if (errorMsg) {
+      errorMsg.classList.add('hidden');
+    }
+  };
+
   function initContactForm() {
     const form = document.getElementById('contact-form') as HTMLFormElement | null;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
@@ -172,6 +179,7 @@ const catIcon = selected?.icon || Building2;
     const successMsg = document.getElementById('success-message') as HTMLDivElement | null;
     const errorMsg = document.getElementById('error-message') as HTMLDivElement | null;
     const formContainer = document.getElementById('form-container') as HTMLDivElement | null;
+    const turnstileWidget = document.getElementById('turnstile-widget') as HTMLDivElement | null;
 
     if (!form || !submitBtn) return;
 
@@ -230,6 +238,17 @@ const catIcon = selected?.icon || Building2;
       }, 400);
     }
 
+    function getTurnstileToken(): string {
+      const input = document.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement | null;
+      return input?.value || '';
+    }
+
+    function resetTurnstile() {
+      if (typeof turnstile !== 'undefined' && turnstileWidget) {
+        turnstile.reset(turnstileWidget);
+      }
+    }
+
     submitBtn.addEventListener('mouseenter', () => {
       if (!submitBtn.disabled) {
         animate(submitBtn, { scale: 1.02 }, { type: 'spring', stiffness: 350, damping: 15 });
@@ -252,9 +271,6 @@ const catIcon = selected?.icon || Building2;
       const email = (data.get('email') as string) || '';
       const mensaje = (data.get('mensaje') as string) || '';
       const categoria = (data.get('categoria') as string) || '';
-      const turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement)?.value;
-
-      console.log('Turnstile token:', turnstileToken);
 
       let hasErrors = false;
       for (const [field, validate] of Object.entries(validators)) {
@@ -271,6 +287,33 @@ const catIcon = selected?.icon || Building2;
         return;
       }
 
+      const turnstileToken = getTurnstileToken();
+
+      if (!turnstileToken && typeof turnstile !== 'undefined' && turnstileWidget) {
+        turnstile.execute(turnstileWidget);
+        await new Promise<void>((resolve) => {
+          const checkToken = setInterval(() => {
+            const token = getTurnstileToken();
+            if (token) {
+              clearInterval(checkToken);
+              resolve();
+            }
+          }, 100);
+          setTimeout(() => { clearInterval(checkToken); resolve(); }, 8000);
+        });
+      }
+
+      const finalToken = getTurnstileToken();
+
+      if (!finalToken) {
+        if (errorMsg) {
+          errorMsg.textContent = 'Error de verificación anti-bot. Intenta de nuevo.';
+          errorMsg.classList.remove('hidden');
+          animate(errorMsg, { opacity: [0, 1], y: [-10, 0] }, { duration: 0.3 });
+        }
+        return;
+      }
+
       setLoading(true);
       animateLoadingDots('Enviando');
 
@@ -278,7 +321,7 @@ const catIcon = selected?.icon || Building2;
         const res = await fetch('/api/contacto', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nombre, email, categoria, mensaje, 'cf-turnstile-response': turnstileToken }),
+          body: JSON.stringify({ nombre, email, categoria, mensaje, 'cf-turnstile-response': finalToken }),
         });
 
         const json = await res.json();
@@ -315,6 +358,7 @@ const catIcon = selected?.icon || Building2;
       } catch (err) {
         clearInterval(dotsInterval);
         setLoading(false);
+        resetTurnstile();
 
         if (errorMsg) {
           errorMsg.textContent = err instanceof Error ? err.message : 'Error de conexión';
