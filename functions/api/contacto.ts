@@ -36,7 +36,7 @@ export async function onRequest(context: { request: Request; env: Record<string,
     const verifyData = await verifyRes.json();
 
     if (!verifyData.success) {
-      return new Response(JSON.stringify({ ok: false, error: `Verificación anti-bot fallida ${token}` }), {
+      return new Response(JSON.stringify({ ok: false, error: `Verificación anti-bot fallida`, debug: verifyData }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
