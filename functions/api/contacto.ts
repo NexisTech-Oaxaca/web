@@ -43,10 +43,10 @@ export async function onRequest(context: { request: Request; env: Record<string,
       });
     }
 
-    const RESEND_API_KEY = env.RESEND_API_KEY ?? process.env.RESEND_API_KEY;
+    const RESEND_API_KEY = env.RESEND_API_KEY;
 
     if (!RESEND_API_KEY) {
-      return new Response(JSON.stringify({ ok: false, error: 'Error de configuración del servidor' }), {
+      return new Response(JSON.stringify({ ok: false, error: 'Falta RESEND_API_KEY' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       });
@@ -87,8 +87,9 @@ export async function onRequest(context: { request: Request; env: Record<string,
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
-  } catch {
-    return new Response(JSON.stringify({ ok: false, error: 'Error interno del servidor' }), {
+  } catch (err) {
+    console.error('Error en /api/contacto:', err);
+    return new Response(JSON.stringify({ ok: false, error: String(err) }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
