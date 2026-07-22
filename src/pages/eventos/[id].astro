@@ -147,12 +147,11 @@ const getInitials = (name: string) =>
           </div>
           <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {event.speakers.map((speaker) => {
-              const hasRealImage = Boolean(speaker.image && !speaker.image.includes("placeholder"));
 
               return (
                 <div class="bg-white rounded-4xl p-6 border border-petroleo/5 shadow-sm hover:border-jade/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center text-center">
                   <div class="relative w-24 h-24 rounded-full overflow-hidden mb-4 border-4 border-marfil shadow-inner bg-petroleo/5 group-hover:scale-105 transition-transform duration-300">
-                    {hasRealImage ? (
+                    {speaker.image ? (
                       <img src={speaker.image} alt={speaker.name} class="w-full h-full object-cover" />
                     ) : (
                       <div class="w-full h-full flex items-center justify-center bg-linear-to-br from-petroleo/5 to-petroleo/10 text-petroleo/40 text-2xl font-display font-extrabold uppercase">

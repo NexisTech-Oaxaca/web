@@ -65,7 +65,8 @@ const normalizeSpeakers = (speakers: unknown, baseUrl?: string) => {
 		return {
 			name: String(item.name ?? ''),
 			role: item.role ? String(item.role) : undefined,
-			image: resolveMediaUrl(item.image, baseUrl) || undefined,
+			//image: resolveMediaUrl(item.image, baseUrl),
+			image: item.image
 		};
 	});
 };

@@ -27,7 +27,8 @@ async function fetchCollection<T = Record<string, unknown>>(
 		const response: AxiosResponse<{ data?: unknown[] }> = await apiClient.get(`/${path}?${query}`);
 		if (!response.data?.data || !Array.isArray(response.data.data)) return [];
 		return response.data.data.map((item) => flattenEntry(item)).filter(Boolean) as T[];
-	} catch {
+	} catch (err) {
+		console.error(`[CMS] fetchCollection failed for ${path}:`, (err as Error)?.message || err);
 		return [];
 	}
 }
@@ -35,15 +36,17 @@ async function fetchCollection<T = Record<string, unknown>>(
 async function fetchBySlug<T = Record<string, unknown>>(
 	collectionPath: string,
 	slug: string,
+	extraParams?: Record<string, string | number | boolean>,
 ): Promise<T | null> {
-	const query = toQuery({ ...publishedParams, 'filters[slug][$eq]': slug });
+	const query = toQuery({ ...publishedParams, 'filters[slug][$eq]': slug, ...extraParams });
 	try {
 		const response: AxiosResponse<{ data?: unknown[] | unknown }> = await apiClient.get(`/${collectionPath}?${query}`);
 		if (!response.data?.data) return null;
 		const items = Array.isArray(response.data.data) ? response.data.data : [response.data.data];
 		const entry = flattenEntry(items[0]);
 		return entry as T | null;
-	} catch {
+	} catch (err) {
+		console.error(`[CMS] fetchBySlug failed for ${collectionPath}/${slug}:`, (err as Error)?.message || err);
 		return null;
 	}
 }
@@ -80,7 +83,8 @@ export async function getEvents(): Promise<EventItem[]> {
 export async function getEventBySlug(slug: string): Promise<EventItem | null> {
 	return fetchOneWithFallback(
 		async () => {
-			const item = await fetchBySlug('api/events', slug);
+			const item = await fetchBySlug('api/events', slug, {'populate': '*'});
+			console.log("Items", item);
 			return item ? normalizeEvent(item, strapiBaseUrl) : null;
 		},
 		localEvents,
@@ -133,7 +137,7 @@ export async function getStartupBySlug(slug: string): Promise<StartupItem | null
 export async function getTeamMembers(): Promise<TeamMember[]> {
 	return fetchWithFallback(
 		async () => {
-			const items = await fetchCollection('api/team-members');
+			const items = await fetchCollection('api/team-members', { 'sort': 'registerDate:asc' });
 			return items.map((item, index) => normalizeTeamMember(item, index, strapiBaseUrl));
 		},
 		localTeam,

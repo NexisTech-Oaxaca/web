@@ -31,7 +31,7 @@ const { members } = Astro.props as Props;
           <p class="text-[10px] text-jade font-bold uppercase tracking-widest mb-4">{member.role}</p>
           <div class="flex justify-center space-x-4 text-petroleo/30">
             {Object.entries(member.social).map(([key, url]) => (
-              <a href={url} class="hover:text-jade transition-colors">
+              <a href={url} target="_blank" class="hover:text-jade transition-colors">
                 {key === 'linkedin' && <Linkedin class="w-4 h-4" />}
                 {key === 'twitter' && <Twitter class="w-4 h-4" />}
                 {key === 'github' && <Github class="w-4 h-4" />}
@@ -67,7 +67,9 @@ const { members } = Astro.props as Props;
     carousel.addEventListener('mouseenter', () => { isHovering = true; });
     carousel.addEventListener('mouseleave', () => { isHovering = false; });
 
-    animationId = requestAnimationFrame(scroll);
+    setTimeout(() => {
+      animationId = requestAnimationFrame(scroll);
+    }, 2000);
   }
 </script>
 

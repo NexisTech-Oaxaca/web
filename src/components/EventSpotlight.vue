@@ -108,7 +108,7 @@ const detailHref = computed(() => `/eventos/${featured.value?.slug ?? ''}`);
               {{ titleText }}
             </h3>
 
-            <p class="text-lg text-petroleo/70 leading-relaxed font-sans line-clamp-10">
+            <p class="text-lg text-petroleo/70 leading-relaxed font-sans line-clamp-3 md:line-clamp-5 lg:line-clamp-10">
               {{ descriptionText }}
             </p>
             <RichText :content="descriptionText" :preview="true" :maxWords="50" />

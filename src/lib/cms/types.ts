@@ -1,3 +1,22 @@
+interface StrapiFormat {
+  url: string;
+  width: number;
+  height: number;
+}
+export interface StrapiMedia {
+  id: number;
+  documentId: string;
+  url: string;
+  name: string;
+  width: number;
+  height: number;
+  formats: {
+    large?: StrapiFormat;
+    medium?: StrapiFormat;
+    small?: StrapiFormat;
+    thumbnail?: StrapiFormat;
+  };
+}
 export interface ImageRef {
 	src: string;
 	alt?: string;
@@ -6,7 +25,7 @@ export interface ImageRef {
 export interface Speaker {
 	name: string;
 	role?: string;
-	image?: string;
+	image?: StrapiMedia;
 }
 
 export interface EventMedia {

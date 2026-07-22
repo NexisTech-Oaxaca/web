@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ArrowLeft } from 'lucide-astro';
+---
+
+<Layout title="Términos y Condiciones | Nexis Oaxaca Tech">
+  <Header />
+
+  <main class="pt-32 pb-24 px-6 bg-marfil">
+    <div class="max-w-3xl mx-auto">
+      <a href="/" class="inline-flex items-center gap-2 text-petroleo/50 hover:text-petroleo transition-colors mb-12 text-sm font-medium group">
+        <ArrowLeft class="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+        Volver al inicio
+      </a>
+
+      <div class="bg-white rounded-[40px] p-8 md:p-16 shadow-sm border border-petroleo/5 space-y-8">
+        <div class="space-y-3">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-petroleo uppercase">Términos y Condiciones</h1>
+          <p class="text-petroleo/40 text-sm">Última actualización: Julio 2026</p>
+        </div>
+
+        <div class="prose prose-petroleo max-w-none space-y-6 text-petroleo/70 leading-relaxed text-sm sm:text-base">
+          <p>
+            Al acceder y utilizar el sitio web de <strong class="text-petroleo">Nexis Oaxaca Tech</strong>
+            (en adelante "Nexis"), usted acepta los siguientes términos y condiciones. Si no está de
+            acuerdo con alguno de ellos, le recomendamos no utilizar este sitio.
+          </p>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Uso del sitio</h2>
+          <p>
+            El contenido de este sitio web es proporcionado con fines informativos y de participación
+            comunitaria. Nexis se reserva el derecho de modificar, suspender o interrumpir cualquier
+            aspecto del sitio sin previo aviso.
+          </p>
+          <p>Usted se compromete a:</p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Proporcionar información veraz y actualizada al registrarse en nuestros formularios</li>
+            <li>No utilizar el sitio para fines ilegales o no autorizados</li>
+            <li>No interferir con la seguridad o el funcionamiento del sitio</li>
+            <li>Respetar los derechos de propiedad intelectual del contenido publicado</li>
+          </ul>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Eventos y actividades</h2>
+          <p>
+            La participación en eventos organizados por Nexis está sujeta a disponibilidad de cupo.
+            Nexis se reserva el derecho de admisión y puede modificar fechas, horarios o modalidades
+            de los eventos cuando las circunstancias lo requieran, notificando a los participantes
+            a través de los medios de contacto proporcionados.
+          </p>
+          <p>
+            Al registrarse en un evento, usted acepta recibir comunicaciones relacionadas con el
+            mismo y autoriza el uso de imágenes o material audiovisual capturado durante el evento
+            para fines promocionales de la comunidad, salvo que manifieste lo contrario por escrito.
+          </p>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Código de conducta</h2>
+          <p>
+            Nexis promueve un entorno inclusivo, respetuoso y libre de discriminación. Todos los
+            miembros y participantes de la comunidad deben:
+          </p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Tratar a los demás con respeto y dignidad</li>
+            <li>Evitar cualquier forma de acoso, discriminación o violencia</li>
+            <li>Contribuir a un ambiente seguro y acogedor para todos</li>
+            <li>Seguir las instrucciones de los organizadores durante los eventos</li>
+          </ul>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Propiedad intelectual</h2>
+          <p>
+            Todo el contenido publicado en este sitio web, incluyendo textos, imágenes, logotipos y
+            materiales audiovisuales, es propiedad de Nexis Oaxaca Tech o de sus respectivos autores
+            y está protegido por las leyes de propiedad intelectual aplicables.
+          </p>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Limitación de responsabilidad</h2>
+          <p>
+            Nexis no será responsable por daños directos, indirectos, incidentales o consecuentes
+            derivados del uso o la imposibilidad de uso de este sitio web, incluyendo pero no
+            limitado a pérdida de datos, interrupción del servicio o errores técnicos.
+          </p>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Contacto</h2>
+          <p>
+            Para cualquier consulta sobre estos términos, puede contactarnos a través de
+            <a href="mailto:contacto@nexisoaxaca.tech" class="text-jade hover:underline">contacto@nexisoaxaca.tech</a>
+            o mediante nuestras redes sociales.
+          </p>
+        </div>
+
+        <div class="pt-6 border-t border-petroleo/5 text-center">
+          <a href="/" class="inline-flex items-center gap-2 bg-jade text-white px-8 py-4 rounded-2xl font-bold hover:bg-petroleo transition-all shadow-md text-sm">
+            Volver al inicio
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

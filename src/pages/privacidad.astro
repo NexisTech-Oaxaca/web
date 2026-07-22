@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ArrowLeft } from 'lucide-astro';
+---
+
+<Layout title="Aviso de Privacidad | Nexis Oaxaca Tech">
+  <Header />
+
+  <main class="pt-32 pb-24 px-6 bg-marfil">
+    <div class="max-w-3xl mx-auto">
+      <a href="/" class="inline-flex items-center gap-2 text-petroleo/50 hover:text-petroleo transition-colors mb-12 text-sm font-medium group">
+        <ArrowLeft class="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+        Volver al inicio
+      </a>
+
+      <div class="bg-white rounded-[40px] p-8 md:p-16 shadow-sm border border-petroleo/5 space-y-8">
+        <div class="space-y-3">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-petroleo uppercase">Aviso de Privacidad</h1>
+          <p class="text-petroleo/40 text-sm">Última actualización: Julio 2026</p>
+        </div>
+
+        <div class="prose prose-petroleo max-w-none space-y-6 text-petroleo/70 leading-relaxed text-sm sm:text-base">
+          <p>
+            <strong class="text-petroleo">Nexis Oaxaca Tech</strong> (en adelante "Nexis"), con domicilio en
+            Oaxaca de Juárez, Oaxaca, México, es el responsable del tratamiento de los datos personales
+            que nos proporcione a través de nuestros formularios de registro, newsletter y contacto.
+          </p>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Datos que recopilamos</h2>
+          <p>Podemos recopilar la siguiente información cuando usted interactúa con nosotros:</p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Nombre completo</li>
+            <li>Correo electrónico</li>
+            <li>Información de perfil profesional (dedicación, procedencia, proyectos)</li>
+            <li>URL de LinkedIn o redes sociales (cuando es proporcionado voluntariamente)</li>
+            <li>Mensajes y consultas enviados a través de nuestro formulario de contacto</li>
+          </ul>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Finalidad del tratamiento</h2>
+          <p>Sus datos personales serán utilizados para las siguientes finalidades:</p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Mantenerlo informado sobre eventos, talleres y actividades de la comunidad</li>
+            <li>Gestionar su registro y participación en nuestros eventos</li>
+            <li>Responder a sus consultas y solicitudes de información</li>
+            <li>Integrar el directorio comunitario de talento tecnológico de Oaxaca</li>
+            <li>Mejorar nuestros servicios y la experiencia de la comunidad</li>
+          </ul>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Protección de datos</h2>
+          <p>
+            Sus datos personales serán almacenados en plataformas seguras con acceso restringido.
+            Nexis implementa medidas de seguridad administrativas, técnicas y físicas para proteger
+            su información contra daño, pérdida, alteración, destrucción o uso indebido.
+          </p>
+          <p>
+            No compartimos sus datos personales con terceros no vinculados a la operación de la
+            comunidad, salvo obligación legal o autorización expresa de su parte.
+          </p>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Derechos ARCO</h2>
+          <p>
+            Usted tiene derecho a acceder, rectificar, cancelar u oponerse al tratamiento de sus
+            datos personales (derechos ARCO). Para ejercer estos derechos, puede enviar una solicitud
+            a nuestro correo electrónico indicando:
+          </p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Su nombre completo y correo electrónico registrado</li>
+            <li>El derecho que desea ejercer</li>
+            <li>Una descripción clara de los datos sobre los que recae su solicitud</li>
+          </ul>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Contacto</h2>
+          <p>
+            Para cualquier asunto relacionado con el tratamiento de sus datos personales, puede
+            contactarnos a través de:
+          </p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Correo electrónico: <a href="mailto:privacidad@nexisoaxaca.tech" class="text-jade hover:underline">privacidad@nexisoaxaca.tech</a></li>
+            <li>Redes sociales: @nexistech.oaxaca en Instagram y Facebook</li>
+          </ul>
+
+          <h2 class="text-lg font-bold text-petroleo font-display uppercase pt-4">Cambios al aviso de privacidad</h2>
+          <p>
+            Nos reservamos el derecho de modificar este aviso de privacidad en cualquier momento.
+            Los cambios serán publicados en esta misma página y, cuando sea relevante, se notificará
+            a través de nuestros canales de comunicación.
+          </p>
+        </div>
+
+        <div class="pt-6 border-t border-petroleo/5 text-center">
+          <a href="/" class="inline-flex items-center gap-2 bg-jade text-white px-8 py-4 rounded-2xl font-bold hover:bg-petroleo transition-all shadow-md text-sm">
+            Volver al inicio
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
