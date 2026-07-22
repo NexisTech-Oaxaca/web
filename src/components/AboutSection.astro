@@ -1,0 +1,84 @@
+---
+import { Lightbulb, Users, Rocket } from 'lucide-astro';
+
+const features = [
+  {
+    icon: Lightbulb,
+    title: 'Aprendizaje continuo',
+    description: 'Talleres prácticos, charlas técnicas y espacios de estudio colaborativo.',
+    color: 'jade',
+  },
+  {
+    icon: Users,
+    title: 'Networking genuino',
+    description: 'Conecta con profesionales, mentores y entusiastas de la tecnología.',
+    color: 'ambar',
+  },
+  {
+    icon: Rocket,
+    title: 'Proyectos reales',
+    description: 'Participa en iniciativas que generan impacto en Oaxaca.',
+    color: 'petroleo',
+  },
+];
+---
+
+<section class="py-32 px-6 bg-arena">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <div class="reveal rounded-[32px] overflow-hidden shadow-xl aspect-[4/3] lg:aspect-[4/5]">
+      <img
+        src="https://assets.nexisoaxaca.tech/2/f3_f99e00e2a9.jpg"
+        alt="Comunidad tecnológica colaborando"
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="reveal space-y-8">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-jade/10 border border-jade/20 text-jade text-xs font-bold uppercase tracking-widest">
+        <span class="w-2 h-2 rounded-full bg-jade animate-pulse"></span>
+        <span>Quiénes somos</span>
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-petroleo font-display leading-tight">
+        Construyendo la comunidad tecnológica de Oaxaca.
+      </h2>
+
+      <div class="space-y-4 text-petroleo/70 leading-relaxed text-sm sm:text-base">
+        <p>
+          Nexis Oaxaca Tech es una comunidad que conecta estudiantes, desarrolladores y
+          personas apasionadas por la tecnología para aprender, compartir conocimiento
+          y crear proyectos reales.
+        </p>
+        <p>
+          Organizamos charlas, talleres, meetups y actividades enfocadas en el crecimiento
+          profesional y la colaboración. Creemos en el poder del conocimiento compartido
+          para transformar el talento local.
+        </p>
+        <p>
+          Impulsamos el talento tecnológico de Oaxaca creando un espacio abierto donde
+          cualquier persona con interés en la tecnología pueda encontrar oportunidades
+          para aprender, conectar y construir juntos.
+        </p>
+      </div>
+
+      <div class="grid gap-6 pt-2">
+        {features.map((f, i) => (
+          <div class="flex items-start gap-5 group" style={`transition-delay: ${i * 150}ms`}>
+            <div class={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${
+              f.color === 'jade' ? 'bg-jade/15 text-jade' :
+              f.color === 'ambar' ? 'bg-ambar/15 text-ambar' :
+              'bg-petroleo/10 text-petroleo'
+            }`}>
+              <f.icon class="w-6 h-6" />
+            </div>
+            <div class="space-y-1">
+              <h3 class="text-lg font-bold text-petroleo">{f.title}</h3>
+              <p class="text-sm text-petroleo/60">{f.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

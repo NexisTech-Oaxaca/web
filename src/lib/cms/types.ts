@@ -22,6 +22,7 @@ export interface EventItem {
 	slug: string;
 	title: string;
 	description: string;
+	registerLink: string;
 	date: string;
 	time?: string;
 	location?: string;

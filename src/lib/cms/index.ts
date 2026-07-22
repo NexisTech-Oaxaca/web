@@ -16,12 +16,13 @@ import {
 const findBySlug = <T extends { slug: string; id: string }>(items: T[], slug: string) =>
 	items.find((item) => item.slug === slug) ?? null;
 
-const publishedParams = { status: 'published', populate: '*' };
+const publishedParams = { status: 'published', populate: '*', 'pagination[pageSize]': 100 };
 
 async function fetchCollection<T = Record<string, unknown>>(
 	path: string,
+	extraParams?: Record<string, string | number | boolean>,
 ): Promise<T[]> {
-	const query = toQuery(publishedParams);
+	const query = toQuery({ ...publishedParams, ...extraParams });
 	try {
 		const response: AxiosResponse<{ data?: unknown[] }> = await apiClient.get(`/${path}?${query}`);
 		if (!response.data?.data || !Array.isArray(response.data.data)) return [];
@@ -69,7 +70,7 @@ async function fetchOneWithFallback<T>(
 export async function getEvents(): Promise<EventItem[]> {
 	return fetchWithFallback(
 		async () => {
-			const items = await fetchCollection('api/events');
+			const items = await fetchCollection('api/events', { 'sort[0]': 'date:desc' });
 			return items.map((item) => normalizeEvent(item, strapiBaseUrl));
 		},
 		localEvents,

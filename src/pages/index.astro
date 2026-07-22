@@ -10,6 +10,7 @@ import Testimonials from '../components/Testimonials.astro';
 import PartnersMarquee from '../components/PartnersMarquee.astro';
 import Collaborate from '../components/Collaborate.astro';
 import Team from '../components/Team.astro';
+import AboutSection from '../components/AboutSection.astro';
 import { getHomeContent } from '../lib/cms';
 
 const { events, projects, team } = await getHomeContent();
@@ -28,10 +29,13 @@ const { events, projects, team } = await getHomeContent();
 		<RecentEvents events={events} />
 
     <!-- Featured Projects -->
-		<FeaturedProjects projects={projects} />
+	<!-- <FeaturedProjects projects={projects} /> -->
 
     <!-- Testimonials -->
-    <Testimonials />
+	<!-- <Testimonials /> -->
+
+    <!-- About Section -->
+    <AboutSection />
 
     <!-- Partners Marquee -->
     <PartnersMarquee />

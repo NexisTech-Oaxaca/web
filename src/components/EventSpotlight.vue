@@ -108,26 +108,17 @@ const detailHref = computed(() => `/eventos/${featured.value?.slug ?? ''}`);
               {{ titleText }}
             </h3>
 
-            <p class="text-lg text-petroleo/70 leading-relaxed font-sans">
+            <p class="text-lg text-petroleo/70 leading-relaxed font-sans line-clamp-10">
               {{ descriptionText }}
             </p>
+            <RichText :content="descriptionText" :preview="true" :maxWords="50" />
 
             <div class="flex items-center justify-between pt-10 border-t border-petroleo/10">
-              <div v-if="featured.speakers?.length" class="flex -space-x-3">
-                <img
-                  v-for="speaker in featured.speakers.slice(0, 3)"
-                  :key="speaker.name"
-                  class="w-12 h-12 rounded-full border-4 border-white object-cover bg-petroleo/10"
-                  :src="speaker.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(speaker.name)}&background=E8F5E9&color=1B4332`"
-                  :alt="speaker.name"
-                />
-              </div>
-              <div v-else></div>
               <a
                 :href="detailHref"
-                class="bg-jade text-white px-8 py-4 rounded-2xl font-bold hover:bg-petroleo transition-all shadow-lg shadow-jade/20 font-sans"
+                class="bg-jade text-white px-6 py-3 lg:px-8 lg:py-4 rounded-2xl font-bold hover:bg-petroleo transition-all shadow-lg shadow-jade/20 font-sans"
               >
-                {{ isUpcoming ? 'Registrar mi asistencia' : 'Ver resumen' }}
+                {{ isUpcoming ? 'Quiero saber más' : 'Ver resumen' }}
               </a>
             </div>
           </div>

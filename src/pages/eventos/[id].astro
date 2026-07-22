@@ -6,7 +6,8 @@ import { getEventBySlug, getEvents } from "../../lib/cms";
 import {
   ArrowLeft,
   MapPin,
-  CheckCircle,
+  Calendar,
+  ExternalLink,
   Youtube,
   Facebook,
   Instagram,
@@ -177,36 +178,48 @@ const getInitials = (name: string) =>
       <section class="bg-white rounded-[40px] p-8 md:p-16 shadow-2xl border border-petroleo/5 max-w-5xl mx-auto space-y-12">
         <div class="text-center space-y-2">
           <h3 class="text-3xl sm:text-4xl font-display font-bold text-petroleo uppercase">
-            {isUpcoming ? "Reserva tu lugar" : "Evidencia y memorias"}
+            {isUpcoming ? "Agenda este evento" : "Evidencia y memorias"}
           </h3>
           <p class="text-petroleo/60 text-sm sm:text-base md:text-lg">
             {isUpcoming
-              ? "Cupos presenciales limitados para garantizar la calidad del networking."
+              ? "Añádelo a tu calendario con un clic y sé parte de la comunidad."
               : "Revive los mejores momentos de este encuentro tecnológico."}
           </p>
         </div>
 
         {isUpcoming ? (
-          <form class="space-y-6 text-left">
-            <div class="grid md:grid-cols-2 gap-6">
-              <div class="space-y-2">
-                <label class="text-[10px] font-bold uppercase tracking-widest text-petroleo/40 ml-4">Nombre completo</label>
-                <input type="text" placeholder="Ej. Alejandro Ruiz" class="w-full bg-arena/50 border border-gris rounded-[20px] px-6 py-4 focus:border-jade outline-none transition-all font-medium text-petroleo" />
+          <div class="text-center space-y-8">
+            <div class="bg-arena/60 rounded-3xl p-8 max-w-lg mx-auto space-y-4 border border-petroleo/5">
+              <div class="w-14 h-14 rounded-2xl bg-jade/10 flex items-center justify-center mx-auto">
+                <Calendar class="w-7 h-7 text-jade" />
               </div>
-              <div class="space-y-2">
-                <label class="text-[10px] font-bold uppercase tracking-widest text-petroleo/40 ml-4">Email de contacto</label>
-                <input type="email" placeholder="email@ejemplo.com" class="w-full bg-arena/50 border border-gris rounded-[20px] px-6 py-4 focus:border-jade outline-none transition-all font-medium text-petroleo" />
+              <div class="space-y-1">
+                <p class="font-bold text-petroleo text-xl">No te lo pierdas</p>
+                <p class="text-sm text-petroleo/60">
+                  Agrega este evento a Google Calendar y recibe un recordatorio
+                  automático para que no olvides asistir.
+                </p>
               </div>
             </div>
-            <div class="space-y-2">
-              <label class="text-[10px] font-bold uppercase tracking-widest text-petroleo/40 ml-4">LinkedIn profile (opcional)</label>
-              <input type="url" placeholder="https://linkedin.com/in/usuario" class="w-full bg-arena/50 border border-gris rounded-[20px] px-6 py-4 focus:border-jade outline-none transition-all font-medium text-petroleo" />
-            </div>
-            <button type="submit" class="w-full bg-jade text-white py-6 rounded-[20px] font-bold text-xl hover:bg-petroleo transition-all shadow-xl shadow-jade/20 flex items-center justify-center gap-3 group mt-4">
-              Confirmar mi registro
-              <CheckCircle class="w-6 h-6 group-hover:scale-110 transition-transform" />
-            </button>
-          </form>
+
+            {event.registerLink ? (
+              <a
+                href={event.registerLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-3 bg-jade text-white px-10 py-5 rounded-[20px] font-bold text-lg hover:bg-petroleo transition-all shadow-xl shadow-jade/30 group"
+              >
+                <Calendar class="w-6 h-6" />
+                Agregar a Google Calendar
+                <ExternalLink class="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </a>
+            ) : (
+              <div class="py-4">
+                <p class="text-petroleo/40 text-sm">Registro no disponible por el momento.</p>
+                <p class="text-petroleo/30 text-xs mt-1">Sigue nuestras redes para conocer próximos eventos.</p>
+              </div>
+            )}
+          </div>
         ) : (
           <div class="space-y-12">
             {youtubeEmbedUrl && (
