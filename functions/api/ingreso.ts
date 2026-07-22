@@ -81,7 +81,7 @@ export async function onRequest(context: { request: Request; env: Record<string,
     const STRAPI_TOKEN = env.STRAPI_TOKEN;
 
     if (STRAPI_URL && STRAPI_TOKEN) {
-      const strapiRes = await fetch(`${STRAPI_URL}/api/miembros`, {
+      const strapiRes = await fetch(`${STRAPI_URL}/api/community-members`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
