@@ -89,11 +89,11 @@ export async function onRequest(context: { request: Request; env: Record<string,
         },
         body: JSON.stringify({
           data: {
-            nombre: nombre.trim(),
+            name: nombre.trim(),
             email: email.trim().toLowerCase(),
-            procedencia: procedencia.trim(),
-            dedicacion,
-            proyecto: proyecto?.trim() || '',
+            address: procedencia.trim(),
+            occupation: dedicacion.trim(),
+            promo: proyecto?.trim() || '',
           },
         }),
       });
