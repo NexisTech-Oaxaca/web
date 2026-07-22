@@ -9,7 +9,7 @@ import type {
 const STRAPI_URL = (import.meta.env.STRAPI_URL || import.meta.env.PUBLIC_STRAPI_URL || '').replace(/\/$/, '');
 const STRAPI_TOKEN = import.meta.env.STRAPI_TOKEN || import.meta.env.PUBLIC_STRAPI_TOKEN || '';
 
-export const hasStrapi = Boolean(STRAPI_URL);
+export const hasStrapi = STRAPI_URL && STRAPI_URL !== 'localhost:1337' && STRAPI_URL !== 'http://localhost:1337';
 export const strapiBaseUrl = STRAPI_URL;
 
 const apiClient: AxiosInstance = axios.create({

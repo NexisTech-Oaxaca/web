@@ -130,9 +130,13 @@ export async function getStartupBySlug(slug: string): Promise<StartupItem | null
 }
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
-	if (!hasStrapi) return localTeam;
-	const items = await fetchCollection('api/team-members');
-	return items.map((item, index) => normalizeTeamMember(item, index, strapiBaseUrl));
+	return fetchWithFallback(
+		async () => {
+			const items = await fetchCollection('api/team-members');
+			return items.map((item, index) => normalizeTeamMember(item, index, strapiBaseUrl));
+		},
+		localTeam,
+	);
 }
 
 export async function getHomeContent(): Promise<HomeContent> {

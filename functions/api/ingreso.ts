@@ -1,0 +1,215 @@
+import { Resend } from 'resend';
+
+interface IngresoBody {
+  nombre: string;
+  email: string;
+  procedencia: string;
+  dedicacion: string;
+  proyecto: string;
+  'cf-turnstile-response': string;
+}
+
+const DEDICACIONES: Record<string, string> = {
+  estudiante: 'Estudiante',
+  profesor: 'Profesor / Docente',
+  cloud: 'Cloud / Infraestructura',
+  software: 'Desarrollo de Software',
+  ia: 'Inteligencia Artificial',
+  diseno: 'Diseño / UX',
+  datos: 'Datos / Analytics',
+  cybersecurity: 'Ciberseguridad',
+  devops: 'DevOps / SRE',
+  emprendedor: 'Emprendedor',
+  otro: 'Otro',
+};
+
+export async function onRequest(context: { request: Request; env: Record<string, string | undefined> }) {
+  const { request, env } = context;
+
+  if (request.method !== 'POST') {
+    return new Response(JSON.stringify({ ok: false, error: 'Method not allowed' }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  try {
+    const body: IngresoBody = await request.json();
+    const token = body['cf-turnstile-response'];
+
+    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        secret: env.TURNSTILE_SECRET_KEY,
+        response: token,
+      }),
+    });
+    const verifyData = await verifyRes.json();
+
+    if (!verifyData.success) {
+      return new Response(JSON.stringify({ ok: false, error: 'Verificación anti-bot fallida' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const { nombre, email, procedencia, dedicacion, proyecto } = body;
+
+    const errors: string[] = [];
+    if (!nombre?.trim()) errors.push('nombre');
+    if (!email?.trim()) errors.push('email');
+    if (!procedencia?.trim()) errors.push('procedencia');
+    if (!dedicacion?.trim()) errors.push('dedicacion');
+
+    if (errors.length > 0) {
+      return new Response(JSON.stringify({ ok: false, error: `Campos requeridos: ${errors.join(', ')}` }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return new Response(JSON.stringify({ ok: false, error: 'Email inválido' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const STRAPI_URL = (env.STRAPI_URL || '').replace(/\/$/, '');
+    const STRAPI_TOKEN = env.STRAPI_TOKEN;
+
+    if (STRAPI_URL && STRAPI_TOKEN) {
+      const strapiRes = await fetch(`${STRAPI_URL}/api/miembros`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${STRAPI_TOKEN}`,
+        },
+        body: JSON.stringify({
+          data: {
+            nombre: nombre.trim(),
+            email: email.trim().toLowerCase(),
+            procedencia: procedencia.trim(),
+            dedicacion,
+            proyecto: proyecto?.trim() || '',
+          },
+        }),
+      });
+
+      if (!strapiRes.ok) {
+        const strapiError = await strapiRes.text();
+        console.error('Strapi error:', strapiRes.status, strapiError);
+      }
+    }
+
+    const RESEND_API_KEY = env.RESEND_API_KEY;
+
+    if (!RESEND_API_KEY) {
+      return new Response(JSON.stringify({ ok: false, error: 'Falta RESEND_API_KEY' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const resend = new Resend(RESEND_API_KEY);
+
+    const dedicacionLabel = DEDICACIONES[dedicacion] || dedicacion;
+
+    const { error: resendError } = await resend.emails.send({
+      from: `Nexis Oaxaca Tech <contacto@nexisoaxaca.tech>`,
+      to: email.trim().toLowerCase(),
+      subject: '¡Bienvenido a Nexis Oaxaca Tech!',
+      html: `
+        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 24px; background-color: #FCFAF7;">
+          <div style="text-align: center; margin-bottom: 32px;">
+            <img src="https://nexisoaxaca.tech/nexis.svg" alt="Nexis Oaxaca Tech" style="width: 120px; height: auto;" />
+          </div>
+
+          <h1 style="font-family: 'Space Grotesk', sans-serif; color: #234A57; font-size: 28px; margin-bottom: 8px; text-align: center;">
+            ¡Bienvenido a Nexis Oaxaca Tech, ${nombre}!
+          </h1>
+
+          <p style="color: #234A57; font-size: 16px; line-height: 1.6; text-align: center; margin-bottom: 32px;">
+            Nos da mucho gusto que formes parte de nuestra comunidad de tecnología e innovación en Oaxaca.
+          </p>
+
+          <div style="background-color: #234A57; border-radius: 24px; padding: 32px; margin-bottom: 32px;">
+            <h2 style="font-family: 'Space Grotesk', sans-serif; color: #FCFAF7; font-size: 20px; margin-bottom: 16px; text-align: center;">
+              Únete a nuestro grupo de WhatsApp
+            </h2>
+            <p style="color: #F6F2EA; font-size: 14px; line-height: 1.6; text-align: center; margin-bottom: 24px;">
+              Conéctate con otros miembros, entérate de eventos, talleres, oportunidades y colaboraciones.
+            </p>
+            <div style="text-align: center;">
+              <a href="https://chat.whatsapp.com/JdTX77UhRSbKMkTTEUXZtX"
+                 style="display: inline-block; background-color: #2D8380; color: white; text-decoration: none; padding: 16px 40px; border-radius: 18px; font-weight: bold; font-size: 16px;">
+                Unirme al grupo de WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <h3 style="font-family: 'Space Grotesk', sans-serif; color: #234A57; font-size: 18px; margin-bottom: 16px;">
+              ¿Qué es Nexis Oaxaca Tech?
+            </h3>
+            <p style="color: #234A57; font-size: 14px; line-height: 1.6;">
+              Somos una comunidad vibrante de personas apasionadas por la tecnología, la innovación y el emprendimiento en Oaxaca.
+              Organizamos eventos, talleres, hackathons y conferencias para impulsar el ecosistema tecnológico del estado.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <h3 style="font-family: 'Space Grotesk', sans-serif; color: #234A57; font-size: 18px; margin-bottom: 16px;">
+              ¿Qué ofrecemos?
+            </h3>
+            <ul style="color: #234A57; font-size: 14px; line-height: 1.8; padding-left: 20px;">
+              <li>Eventos y talleres exclusivos para miembros</li>
+              <li>Networking con profesionales del sector</li>
+              <li>Oportunidades de colaboración en proyectos</li>
+              <li>Mentoría y aprendizaje continuo</li>
+              <li>Promoción de tus proyectos y emprendimientos</li>
+            </ul>
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <h3 style="font-family: 'Space Grotesk', sans-serif; color: #234A57; font-size: 18px; margin-bottom: 16px;">
+              Conéctate con nosotros
+            </h3>
+            <p style="color: #234A57; font-size: 14px; line-height: 1.6;">
+              Síguenos en Instagram: <a href="https://instagram.com/nexisoaxaca" style="color: #2D8380;">@nexisoaxaca</a><br />
+              Visita nuestro sitio web: <a href="https://nexisoaxaca.tech" style="color: #2D8380;">nexisoaxaca.tech</a>
+            </p>
+          </div>
+
+          <div style="border-top: 1px solid #E5E7EB; padding-top: 24px; text-align: center;">
+            <p style="color: #9CA3AF; font-size: 12px;">
+              Este mensaje fue enviado porque te registraste como miembro de Nexis Oaxaca Tech.<br />
+              Si no solicitaste este registro, ignora este correo.
+            </p>
+          </div>
+        </div>
+      `,
+    });
+
+    if (resendError) {
+      console.error('Resend error:', JSON.stringify(resendError));
+      return new Response(JSON.stringify({ ok: false, error: resendError.message ?? 'Error al enviar el correo' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    return new Response(JSON.stringify({ ok: true, message: 'Registro exitoso' }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (err) {
+    console.error('Error en /api/ingreso:', err);
+    return new Response(JSON.stringify({ ok: false, error: String(err) }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}

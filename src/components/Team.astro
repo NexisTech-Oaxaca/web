@@ -16,8 +16,8 @@ const { members } = Astro.props as Props;
        <p class="text-petroleo/60 mt-2">Los rostros detrás de la comunidad.</p>
     </div>
     
-    <div class="flex gap-8 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hidden reveal">
-      {members.map((member, index) => (
+    <div id="team-carousel" class="flex gap-8 overflow-x-auto pb-12 scrollbar-hidden reveal" style="scroll-behavior: auto;">
+      {[...members, ...members].map((member, index) => (
         <div class="flex-none w-72 text-center group snap-center" style={`transition-delay: ${index * 100}ms`}>
           <div class="relative w-48 h-48 mx-auto mb-8">
             <div class={`absolute inset-0 ${member.color} rounded-[40px] rotate-6 group-hover:rotate-12 transition-transform duration-500 shadow-lg shadow-black/5`}></div>
@@ -45,6 +45,31 @@ const { members } = Astro.props as Props;
     </div>
   </div>
 </section>
+
+<script>
+  const carousel = document.querySelector('#team-carousel');
+  if (carousel) {
+    let isHovering = false;
+    let animationId = null;
+    const speed = 0.8;
+    const half = carousel.scrollWidth / 2;
+
+    const scroll = () => {
+      if (!isHovering) {
+        carousel.scrollLeft += speed;
+        if (carousel.scrollLeft >= half) {
+          carousel.scrollLeft = 0;
+        }
+      }
+      animationId = requestAnimationFrame(scroll);
+    };
+
+    carousel.addEventListener('mouseenter', () => { isHovering = true; });
+    carousel.addEventListener('mouseleave', () => { isHovering = false; });
+
+    animationId = requestAnimationFrame(scroll);
+  }
+</script>
 
 <style>
   .scrollbar-hidden::-webkit-scrollbar {
