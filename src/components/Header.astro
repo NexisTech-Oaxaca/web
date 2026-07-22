@@ -41,7 +41,7 @@ const navLinks = [
             <a
               href={link.href}
               class={`relative text-sm font-semibold py-1.5 transition-colors ${
-                isActive ? "text-jade" : "text-petroleo/70 hover:text-jade"
+                isActive ? "text-jade" : "text-petroleo/85 hover:text-jade"
               }`}
             >
               {link.label}
@@ -58,13 +58,12 @@ const navLinks = [
     </div>
 
     <!-- Desktop Join Button -->
-     <a href="/ingreso">
-      <button
-        id="join-community-btn"
-        class="hidden md:block bg-jade text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-petroleo transition-colors duration-300 shadow-md shadow-jade/10 cursor-pointer"
-      >
-        Únete a la comunidad
-      </button>
+    <a
+      href="/ingreso"
+      id="join-community-btn"
+      class="hidden md:block bg-jade text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-petroleo transition-colors duration-300 shadow-md shadow-jade/10 cursor-pointer text-center"
+    >
+      Únete a la comunidad
     </a>
 
     <!-- Hamburger Menu Toggle Button (Mobile Only) -->
@@ -92,7 +91,7 @@ const navLinks = [
             <a
               href={link.href}
               class={`mobile-nav-link text-xl font-bold py-3 border-b border-petroleo/5 transition-colors block ${
-                isActive ? "text-jade" : "text-petroleo/70 hover:text-jade"
+                isActive ? "text-jade" : "text-petroleo/85 hover:text-jade"
               }`}
             >
               {link.label}
@@ -103,13 +102,12 @@ const navLinks = [
     </div>
 
     <div class="pt-6 border-t border-petroleo/10">
-      <a href="/ingreso">
-      <button
+      <a
+        href="/ingreso"
         id="join-community-btn-mobile"
-        class="w-full bg-jade text-white py-3.5 rounded-full font-bold text-base hover:bg-petroleo transition-colors duration-300 shadow-md shadow-jade/10 cursor-pointer text-center block"
+        class="block w-full bg-jade text-white py-3.5 rounded-full font-bold text-base hover:bg-petroleo transition-colors duration-300 shadow-md shadow-jade/10 cursor-pointer text-center"
       >
         Únete a la comunidad
-      </button>
       </a>
     </div>
   </div>

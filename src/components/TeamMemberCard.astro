@@ -39,7 +39,7 @@ const { member, index } = Astro.props;
       <p class="text-jade font-black text-[9px] mb-6 uppercase tracking-[0.2em]">
         {member.role}
       </p>
-      <p class="text-petroleo/60 text-sm leading-relaxed mb-8 font-medium">
+      <p class="text-petroleo/75 text-sm leading-relaxed mb-8 font-medium">
         {member.description}
       </p>
     </div>
@@ -51,7 +51,8 @@ const { member, index } = Astro.props;
           href={url} 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="text-petroleo/30 hover:text-jade transition-all hover:scale-110"
+          aria-label={`${member.name} en ${key === 'linkedin' ? 'LinkedIn' : key === 'github' ? 'GitHub' : key === 'external' ? 'sitio web' : 'sitio web'}`}
+          class="text-petroleo/50 hover:text-jade transition-all hover:scale-110"
         >
           {key === "linkedin" && <Linkedin class="w-5 h-5" />}
           {key === "github" && <Github class="w-5 h-5" />}

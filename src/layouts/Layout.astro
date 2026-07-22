@@ -1,9 +1,13 @@
 ---
 interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
+const cleanDescription = description
+  ? description.replace(/\s+/g, ' ').trim().slice(0, 160)
+  : undefined;
 import { ClientRouter } from 'astro:transitions';
 import "../styles/global.css";
 ---
@@ -15,6 +19,7 @@ import "../styles/global.css";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		{cleanDescription && <meta name="description" content={cleanDescription} />}
 		<title>{title}</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -18,7 +18,7 @@ const catLabel = selected?.label || 'Colaboración';
 const catIcon = selected?.icon || Building2;
 ---
 
-<Layout title={`Contacto - ${catLabel} | Nexis Oaxaca Tech`}>
+<Layout title={`Contacto - ${catLabel} | Nexis Oaxaca Tech`} description={`Contacta a Nexis Oaxaca Tech como ${catLabel.toLowerCase()}. Cuéntanos sobre tu interés en colaborar con la comunidad tecnológica de Oaxaca.`}>
   <Header />
 
   <main class="pt-32 pb-24 px-6 bg-marfil min-h-screen">
@@ -32,7 +32,7 @@ const catIcon = selected?.icon || Building2;
         <div class={`p-6 sm:p-10 pb-6 sm:pb-8 border-b border-${catColor}/5`}>
 
           <h1 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-petroleo mb-3">Contactar &mdash; {catLabel}</h1>
-          <p class="text-petroleo/60 text-sm sm:text-base md:text-lg">{selected?.desc || 'Cuéntanos más sobre tu interés en colaborar con Nexis.'}</p>
+          <p class="text-petroleo/80 text-sm sm:text-base md:text-lg">{selected?.desc || 'Cuéntanos más sobre tu interés en colaborar con Nexis.'}</p>
         </div>
 
         <div class="p-6 sm:p-10">
@@ -45,7 +45,7 @@ const catIcon = selected?.icon || Building2;
                 </label>
                 <input
                   type="text" id="nombre" name="nombre" required
-                  class="w-full px-5 py-4 rounded-2xl border-2 border-petroleo/10 bg-marfil text-petroleo placeholder:text-petroleo/30 focus:outline-none transition-all duration-300"
+                  class="w-full px-5 py-4 rounded-2xl border-2 border-petroleo/10 bg-marfil text-petroleo                   placeholder:text-petroleo/50 focus:outline-none transition-all duration-300"
                   placeholder="Tu nombre completo"
                 />
                 <p class="text-red-500 text-xs mt-1 hidden" id="error-nombre">Este campo es obligatorio</p>
@@ -57,7 +57,7 @@ const catIcon = selected?.icon || Building2;
                 </label>
                 <input
                   type="email" id="email" name="email" required
-                  class="w-full px-5 py-4 rounded-2xl border-2 border-petroleo/10 bg-marfil text-petroleo placeholder:text-petroleo/30 focus:outline-none transition-all duration-300"
+                  class="w-full px-5 py-4 rounded-2xl border-2 border-petroleo/10 bg-marfil text-petroleo                   placeholder:text-petroleo/50 focus:outline-none transition-all duration-300"
                   placeholder="tu@correo.com"
                 />
                 <p class="text-red-500 text-xs mt-1 hidden" id="error-email">Ingresa un email válido</p>
@@ -83,7 +83,7 @@ const catIcon = selected?.icon || Building2;
                 </label>
                 <textarea
                   id="mensaje" name="mensaje" rows={5} required
-                  class="w-full px-5 py-4 rounded-2xl border-2 border-petroleo/10 bg-marfil text-petroleo placeholder:text-petroleo/30 focus:outline-none transition-all duration-300 resize-none"
+                  class="w-full px-5 py-4 rounded-2xl border-2 border-petroleo/10 bg-marfil text-petroleo                   placeholder:text-petroleo/50 focus:outline-none transition-all duration-300 resize-none"
                   placeholder="Cuéntanos en qué te gustaría colaborar..."
                 ></textarea>
                 <p class="text-red-500 text-xs mt-1 hidden" id="error-mensaje">Este campo es obligatorio</p>
@@ -106,7 +106,7 @@ const catIcon = selected?.icon || Building2;
                   type="checkbox" id="consent" name="consent" required
                   class="mt-1 w-4 h-4 shrink-0 rounded border-petroleo/20 text-jade focus:ring-jade bg-marfil"
                 />
-                <label for="consent" class="text-[11px] text-petroleo/40 leading-relaxed">
+                <label for="consent" class="text-[11px] text-petroleo/60 leading-relaxed">
                   Acepto el
                   <a href="/privacidad" target="_blank" class="text-jade hover:underline">Aviso de Privacidad</a>
                   y los
@@ -115,7 +115,7 @@ const catIcon = selected?.icon || Building2;
                 </label>
               </div>
 
-              <p class="text-center text-[10px] text-petroleo/30 leading-relaxed mt-4">
+              <p class="text-center text-[10px] text-petroleo/50 leading-relaxed mt-4">
                 Este sitio está protegido con Cloudflare Turnstile y se rige por la
                 <a href="https://www.cloudflare.com/en-gb/turnstile-privacy-policy/" target="_blank" rel="noopener noreferrer" class="underline hover:text-petroleo/50 transition-colors">Política de Privacidad</a>
                 y los

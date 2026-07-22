@@ -68,7 +68,7 @@ const detailHref = computed(() => `/eventos/${featured.value?.slug ?? ''}`);
           <h2 class="text-4xl font-bold text-petroleo font-display">
             {{ isUpcoming ? 'Próximo Evento' : 'Último Evento' }}
           </h2>
-          <p class="text-petroleo/60 mt-2">
+          <p class="text-petroleo/80 mt-2">
             {{ isUpcoming ? 'No te pierdas nuestra cita más cercana.' : 'Revive nuestro encuentro más reciente.' }}
           </p>
         </div>
@@ -108,7 +108,7 @@ const detailHref = computed(() => `/eventos/${featured.value?.slug ?? ''}`);
               {{ titleText }}
             </h3>
 
-            <p class="text-lg text-petroleo/70 leading-relaxed font-sans line-clamp-3 md:line-clamp-5 lg:line-clamp-10">
+            <p class="text-lg text-petroleo/85 leading-relaxed font-sans line-clamp-3 md:line-clamp-5 lg:line-clamp-10">
               {{ descriptionText }}
             </p>
             <RichText :content="descriptionText" :preview="true" :maxWords="50" />

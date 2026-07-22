@@ -22,19 +22,19 @@ if (!project) {
 }
 ---
 
-<Layout title={`${project.name} | Nexis Projects`}>
+<Layout title={`${project.name} | Nexis Projects`} description={project.description}>
   <Header />
 
   <main class="bg-marfil pt-40 pb-24">
     <div class="max-w-7xl mx-auto px-6 space-y-24">
-      <a href="/proyectos" class="inline-flex items-center gap-2 text-petroleo/40 hover:text-jade font-bold text-xs uppercase tracking-widest transition-colors group">
+      <a href="/proyectos" class="inline-flex items-center gap-2 text-petroleo/60 hover:text-jade font-bold text-xs uppercase tracking-widest transition-colors group">
         <ArrowLeft class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
         Volver a proyectos
       </a>
 
       <section class="grid lg:grid-cols-12 gap-16 items-start">
         <div class="lg:col-span-7 space-y-8 text-left">
-          <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-jade/10 text-jade text-[10px] font-black uppercase tracking-[0.2em] border border-jade/20 shadow-sm">
+          <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-jade/10 text-petroleo text-[10px] font-black uppercase tracking-[0.2em] border border-jade/20 shadow-sm">
             Proyecto comunitario • {project.status}
           </div>
 
@@ -42,7 +42,7 @@ if (!project) {
             {project.name}
           </h1>
 
-          <p class="text-sm sm:text-base md:text-xl text-petroleo/70 max-w-2xl leading-relaxed font-medium">
+          <p class="text-sm sm:text-base md:text-xl text-petroleo/85 max-w-2xl leading-relaxed font-medium">
             {project.description}
           </p>
 
@@ -78,7 +78,7 @@ if (!project) {
             {project.challenge.stats.map((stat) => (
               <div>
                 <p class="text-4xl font-extrabold font-display text-jade mb-1">{stat.value}</p>
-                <p class="text-[10px] text-white/40 font-black uppercase tracking-[0.2em]">{stat.label}</p>
+                <p class="text-[10px] text-white/60 font-black uppercase tracking-[0.2em]">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -96,10 +96,10 @@ if (!project) {
                 <div class="p-6 space-y-3">
                   <h3 class="text-xl font-bold font-display text-petroleo uppercase">{member.name}</h3>
                   <p class="text-jade text-[10px] font-black uppercase tracking-[0.2em]">{member.role}</p>
-                  <p class="text-sm text-petroleo/60 leading-relaxed">{member.description}</p>
+                  <p class="text-sm text-petroleo/75 leading-relaxed">{member.description}</p>
                   <div class="flex gap-4 pt-4 border-t border-petroleo/5">
                     {Object.entries(member.links).map(([key, url]) => (
-                      <a href={url} class="text-petroleo/30 hover:text-jade transition-colors" target="_blank" rel="noreferrer">
+                      <a href={url} class="text-petroleo/50 hover:text-jade transition-colors" target="_blank" rel="noreferrer">
                         {key === 'linkedin' && <Linkedin class="w-4 h-4" />}
                         {key === 'github' && <Github class="w-4 h-4" />}
                         {key === 'external' && <ExternalLink class="w-4 h-4" />}
@@ -125,7 +125,7 @@ if (!project) {
                 <div class="absolute left-0 top-1 w-5 h-5 rounded-full bg-jade"></div>
                 <h3 class="text-xl font-bold font-display text-petroleo uppercase">{item.title}</h3>
                 <p class="text-[10px] font-black uppercase tracking-[0.2em] text-jade mt-1">{item.date}</p>
-                <p class="text-sm text-petroleo/60 leading-relaxed mt-3">{item.description}</p>
+                <p class="text-sm text-petroleo/75 leading-relaxed mt-3">{item.description}</p>
                 {index !== project.timeline.length - 1 && <div class="absolute left-2.25 top-5 -bottom-8 w-px bg-jade/30"></div>}
               </div>
             ))}

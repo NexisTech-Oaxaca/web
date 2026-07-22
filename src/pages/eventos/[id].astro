@@ -67,14 +67,14 @@ const getInitials = (name: string) =>
     : "NN";
 ---
 
-<Layout title={`${event.title} | Nexis Oaxaca Tech`}>
+<Layout title={`${event.title} | Nexis Oaxaca Tech`} description={event.description}>
   <Header />
 
   <main class="pt-32 pb-24 bg-marfil">
     <div class="max-w-7xl mx-auto px-6 space-y-24">
       <a
         href="/eventos"
-        class="inline-flex items-center gap-2 text-petroleo/40 hover:text-jade font-bold text-xs uppercase tracking-widest transition-colors group"
+        class="inline-flex items-center gap-2 text-petroleo/60 hover:text-jade font-bold text-xs uppercase tracking-widest transition-colors group"
       >
         <ArrowLeft class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
         Volver a eventos
@@ -83,7 +83,7 @@ const getInitials = (name: string) =>
       <section class="grid lg:grid-cols-12 gap-16 items-start">
         <div class="lg:col-span-7 space-y-8 text-left">
           <div
-            class={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest ${isUpcoming ? "bg-jade/10 border border-jade/20 text-jade" : "bg-petroleo/10 border border-petroleo/20 text-petroleo/60"}`}
+            class={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest ${isUpcoming ? "bg-jade/15 border border-jade/30 text-petroleo" : "bg-petroleo/10 border border-petroleo/20 text-petroleo/60"}`}
           >
             <span
               class={`w-2 h-2 rounded-full ${isUpcoming ? "bg-jade animate-pulse" : "bg-petroleo/40"}`}
@@ -95,25 +95,25 @@ const getInitials = (name: string) =>
             {event.title}
           </h1>
 
-          <p class="text-sm sm:text-base md:text-xl text-petroleo/70 max-w-2xl leading-relaxed">
+            <p class="text-sm sm:text-base md:text-xl text-petroleo/85 max-w-2xl leading-relaxed">
             {event.description}
           </p>
 
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 p-8 bg-white rounded-4xl border border-petroleo/5 shadow-sm">
             <div class="space-y-1">
-              <p class="text-[9px] font-bold text-petroleo/40 uppercase tracking-widest">Fecha</p>
+              <p class="text-[9px] font-bold text-petroleo/60 uppercase tracking-widest">Fecha</p>
               <p class="font-bold text-petroleo">{event.date}</p>
             </div>
             <div class="space-y-1">
-              <p class="text-[9px] font-bold text-petroleo/40 uppercase tracking-widest">Hora</p>
+              <p class="text-[9px] font-bold text-petroleo/60 uppercase tracking-widest">Hora</p>
               <p class="font-bold text-petroleo">{event.time || "17:00 CST"}</p>
             </div>
             <div class="space-y-1">
-              <p class="text-[9px] font-bold text-petroleo/40 uppercase tracking-widest">Lugar</p>
+              <p class="text-[9px] font-bold text-petroleo/60 uppercase tracking-widest">Lugar</p>
               <p class="font-bold text-petroleo">{event.location || "Oaxaca"}</p>
             </div>
             <div class="space-y-1">
-              <p class="text-[9px] font-bold text-petroleo/40 uppercase tracking-widest">Tipo</p>
+              <p class="text-[9px] font-bold text-petroleo/60 uppercase tracking-widest">Tipo</p>
               <span class="inline-block px-3 py-1 bg-ambar text-white text-[9px] font-black rounded-full uppercase tracking-widest">
                 {event.type || "Evento"}
               </span>
@@ -143,7 +143,7 @@ const getInitials = (name: string) =>
       {event.speakers && event.speakers.length > 0 && (
         <section class="space-y-8 text-left">
           <div class="border-b border-petroleo/10 pb-4">
-            <h2 class="text-xs font-bold uppercase tracking-widest text-petroleo/40">Ponentes e invitados</h2>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-petroleo/60">Ponentes e invitados</h2>
           </div>
           <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {event.speakers.map((speaker) => {
@@ -154,7 +154,7 @@ const getInitials = (name: string) =>
                     {speaker.image ? (
                       <img src={speaker.image} alt={speaker.name} class="w-full h-full object-cover" />
                     ) : (
-                      <div class="w-full h-full flex items-center justify-center bg-linear-to-br from-petroleo/5 to-petroleo/10 text-petroleo/40 text-2xl font-display font-extrabold uppercase">
+                      <div class="w-full h-full flex items-center justify-center bg-linear-to-br from-petroleo/5 to-petroleo/10 text-petroleo/60 text-2xl font-display font-extrabold uppercase">
                         {getInitials(speaker.name)}
                       </div>
                     )}
@@ -163,7 +163,7 @@ const getInitials = (name: string) =>
                     {speaker.name}
                   </h3>
                   {speaker.role && (
-                    <p class="text-xs text-petroleo/50 font-bold uppercase tracking-widest mt-1">
+                    <p class="text-xs text-petroleo/60 font-bold uppercase tracking-widest mt-1">
                       {speaker.role}
                     </p>
                   )}
@@ -179,7 +179,7 @@ const getInitials = (name: string) =>
           <h3 class="text-3xl sm:text-4xl font-display font-bold text-petroleo uppercase">
             {isUpcoming ? "Agenda este evento" : "Evidencia y memorias"}
           </h3>
-          <p class="text-petroleo/60 text-sm sm:text-base md:text-lg">
+          <p class="text-petroleo/80 text-sm sm:text-base md:text-lg">
             {isUpcoming
               ? "Añádelo a tu calendario con un clic y sé parte de la comunidad."
               : "Revive los mejores momentos de este encuentro tecnológico."}
@@ -194,7 +194,7 @@ const getInitials = (name: string) =>
               </div>
               <div class="space-y-1">
                 <p class="font-bold text-petroleo text-xl">No te lo pierdas</p>
-                <p class="text-sm text-petroleo/60">
+                <p class="text-sm text-petroleo/75">
                   Agrega este evento a Google Calendar y recibe un recordatorio
                   automático para que no olvides asistir.
                 </p>
@@ -214,8 +214,8 @@ const getInitials = (name: string) =>
               </a>
             ) : (
               <div class="py-4">
-                <p class="text-petroleo/40 text-sm">Registro no disponible por el momento.</p>
-                <p class="text-petroleo/30 text-xs mt-1">Sigue nuestras redes para conocer próximos eventos.</p>
+                <p class="text-petroleo/60 text-sm">Registro no disponible por el momento.</p>
+                <p class="text-petroleo/60 text-xs mt-1">Sigue nuestras redes para conocer próximos eventos.</p>
               </div>
             )}
           </div>
@@ -223,7 +223,7 @@ const getInitials = (name: string) =>
           <div class="space-y-12">
             {youtubeEmbedUrl && (
               <div class="space-y-4">
-                <h4 class="text-xs font-bold uppercase tracking-widest text-petroleo/40">Grabación del evento</h4>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-petroleo/60">Grabación del evento</h4>
                 <div class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-lg border border-petroleo/5 bg-black">
                   <iframe
                     class="w-full h-full border-0 absolute inset-0"
@@ -238,7 +238,7 @@ const getInitials = (name: string) =>
 
             {hasGallery && (
               <div class="space-y-4">
-                <h4 class="text-xs font-bold uppercase tracking-widest text-petroleo/40">Galería de fotos</h4>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-petroleo/60">Galería de fotos</h4>
                 <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                   {event.gallery!.map((imgUrl: string, idx: number) => (
                     <div class="relative overflow-hidden rounded-3xl aspect-video shadow-md bg-petroleo/5">
@@ -252,7 +252,7 @@ const getInitials = (name: string) =>
 
             {hasMedia && (
               <div class="space-y-4 pt-6 border-t border-petroleo/10">
-                <p class="text-xs font-bold uppercase tracking-widest text-petroleo/40 text-center">
+                <p class="text-xs font-bold uppercase tracking-widest text-petroleo/60 text-center">
                   El evento ya terminó, pero puedes verlo disponible en:
                 </p>
                 <div class="flex flex-wrap gap-4 justify-center">
