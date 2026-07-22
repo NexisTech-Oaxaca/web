@@ -83,7 +83,7 @@ const navLinks = [
   <!-- Mobile Menu Drawer (Overlay) -->
   <div
     id="mobile-menu"
-    class="fixed top-20 left-0 w-full h-[calc(100vh-5rem)] bg-marfil/95 backdrop-blur-lg border-b border-petroleo/5 z-40 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-in-out md:hidden flex flex-col justify-between p-8"
+    class="fixed top-20 left-0 w-full h-[calc(100dvh-5rem)] bg-marfil/95 backdrop-blur-lg border-b border-petroleo/5 z-40 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-in-out md:hidden flex flex-col justify-between p-8"
   >
     <div class="flex flex-col space-y-6">
       {
@@ -105,12 +105,14 @@ const navLinks = [
     </div>
 
     <div class="pt-6 border-t border-petroleo/10">
+      <a href="/ingreso">
       <button
         id="join-community-btn-mobile"
         class="w-full bg-jade text-white py-3.5 rounded-full font-bold text-base hover:bg-petroleo transition-colors duration-300 shadow-md shadow-jade/10 cursor-pointer text-center block"
       >
         Únete a la comunidad
       </button>
+      </a>
     </div>
   </div>
 </header>

@@ -29,13 +29,13 @@ const catIcon = selected?.icon || Building2;
       </a>
 
       <div class={`rounded-[40px] border-2 border-${catColor}/10 bg-white shadow-sm overflow-hidden`} style="background-image: url('/nexis.svg'); background-size: cover; background-position: center;">
-        <div class={`p-10 pb-8 border-b border-${catColor}/5`}>
+        <div class={`p-6 sm:p-10 pb-6 sm:pb-8 border-b border-${catColor}/5`}>
 
-          <h1 class="font-display text-4xl font-bold text-petroleo mb-3">Contactar &mdash; {catLabel}</h1>
-          <p class="text-petroleo/60 text-lg">{selected?.desc || 'Cuéntanos más sobre tu interés en colaborar con Nexis.'}</p>
+          <h1 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-petroleo mb-3">Contactar &mdash; {catLabel}</h1>
+          <p class="text-petroleo/60 text-sm sm:text-base md:text-lg">{selected?.desc || 'Cuéntanos más sobre tu interés en colaborar con Nexis.'}</p>
         </div>
 
-        <div class="p-10">
+        <div class="p-6 sm:p-10">
           <div id="form-container">
             <form id="contact-form" class="space-y-6">
 
@@ -91,7 +91,7 @@ const catIcon = selected?.icon || Building2;
 
               <button
                 type="submit" id="submit-btn"
-                class="submit-btn relative w-full py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 overflow-hidden transition-all duration-500 disabled:cursor-not-allowed"
+                class="submit-btn relative w-full py-5 rounded-2xl font-bold text-sm sm:text-base md:text-lg flex items-center justify-center gap-3 overflow-hidden transition-all duration-500 disabled:cursor-not-allowed"
                 style={catColor === 'petroleo' ? '--btn-bg: #234A57; --btn-text: white; --btn-bg-hover: #1d3d48; --btn-shadow: rgba(35,74,87,0.3)' : catColor === 'jade' ? '--btn-bg: #2D8380; --btn-text: white; --btn-bg-hover: #26726f; --btn-shadow: rgba(45,131,128,0.3)' : '--btn-bg: #DDAA33; --btn-text: #234A57; --btn-bg-hover: #c99a2e; --btn-shadow: rgba(221,170,51,0.3)'}
               >
                 <span class="absolute inset-0 opacity-0 transition-opacity duration-500" id="btn-bg-glow"></span>
@@ -112,12 +112,12 @@ const catIcon = selected?.icon || Building2;
               <div class="cf-turnstile" data-sitekey="0x4AAAAAAD6uLyml5OaSHsGS" id="turnstile-widget"></div>
             </form>
 
-            <div id="success-message" class="hidden text-center py-12">
-              <div class="w-20 h-20 rounded-full bg-jade/10 flex items-center justify-center mx-auto mb-6">
-                <CheckCircle2 class="w-10 h-10 text-jade" />
+            <div id="success-message" class="hidden text-center py-8 sm:py-12">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-jade/10 flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <CheckCircle2 class="w-8 h-8 sm:w-10 sm:h-10 text-jade" />
               </div>
-              <h2 class="font-display text-3xl font-bold text-petroleo mb-3">¡Mensaje enviado!</h2>
-              <p class="text-petroleo/60 mb-8">Gracias por tu interés. Te responderemos a la brevedad.</p>
+              <h2 class="font-display text-xl sm:text-2xl md:text-3xl font-bold text-petroleo mb-3">¡Mensaje enviado!</h2>
+              <p class="text-petroleo/60 text-sm sm:text-base mb-8">Gracias por tu interés. Te responderemos a la brevedad.</p>
               <a href="/" class="inline-block bg-jade text-white px-10 py-4 rounded-2xl font-bold hover:bg-jade/90 transition-colors">
                 Volver al inicio
               </a>

@@ -30,7 +30,17 @@ const partners = [
     100% { transform: translateX(-50%); }
   }
   .animate-marquee {
-    animation: marquee 40s linear infinite;
+    animation: marquee 4s linear infinite;
+  }
+  @media (min-width: 768px) {
+    .animate-marquee {
+      animation-duration: 30s;
+    }
+  }
+  @media (min-width: 1024px) {
+    .animate-marquee {
+      animation-duration: 40s;
+    }
   }
   .animate-marquee:hover {
     animation-play-state: paused;
